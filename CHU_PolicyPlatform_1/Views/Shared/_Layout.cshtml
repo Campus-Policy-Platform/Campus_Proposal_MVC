@@ -6,12 +6,18 @@
     <title>@ViewData["Title"] - CHU_PolicyPlatform_1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/hfStyle.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CHU_PolicyPlatform_1</a>
+                <div>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.jpg" />
+                    </a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">校園政策平台網</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,10 +25,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">首頁</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">提案</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">監督</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">各處室</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +49,23 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - CHU_PolicyPlatform_1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="col-6">
+                <div>
+                    <h4>聯絡資訊</h4>
+                    <h5>
+                        30012 新竹市香山區五福路二段707號<br>
+                        707, Sec.2, WuFu Rd., Hsinchu, Taiwan 30012, R.O.C. 電話：03-5374281~5 傳真：03-5373771
+                    </h5>
+                </div>
+                <div>
+                    <h4>緊急聯絡</h4>
+                    <h5>
+                        校園安全專線：0972590728 (全日)<br>
+                        學生宿舍專線：03-5376000,<br>03-5375015
+                    </h5>
+                </div>
+            </div>
+            <div class="col-6">上半部超連結</div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
