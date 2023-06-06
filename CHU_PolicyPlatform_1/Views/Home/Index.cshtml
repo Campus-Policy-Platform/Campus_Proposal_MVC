@@ -1,8 +1,85 @@
-﻿@{
+﻿@model ScanViewModel
+@{
     ViewData["Title"] = "Home Page";
+
+    List<Proposal> proposals = Model.Proposals;
+    List<Vote> votes = Model.Votes;
+
+    int i = 0;
+    int num = 1;
+    
+    decimal pageNum = (proposals.Count()/8.00m);
+    
+    int agree = 0;
+    int messge = 0;    
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<nav>
+    <div class="search">
+        <input id="hinge" class="form-control" type="text" placeholder="請輸入關鍵字"/>
+        <button id="hingebtn" type="button" class="btn btn-secondary btn-sm">搜尋</button>
+    </div>
+    <div id="search-content"></div>
+</nav>
+<div id="proposal">
+    @foreach(var prop in proposals)
+    {
+        i++;
+        if(i<8*(num-1) || i >= 8 * num)
+        {
+            return;
+        }
+        <a class="maincard col-6" href="#">
+            @switch (prop.CategoryId)
+            {
+                case "C001":
+                    <img src="~/images/campus_icon.jpg" />
+                    break;
+                case "C002":
+                    <img src="~/images/classroom_icon.jpg" />
+                    break;
+                case "C003":
+                    <img src="~/images/dormitory_icon.jpg" />
+                    break;
+                case "C004":
+                    <img src="~/images/restaurant_icon.jpg" />
+                    break;
+                default:
+                    <p>錯誤!!</p>
+                    break;
+            }
+            <div>
+                <h3>@prop.Title</h3>
+                <ul>
+                    @foreach(var vote in votes)
+                    {
+                        if(vote.ProposalId == prop.ProposalId)
+                        {
+                            messge++;
+                            if (vote.Crucial == true)
+                            {
+                                agree++;
+                            }
+                        }
+                    }
+                    <li>同意數： @agree</li>
+                    <li>留言數： @messge</li>
+                </ul>
+            </div>
+        </a>
+    }
+    <div class="page">
+        <ul class="pagination">
+            @for(var index=0; index < Math.Ceiling(pageNum); index++)
+            {
+                <li class="page-item">
+                    <a id="page@(index+1)" class="page-link">@(index+1)</a>
+                </li>
+            }
+        </ul>
+    </div>
 </div>
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/mainStyle.css" />
+}

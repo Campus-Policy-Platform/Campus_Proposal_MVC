@@ -15,7 +15,9 @@ nav a img {
 nav div ul {
     justify-content: end;
 }
-
+.footer{
+    position:unset;
+}
 .footer .container {
     display: flex;
 }

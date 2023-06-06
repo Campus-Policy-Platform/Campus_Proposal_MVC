@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/hfStyle.css" />
+    @*<link rel="stylesheet" href="~/css/mainStyle.css" />*@
+
+    @await RenderSectionAsync("topCSS", required: false)
+    @await RenderSectionAsync("topJS", required: false)
+
 </head>
 <body>
     <header>
@@ -72,5 +77,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @await RenderSectionAsync("endCSS", required: false)
+    @await RenderSectionAsync("endJS", required: false)
 </body>
 </html>
