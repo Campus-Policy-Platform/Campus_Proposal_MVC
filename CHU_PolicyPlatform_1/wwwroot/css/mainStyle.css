@@ -86,7 +86,6 @@ nav {
     }
 
 #search-content {
-    gap: 15px;
     justify-content: space-between;
 }
 
@@ -95,9 +94,16 @@ nav {
         font-size: 20px;
         font-weight: 500;
     }
+    #search-content a:hover {
+        color:#fff;
+        background-color:#0007;
+    }
+    #search-content .oddWidth{
+        width:100%;
+    }
 
-@media screen and (width < 768px) {
-    #proposal .cardhref {
+    @media screen and (width < 768px) {
+        #proposal .cardhref {
         width: 100%;
         justify-content: center;
     }
@@ -110,14 +116,8 @@ nav {
         width: unset;
         height: 90%;
     }
-}
 
-@media screen and (width < 1194px) {
     #search-content a {
         width: 100%;
     }
-
-        #search-content a:nth-child(odd) {
-            margin-right: 10px;
-        }
 }
