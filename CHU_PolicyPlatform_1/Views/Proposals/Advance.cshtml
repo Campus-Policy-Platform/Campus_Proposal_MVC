@@ -1,0 +1,28 @@
+﻿@model List<SelectListItem>
+@{
+    ViewData["Title"] = "Advance";
+}
+
+<h1>Advance</h1>
+
+<form method="post">
+    <div>
+        <h5>輸入提案標題：</h5>
+        <input type="text" id="Title" name="Title" placeholder="輸入20字內" maxlength="20" />
+    </div>
+    <div>
+        <select id="CategoryId" name="CategoryId" asp-items="@Model">
+            <option value="">==請選擇提案類別==</option>
+        </select>
+        <h5>輸入提案內容：</h5>
+        <textarea name="Pcontent" id="Pcontent" placeholder="輸入限100字內" maxlength="100" cols="30" rows="10"></textarea>
+        <h5>輸入利益與影響：</h5>
+        <textarea name="GainsInfluential" id="GainsInfluential" placeholder="輸入限100字內" maxlength="100" cols="30" rows="10"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">submit</button>
+</form>
+
+@section topCSS{
+    <link rel="stylesheet" href="~/css/propsalsStyle.css" />
+}

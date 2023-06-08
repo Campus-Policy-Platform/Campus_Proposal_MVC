@@ -44,7 +44,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             ScanViewModel scanVM = new ScanViewModel()
             {
-                Proposals = proposals.ToList(),
+                Proposals = props.ToList(),
                 Votes = votes.ToList(),
             };
 
