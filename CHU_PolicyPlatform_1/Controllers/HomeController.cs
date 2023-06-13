@@ -23,24 +23,8 @@ namespace CHU_PolicyPlatform_1.Controllers
         //[HttpGet]
         public IActionResult Index()
         {
-            var content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus illo praesentium quibusdam illum, rem sequi atque, officia repudiandae modi cupiditate excepturi explicabo ullam et cum sint esse tempora impedit quia?";
-            List<Proposal> proposals = new List<Proposal>
-            {
-                new Proposal {ProposalId = "P001", Title="aaa", Pcontent=content, CategoryId="C001"},
-                new Proposal {ProposalId = "P002", Title="bba", Pcontent=content, CategoryId= "C004"},
-                new Proposal {ProposalId = "P003", Title="ccc", Pcontent = content, CategoryId = "C002"},
-                new Proposal {ProposalId = "P004", Title="ddd", Pcontent = content, CategoryId = "C002"},
-                new Proposal {ProposalId = "P005", Title="eee", Pcontent = content, CategoryId = "C003"},
-                new Proposal {ProposalId = "P006", Title="111", Pcontent = content, CategoryId = "C003"},
-                new Proposal {ProposalId = "P007", Title="222", Pcontent = content, CategoryId = "C001"},
-                new Proposal {ProposalId = "P008", Title="333", Pcontent = content, CategoryId = "C004"},
-                new Proposal {ProposalId = "P009", Title="444", Pcontent = content, CategoryId = "C001"}
-            };
             var props = _prop.Proposals;
             var votes = _prop.Votes;
-            
-            ViewData["proposal"] = proposals;
-            ViewData["vote"] = votes;
 
             ScanViewModel scanVM = new ScanViewModel()
             {

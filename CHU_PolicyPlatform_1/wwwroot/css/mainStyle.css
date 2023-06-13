@@ -26,6 +26,8 @@ nav {
     background-color: rgb(130, 255, 255);
     display: flex;
     flex-wrap: wrap;
+    justify-content:center;
+    gap:15px;
 }
 
 #proposal {
@@ -84,10 +86,6 @@ nav {
         background-color: #fff5;
         color: #000;
     }
-
-#search-content {
-    justify-content: space-between;
-}
 
     #search-content a {
         width: 49%;

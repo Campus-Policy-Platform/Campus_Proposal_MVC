@@ -31,9 +31,11 @@ namespace CHU_PolicyPlatform_1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Advance(Proposal proposal)
         {
-            var propsNumNow = (_context.Proposals.Count()+1).ToString("D2");
+            
             proposal.Pdate = DateTime.Now;
-            var dateNow = proposal.Pdate.ToString("yymmdd");
+            var dateNow = proposal.Pdate.ToString("yyMMdd");
+            var propsNumNow = (_context.Proposals.Where(e=>e.Pdate.Date==proposal.Pdate.Date).Count()+1).ToString("D3");
+            
 
             proposal.ProposalId = $"P{dateNow}{propsNumNow}";
             proposal.Underways = true;
