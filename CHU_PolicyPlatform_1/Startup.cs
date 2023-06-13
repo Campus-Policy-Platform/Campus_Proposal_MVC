@@ -1,4 +1,6 @@
 using CHU_PolicyPlatform_1.Data;
+using CHU_PolicyPlatform_1.Repositories;
+using CHU_PolicyPlatform_1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,9 @@ namespace CHU_PolicyPlatform_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<ProposalService>();
+            services.AddScoped<ProposalRepository>();
 
             services.AddDbContext<ProposeContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ProposeContext")));

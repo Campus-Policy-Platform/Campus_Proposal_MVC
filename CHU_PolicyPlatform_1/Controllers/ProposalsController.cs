@@ -23,7 +23,8 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
             var cates = await _context.Categories.ToListAsync();
             List<SelectListItem> cateListItem = cates.Select(e =>
-                new SelectListItem { Text=$"{e.CategoryId.Substring(2)}.{e.CategoryName}", Value=e.CategoryId}).ToList();
+                new SelectListItem { Text=$"{e.CategoryId.Substring(2)}.{e.CategoryName}", 
+                                        Value=e.CategoryId}).ToList();
 
             return View(cateListItem);
         }
@@ -34,7 +35,8 @@ namespace CHU_PolicyPlatform_1.Controllers
             
             proposal.Pdate = DateTime.Now;
             var dateNow = proposal.Pdate.ToString("yyMMdd");
-            var propsNumNow = (_context.Proposals.Where(e=>e.Pdate.Date==proposal.Pdate.Date).Count()+1).ToString("D3");
+            var propsNumNow = (_context.Proposals.Where(e=>e.Pdate.Date==proposal.Pdate.Date)
+                                                    .Count()+1).ToString("D3");
             
 
             proposal.ProposalId = $"P{dateNow}{propsNumNow}";
