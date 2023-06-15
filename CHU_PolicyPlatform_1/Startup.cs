@@ -59,9 +59,23 @@ namespace CHU_PolicyPlatform_1
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "/",
+                    defaults: new { controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    name: "HomePagination",
+                    pattern: "Home/{id?}",
+                    defaults: new { controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    name: "HomeSearchByKeyword",
+                    pattern: "Home/Search/{keyword?}/{Id?}",
+                    defaults: new { controller = "Home", action = "Privacy" });
             });
         }
     }

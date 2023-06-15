@@ -5,17 +5,17 @@
     List<Proposal> proposals = Model.Proposals;
     List<Vote> votes = Model.Votes;
 
+    int activePage = (int)ViewData["ActivePage"];
+    int pages = (int)ViewData["Pages"];
+
     int agree = 0;
     int messge = 0;
 }
 
-<nav>
-    <form class="search" name="search">
-        <input id="hinge" name="hinge" onkeydown="if(event.keyCode==13) return false" class="form-control" type="text" placeholder="請輸入關鍵字" />
-        <button id="hingebtn" onclick="searchclick()" type="button" class="btn btn-secondary btn-sm">搜尋</button>
-    </form>
-    <div id="search-content"></div>
-</nav>
+<form class="search" action="/Home/Search" method="post" onsubmit="setActionUrl(this)">
+    <input name="keyword" id="keyword" class="form-control" type="search" placeholder="請輸入關鍵字" required/>
+    <button type="submit" class="btn btn-secondary btn-sm">搜尋</button>
+</form>
 <div id="proposal">
     @foreach(var prop in proposals)
     {
@@ -57,55 +57,43 @@
             </div>
         </a>
     }
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                   href="@((activePage-1)< 1 ? "" : "/Home/"+(activePage-1))">&laquo;</a>
+            </li>
+
+            @for (int i = 1; i <= pages; i++)
+            {
+                <li class="page-item @(i == activePage ? "active" : "")">
+                    <a class="page-link" href="/Home/@i">@i</a>
+                </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                   href="@((activePage+1)> pages ? "" : "/Home/"+(activePage+1))">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+
+
 
 @section topCSS
 {
     <link rel="stylesheet" href="~/css/mainStyle.css" />
 }
+
 @section endJS{
-    <script type="text/javascript">
-        //提案model轉換script的Object
-        let result = @Html.Raw(Json.Serialize(proposals));
-        //查詢結果Div
-        const div = document.getElementById("search-content");
-
-        function searchclick() {
-            div.innerHTML = "";
-            div.style.padding = "0";
-            //查詢的Value
-            let searchValue = document.getElementById("hinge").value.toLowerCase();
-            //判斷所有資料是否有包含value
-            if (!searchValue) {
-                alert("請輸入關鍵字!!");
-            }
-            else {
-                let TureNum = 0;
-                result.forEach(function (item, index) {
-                    let titleTure = item.title.includes(searchValue);
-                    let contentTure = item.pcontent.includes(searchValue);
-                    let gainsTure = item.gainsInfluential.includes(searchValue);
-                    if (titleTure || contentTure || gainsTure) {
-                        TureNum++;
-                        let a = document.createElement("a");
-                        let content = item.pcontent.substring(0, 40);
-                        let gains = item.gainsInfluential.substring(0, 40);
-
-                        a.className = "btn btn-outline-dark";
-                        a.innerHTML = `提案:${item.title}<hr>內容:${content}...<br>利益與影響:${gains}...`;
-
-                        div.append(a);
-                        div.style.padding = "1.5% 2%";
-                    }
-                    else if (index + 1 == result.length && TureNum == 0) {
-                        alert(`未有與${searchValue}相關的提案!!`);
-                    }
-                    if ((index + 1) == result.length && (TureNum % 2) == 1) {
-                        let oddIsLast = document.querySelector('#search-content a:last-child');
-                        oddIsLast.className += " oddWidth";
-                    }
-                });
-            }
+    <script>
+        @*將查詢的資料加入form的action後*@
+        function setActionUrl(form) {
+            var keyword = document.getElementById("keyword").value;
+            var actionUrl = form.getAttribute("action");
+            actionUrl += "/" + encodeURIComponent(keyword);
+            form.setAttribute("action", actionUrl);
         }
     </script>
 }

@@ -7,6 +7,9 @@ nav {
     flex-direction: column;
     gap: 20px;
 }
+    nav .pagination{
+        margin: 10px;
+    }
 
 .search {
     display: flex;
@@ -22,21 +25,18 @@ nav {
         border-radius: 0 5px 5px 0;
     }
 
-#search-content {
-    background-color: rgb(130, 255, 255);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
-    gap:15px;
-}
-
 #proposal {
     border: 5px solid rgb(130, 255, 255);
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
     padding: 20px;
+    margin:10px 0;
 }
+
+    #proposal h1{
+        color:red;
+    }
 
     #proposal img {
         width: 40%;
@@ -47,6 +47,11 @@ nav {
         align-items: center;
         height: 230px;
         color: #000;
+    }
+
+    #proposal nav{
+        width:100%;
+        align-items:center;
     }
 
 .maincard:hover {

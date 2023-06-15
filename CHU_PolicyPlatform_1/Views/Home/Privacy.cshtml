@@ -1,6 +1,103 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model ScanViewModel
+@{
+    ViewData["Title"] = "Home Page";
 
-<p>Use this page to detail your site's privacy policy.</p>
+    List<Proposal> proposals = Model.Proposals;
+    List<Vote> votes = Model.Votes;
+
+    int activePage = (int)ViewData["ActivePage"];
+    int pages = (int)ViewData["Pages"];
+    string keyword = (string)ViewData["Keyword"];
+    string notfind = (string)ViewData["NotFind"];
+
+    int agree = 0;
+    int messge = 0;
+}
+
+<form class="search" action="/Home/Search" method="post" onsubmit="setActionUrl(this)">
+    <input name="keyword" id="keyword" class="form-control" type="search" placeholder="請輸入關鍵字" required />
+    <button type="submit" class="btn btn-secondary btn-sm">搜尋</button>
+</form>
+<div id="proposal">
+    @if (proposals.Count > 0)
+    {
+        @foreach (var prop in proposals)
+        {
+            <a class="maincard col-6" href="#">
+                @switch (prop.CategoryId)
+                {
+                    case "C001":
+                        <img src="~/images/campus_icon.jpg" />
+                        break;
+                    case "C002":
+                        <img src="~/images/classroom_icon.jpg" />
+                        break;
+                    case "C003":
+                        <img src="~/images/dormitory_icon.jpg" />
+                        break;
+                    case "C004":
+                        <img src="~/images/restaurant_icon.jpg" />
+                        break;
+                    default:
+                        break;
+                }
+                <div>
+                    <h3>@prop.Title</h3>
+                    <ul>
+                        @foreach (var vote in votes)
+                        {
+                            if (vote.ProposalId == prop.ProposalId)
+                            {
+                                messge++;
+                                if (vote.Crucial == true)
+                                {
+                                    agree++;
+                                }
+                            }
+                        }
+                        <li>同意數： @agree</li>
+                        <li>留言數： @messge</li>
+                    </ul>
+                </div>
+            </a>
+        }
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                       href="@((activePage-1)< 1 ? "" : $"/Home/Search/{keyword}/{activePage-1}")">&laquo;</a>
+                </li>
+                @for (int i = 1; i <= pages; i++)
+                {
+                    <li class="page-item @(i == activePage ? "active" : "")">
+                        <a class="page-link" href="/Home/Search/@keyword/@i">@i</a>
+                    </li>
+                }
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                       href="@((activePage+1)> pages ? "" : $"/Home/Search/{keyword}/{activePage-1}")">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    }
+    else{
+        <h1>@notfind</h1>
+    }
+</div>
+
+@section topCSS
+    {
+    <link rel="stylesheet" href="~/css/mainStyle.css" />
+}
+
+@section endJS{
+    <script>
+        @*將查詢的資料加入form的action後*@
+        function setActionUrl(form) {
+            var keyword = document.getElementById("keyword").value;
+            var actionUrl = form.getAttribute("action");
+            actionUrl += "/" + encodeURIComponent(keyword);
+            form.setAttribute("action", actionUrl);
+        }
+    </script>
+}
