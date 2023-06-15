@@ -15,5 +15,11 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles ="Gerent")]
+        public IActionResult GerentReports() 
+        {
+            return View();
+        }
     }
 }

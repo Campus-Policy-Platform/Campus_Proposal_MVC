@@ -1,48 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CHU_PolicyPlatform_1.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using CHU_PolicyPlatform_1.Models;
-using System.Security.Claims;
 using CHU_PolicyPlatform_1.Data;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
 namespace CHU_PolicyPlatform_1.Controllers
 {
-    public class AccountController : Controller
+    public class GerentController : Controller
     {
-
         private readonly ProposeContext _ctx;
-        public  AccountController(ProposeContext ctx)
+
+        public GerentController(ProposeContext ctx)
         {
             _ctx = ctx;
         }
-        [HttpGet]
-        public IActionResult Login()
+
+        public IActionResult Index()
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> Login (LoginViewModel loginVM) 
-        {
-            if (ModelState.IsValid) 
-            {
-                var user = AuthenticateUser(loginVM);
 
-                if (user == null)
+        [HttpGet]
+        public IActionResult GerentLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GerentLoginAsync(LoginViewModel GerentLoginVM)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var gerent = AuthenticateUser(GerentLoginVM);
+
+                if (gerent == null)
                 {
                     ModelState.AddModelError(string.Empty, "帳號密碼有錯!!!");
 
-                    return View(loginVM);
+                    return View(GerentLoginVM);
                 }
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name,user.UserName),
-                    new Claim(ClaimTypes.Role,"User")
+                    new Claim(ClaimTypes.Name,gerent.GerentName),
+                    new Claim(ClaimTypes.Role,"Gerent")
                     //new Claim(ClaimTypes.Role, user.Role) // 如果要有「群組、角色、權限」，可以加入這一段  
                 };
 
@@ -58,9 +66,9 @@ namespace CHU_PolicyPlatform_1.Controllers
                     authProperties
                     );
 
-                return RedirectToAction("SalesReports", "Test");
+                return RedirectToAction("GerentReports", "Test");
             }
-            return View(loginVM);
+            return View(GerentLoginVM);
         }
 
         public async Task<IActionResult> Signout()
@@ -72,24 +80,22 @@ namespace CHU_PolicyPlatform_1.Controllers
 
         private ApplicationUser AuthenticateUser(LoginViewModel loginVM)
         {
-            var user = _ctx.Users
-                .Where(c => c.UserId == loginVM.Id && c.Upassword == loginVM.Password).FirstOrDefault();
-            if (user != null)
+            var Genert =_ctx.Gerents.
+                Where(g => g.GerentId == loginVM.Id && g.Gpassword == loginVM.Password).FirstOrDefault();
+            if (Genert != null)
             {
-                var userInfo = new ApplicationUser
+                var gerentInfo = new ApplicationUser
                 {
-                    UserName = user.UserId,
-                    //Role = "User"
+                    GerentName = Genert.GerentId
+                    //Role = "Gerent"
                 };
-                return userInfo;
+                return gerentInfo;
             }
             else
             {
                 return null;
             }
         }
-
-
-
     }
+
 }

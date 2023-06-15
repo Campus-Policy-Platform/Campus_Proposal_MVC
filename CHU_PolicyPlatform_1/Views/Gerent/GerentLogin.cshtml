@@ -1,14 +1,15 @@
 ﻿@model CHU_PolicyPlatform_1.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "GerentLogin";
 }
 
-<h1>登入</h1>
+<h1>管理者登入</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Login">
+        <form asp-action="GerentLogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "GerentReports";
+}
+
+<h1>管理者</h1>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>僅限登入通過身份驗證管理者看</h2>
+    <h2>您的帳號已通過驗證:@User.Identity.Name</h2>
+}
