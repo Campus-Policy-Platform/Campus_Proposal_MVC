@@ -1,8 +1,4 @@
-﻿body {
-    height: 800px;
-}
-
-nav {
+﻿nav {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -30,7 +26,7 @@ nav {
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 20px 20px 10px;
     margin:10px 0;
 }
 
@@ -47,6 +43,7 @@ nav {
         align-items: center;
         height: 230px;
         color: #000;
+        padding: 10px;
     }
 
     #proposal nav{
@@ -60,7 +57,13 @@ nav {
 
 .maincard div {
     flex-grow: 1;
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
 }
+    .maincard div * {
+        margin:unset;
+    }
 
 .maincard ul {
     display: flex;
@@ -106,6 +109,14 @@ nav {
     }
 
     @media screen and (width < 768px) {
+        #proposal {
+            flex-direction:column;
+        }
+
+        #proposal .col-6{
+            max-width:100%;
+        }
+        
         #proposal .cardhref {
         width: 100%;
         justify-content: center;

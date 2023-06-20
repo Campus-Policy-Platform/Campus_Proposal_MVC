@@ -19,7 +19,7 @@
     <button type="submit" class="btn btn-secondary btn-sm">搜尋</button>
 </form>
 <div id="proposal">
-    @if (proposals.Count > 0)
+    @if (proposals!=null)
     {
         @foreach (var prop in proposals)
         {
@@ -75,7 +75,7 @@
                 }
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                       href="@((activePage+1)> pages ? "" : $"/Home/Search/{keyword}/{activePage-1}")">&raquo;</a>
+                       href="@((activePage+1)> pages ? "" : $"/Home/Search/{keyword}/{activePage+1}")">&raquo;</a>
                 </li>
             </ul>
         </nav>
