@@ -1,17 +1,16 @@
-﻿@model CHU_PolicyPlatform_1.ViewModels.LoginViewModel
-
+﻿@model CHU_PolicyPlatform_1.ViewModels.LoginViewModel;
 @{
-    ViewData["Title"] = "GerentLogin";
+    ViewData["Title"] = "UserLogin";
 }
-<link href="~/css/stylesheet.css" rel="stylesheet" />
 
-<body style="background-color:rgb(166,205,231,0.4)">
+<link href="~/css/stylesheet.css" rel="stylesheet" />
+<body style="background-color: rgb(255,192,203,0.2);">
     <div class="TopPhoto">
         <img src="~/images/chu_topphoto.jpg" />
     </div>
     <div class="login-box">
-        <h2>管理者登入</h2>
-        <form asp-action="GerentLogin">
+        <h2>使用者登入</h2>
+        <form asp-action="UserLogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="user-box">
                 <input asp-for="Id" type="text" />
@@ -19,10 +18,12 @@
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="user-box">
-                <input asp-for="Password" type="password" />
+                <input asp-for="Password" id="Pas_word" type="password" />
                 <label asp-for="Password">密碼</label>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <input type="checkbox"id="Show_Pas"name="顯示" />
+            <label for="Show_Pas">顯示密碼</label>
             <div class="form-group">
                 <a href="#">
                     <span></span>
@@ -35,5 +36,3 @@
         </form>
     </div>
 </body>
-
-

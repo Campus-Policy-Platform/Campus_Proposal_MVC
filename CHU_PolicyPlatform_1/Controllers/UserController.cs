@@ -12,31 +12,31 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 namespace CHU_PolicyPlatform_1.Controllers
 {
-    public class AccountController : Controller
+    public class UserController : Controller
     {
 
         private readonly ProposeContext _ctx;
-        public  AccountController(ProposeContext ctx)
+        public  UserController(ProposeContext ctx)
         {
             _ctx = ctx;
         }
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult UserLogin()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login (LoginViewModel loginVM) 
+        public async Task<IActionResult> UserLogin (LoginViewModel UserloginVM) 
         {
             if (ModelState.IsValid) 
             {
-                var user = AuthenticateUser(loginVM);
+                var user = AuthenticateUser(UserloginVM);
 
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "帳號密碼有錯!!!");
 
-                    return View(loginVM);
+                    return View(UserloginVM);
                 }
 
                 var claims = new List<Claim>
@@ -60,7 +60,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
                 return RedirectToAction("SalesReports", "Test");
             }
-            return View(loginVM);
+            return View(UserloginVM);
         }
 
         public async Task<IActionResult> Signout()
