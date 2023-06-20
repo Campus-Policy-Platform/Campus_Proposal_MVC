@@ -1,0 +1,53 @@
+﻿hr + div {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+div + h2{
+    text-align:center;
+    margin: 50px 0;
+}
+
+form .vote{
+    background-color:antiquewhite;
+    padding:10px;
+}
+
+form p{
+    font-size: 24px;
+    margin:unset;
+}
+form p+p{
+    font-size:20px;
+}
+
+form div+div{
+    margin: 50px 0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+}
+form textarea{
+    width:100%;
+    resize:none;
+}
+form .btn{
+    font-size:20px;
+}
+
+form .none{
+    display:none;
+}
+
+.illust {
+    background-color:khaki;
+    padding:10px;
+}
+.illust ul{
+    list-style-type:decimal;
+}
+.illust li{
+    font-size:18px;
+}

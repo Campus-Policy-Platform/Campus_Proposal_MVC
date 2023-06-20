@@ -7,5 +7,6 @@ namespace CHU_PolicyPlatform_1.ViewModels
     {
         public List<Proposal> Proposals {  get; set; }
         public List<Vote> Votes { get; set; }
+        public Proposal proposal { get; set; }
     }
 }

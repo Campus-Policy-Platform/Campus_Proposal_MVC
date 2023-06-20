@@ -1,0 +1,46 @@
+﻿@model Proposal
+@{
+    ViewData["Title"] = "ProposeVote";
+
+    var userId = ViewData["UserId"];
+    bool crucial = (bool)ViewData["Crucial"];
+}
+
+<h1>我要@(crucial ? "贊成" : "反對")</h1>
+<hr />
+<div>
+    <h2>提議者：@Model.UserId</h2>
+    <h2>提案日期：@Model.Pdate.ToString("yyyy-MM-dd")</h2>
+</div>
+<h2>@Model.Title</h2>
+<form method="post">
+    <div class="vote">
+        <h2>@(crucial ? "贊成" : "反對")</h2>
+        <hr />
+        <h3>學號：@userId</h3>
+        <p>支持提議的想法</p>
+        <p>最大限制500字</p>
+        <textarea name="Vcontent" id="Vcontent" placeholder="請輸入您的想法" maxlength="500" required rows="10"></textarea>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="#">離開</a>
+        <button type="submit" class="btn btn-primary">確認@(crucial ? "贊成" : "反對")</button>
+    </div>
+    <div class="none">
+        <input type="hidden" id="Crucial" name="Crucial" value="@crucial.ToString()" />
+        <input type="hidden" id="UserId" name="UserId" value="@userId" />
+        <input type="hidden" id="ProposalID" name="ProposalID" value="@Model.ProposalId" />
+    </div>
+</form>
+<div class="illust">
+    <h2>覆議說明</h2>
+    <ul>
+        <li>附議者資格:中華大學在校學師生</li>
+        <li>同一次議題只能贊成或反對一次</li>
+        <li>參與贊成與反對要表示意見</li>
+        <li>參加贊成與反對以匿名學號</li>
+    </ul>
+</div>
+@section topCSS{
+    <link rel="stylesheet" href="~/css/VoteStyle.css" />
+}
