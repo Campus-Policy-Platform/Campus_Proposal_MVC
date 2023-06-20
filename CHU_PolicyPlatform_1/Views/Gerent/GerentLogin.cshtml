@@ -19,7 +19,7 @@
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="user-box">
-                <input asp-for="Password" type="password" />
+                <input asp-for="Password" id="Pas_word" type="password" />
                 <label asp-for="Password">密碼</label>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
@@ -39,5 +39,8 @@
         </form>
     </div>
 </body>
+@section endJS{
+    <script src="~/js/show_pas.js"></script>
+}
 
 
