@@ -50,6 +50,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         }
 
         //Search
+        [Authorize(Roles = "User,Gerent")]
         [HttpGet, HttpPost]
         public async Task<IActionResult> Privacy(string keyword, int Id=1)
         {
