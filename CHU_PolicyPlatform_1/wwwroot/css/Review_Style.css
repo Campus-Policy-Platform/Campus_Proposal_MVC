@@ -1,0 +1,135 @@
+﻿body {
+    height: unset;
+}
+
+.main_tops {
+    background-color: unset;
+}
+
+    .main_tops .main-wh {
+        width: 60%;
+    }
+
+.title h1 {
+    text-align: center;
+    border-radius: 3px;
+    background-color: bisque;
+    margin: 30px 0px
+}
+
+.vote_total {
+    display: flex;
+}
+
+    .vote_total .col-4 + .col-4 {
+        border-left: 10px solid #fff;
+    }
+
+.vote_left, .vote_middle, .vote_right {
+    margin: 10px 0;
+    background-color: antiquewhite;
+}
+
+    .vote_left canvas {
+        margin: 10px auto;
+        width: 90%;
+        height: 90%;
+    }
+
+    .vote_middle h2, .vote_middle p {
+        text-align: center;
+        font-weight: 600;
+    }
+
+.schedule {
+    border: 5px solid skyblue;
+    height: 200px;
+}
+
+.content_title h2 {
+    background-color: bisque;
+    width: 300px;
+    margin: 10px 0px;
+}
+
+.benefit_title h2 {
+    background-color: bisque;
+    width: 180px;
+    margin: 10px 0px;
+}
+
+.content_1, .content_2 {
+    background-color: antiquewhite;
+}
+
+    .content_1 p, .content_2 p {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+.vote_btn {
+    display: flex;
+    gap: 0px 20px;
+    justify-content: space-evenly;
+    margin: 100px 0px 50px 0px;
+}
+
+    .vote_btn button {
+        width: 300px;
+        height: 50px;
+    }
+
+.response_area {
+}
+
+/* massage */
+.message_area {
+    text-align: center;
+}
+
+.container_msg {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+    padding:0px 20px;
+}
+
+.card {
+    margin: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width:100%;
+}
+
+.text ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.text {
+    width: 80%;
+}
+
+.icon {
+    width: 20%;
+}
+
+    .icon i {
+        font-size: 100px;
+    }
+
+.text p {
+    margin: 0px 10px;
+}
+
+/* response */
+.response_area {
+}
+
+    .response_area h2 {
+        text-align: center;
+    }

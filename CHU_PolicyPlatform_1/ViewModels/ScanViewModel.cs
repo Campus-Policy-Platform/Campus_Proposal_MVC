@@ -1,4 +1,5 @@
-﻿using CHU_PolicyPlatform_1.Models;
+﻿using CHU_PolicyPlatform_1.Controllers;
+using CHU_PolicyPlatform_1.Models;
 using System.Collections.Generic;
 
 namespace CHU_PolicyPlatform_1.ViewModels
@@ -8,5 +9,6 @@ namespace CHU_PolicyPlatform_1.ViewModels
         public List<Proposal> Proposals {  get; set; }
         public List<Vote> Votes { get; set; }
         public Proposal proposal { get; set; }
+
     }
 }
