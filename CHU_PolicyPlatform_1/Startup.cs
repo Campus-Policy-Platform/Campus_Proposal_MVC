@@ -1,8 +1,10 @@
 using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Repositories;
 using CHU_PolicyPlatform_1.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,15 @@ namespace CHU_PolicyPlatform_1
         {
             services.AddControllersWithViews();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                    options.SlidingExpiration = true;
+                    options.LoginPath = new PathString("/User/UserLogin");
+                });
+
+
             services.AddScoped<ProposalService>();
             services.AddScoped<ProposalRepository>();
 
@@ -54,6 +65,9 @@ namespace CHU_PolicyPlatform_1
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
 
             app.UseAuthorization();
 

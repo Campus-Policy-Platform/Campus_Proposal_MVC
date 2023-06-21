@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CHU_PolicyPlatform_1.ViewModels;
 using CHU_PolicyPlatform_1.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace CHU_PolicyPlatform_1.Controllers
 {
@@ -17,11 +19,13 @@ namespace CHU_PolicyPlatform_1.Controllers
         private int pages;
         private readonly ProposeContext _prop;
         private readonly ProposalService _propService;
+
         public HomeController(ProposeContext prop, ProposalService propService)
         {
             _prop = prop;
             _propService = propService;            
         }
+        [Authorize(Roles = "User,Gerent")]
         //[HttpGet]
         public async Task<IActionResult> Index(int Id=1)
         {
