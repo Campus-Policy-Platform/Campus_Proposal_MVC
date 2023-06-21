@@ -80,16 +80,33 @@ namespace CHU_PolicyPlatform_1
                 //    name: "default",
                 //    pattern: "/",
                 //    defaults: new { controller = "Home", action = "Index" });
-
+                
+                //Home
                 endpoints.MapControllerRoute(
                     name: "HomePagination",
                     pattern: "Home/{id?}",
                     defaults: new { controller = "Home", action = "Index" });
-
+                //Search
                 endpoints.MapControllerRoute(
                     name: "HomeSearchByKeyword",
                     pattern: "Home/Search/{keyword?}/{Id?}",
                     defaults: new { controller = "Home", action = "Privacy" });
+                //propose
+                endpoints.MapControllerRoute(
+                    name: "AdvanceProposal",
+                    pattern: "Propose",
+                    defaults: new { controller = "Proposals", action = "Advance" });
+
+                //Login_user
+                endpoints.MapControllerRoute(
+                    name: "LoginOfUser",
+                    pattern: "Login/User",
+                    defaults: new { controller = "UserLogin", action = "User" });
+                //Login_gerent
+                endpoints.MapControllerRoute(
+                    name: "LoginOfGerent",
+                    pattern: "Login/Gerent",
+                    defaults: new { controller = "GerentLogin", action = "Gerent" });
             });
         }
     }
