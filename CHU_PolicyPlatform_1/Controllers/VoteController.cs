@@ -1,7 +1,9 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet]
         public IActionResult ProposeVote(string propId, string vote="1")
         {
-            string userId = "B10800123";
+            string userId = User.Identity.Name;
             propId = "P230612001";
 
             if (_context.Votes.ToList().Find(e => e.UserId == userId && e.ProposalId==propId) != null)

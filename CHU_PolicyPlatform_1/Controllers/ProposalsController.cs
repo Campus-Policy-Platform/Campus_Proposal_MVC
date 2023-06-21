@@ -1,10 +1,12 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +20,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             _context = context;
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<IActionResult> Advance()
         {
@@ -41,7 +44,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             proposal.ProposalId = $"P{dateNow}{propsNumNow}";
             proposal.Underways = true;
-            proposal.UserId = "B10800123";
+            proposal.UserId = User.Identity.Name;
 
             if(ModelState.IsValid)
             {
