@@ -90,6 +90,10 @@ namespace CHU_PolicyPlatform_1
                     name: "HomeSearchByKeyword",
                     pattern: "Home/Search/{keyword?}/{Id?}",
                     defaults: new { controller = "Home", action = "Privacy" });
+                endpoints.MapControllerRoute(
+                    name: "Review",
+                    pattern: "Review/{Pro_Id?}/{Id?}",
+                    defaults: new { controller = "Review", action = "Review_Interface" });
             });
         }
     }
