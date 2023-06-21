@@ -1,0 +1,38 @@
+﻿body {
+    height: unset;
+    display: block;
+}
+
+.main {
+    background-color: unset;
+    flex-grow: unset;
+}
+
+    .main .main-wh {
+        margin: 50px auto;
+        padding: 30px 0px;
+        background-color: #ccc;
+        border: 2px solid aqua;
+        flex-direction: unset;
+        gap: unset;
+    }
+
+.btn-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px 40px;
+    padding: 10px 0px;
+    background-color: aquamarine;
+    Border-radius:20px;
+}
+
+.main-btn-img {
+    width: 30%;
+    border-radius: 50%;
+}
+
+.main-btn-text {
+    font-size: 30px;
+    width: 50%;
+}
