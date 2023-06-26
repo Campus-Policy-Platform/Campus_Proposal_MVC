@@ -1,0 +1,82 @@
+﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+
+@{
+    ViewData["Title"] = "GerentSee";
+
+    int activePage = (int)ViewData["ActivePage"];
+    int pages = (int)ViewData["Pages"];
+
+
+}
+
+@section topCSS
+{
+    <link href="~/css/gerentseestyle.css" rel="stylesheet" />
+}
+
+<div class="main">
+    <div class="main-wh">
+        <div class="GerentS">
+            <h3>@Html.Raw("待處理案件")</h3>
+        </div>
+    </div>
+    <div id="proposal">
+        @foreach (var item in Model)
+        {
+            <a class="Gerentcard col-6" href="#">
+                @switch (item.CategoryId)
+                {
+                    case "C001":
+                        <img src="~/images/campus_icon.jpg" />
+                        break;
+                    case "C002":
+                        <img src="~/images/classroom_icon.jpg" />
+                        break;
+                    case "C003":
+                        <img src="~/images/dormitory_icon.jpg" />
+                        break;
+                    case "C004":
+                        <img src="~/images/restaurant_icon.jpg" />
+                        break;
+                    default:
+                        break;
+                }
+                <div>
+                    <h3>@item.Title</h3>
+                </div>
+            </a>
+        }
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                       href="@((activePage-1)< 1 ? "" : "/Gerentcase/GerentSee/"+(activePage-1))">&laquo;</a>
+                </li>
+
+                @for (int i = 1; i <= pages; i++)
+                {
+                    <li class="page-item @(i == activePage ? "active" : "")">
+                        <a class="page-link" href="/Gerentcase/GerentSee/@i">@i</a>
+                    </li>
+                }
+
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                       href="@((activePage+1)> pages ? "" : "/Gerentcase/GerentSee/"+(activePage+1))">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+
+
+
+
+@section endJS
+{
+
+}

@@ -14,7 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using CHU_PolicyPlatform_1.Repositories;
+using CHU_PolicyPlatform_1.Services;
 namespace CHU_PolicyPlatform_1
 {
     public class Startup

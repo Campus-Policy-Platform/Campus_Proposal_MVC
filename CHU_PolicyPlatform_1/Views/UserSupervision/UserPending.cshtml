@@ -1,0 +1,148 @@
+﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+@{
+    ViewData["Title"] = "UserPending";
+
+    int activePage = (int)ViewData["ActivePage"];
+    int pages = (int)ViewData["Pages"];
+}
+
+
+@section topCSS
+{
+    <link href="~/css/userSeestyle.css" rel="stylesheet" />
+}
+
+
+<div class="maintop">
+    <div class="UserS">
+        <h1>待回覆案件</h1>
+    </div>
+</div>
+<div class="main">
+    <div class="main-wh">
+        <div class="UserPs">
+            <h4>統計所有成案計畫的類型、回覆訊息查看(注：不一定都有回覆)</h4>
+        </div>
+@*        <div id="btncard">
+            <button id='pending_reply' type="button" class="btn btn-primary btn-lg btn-info">待回覆案件</button>
+            <button id='reply' type="button" class="btn btn-primary btn-lg btn-info">已回覆案件</button>
+        </div>*@
+        <div id="btncard">
+            <a href="待回覆案件的連結" class="btn btn-primary btn-lg btn-info">待回覆案件</a>
+            <a href="已回覆案件的連結" class="btn btn-primary btn-lg btn-info">已回覆案件</a>
+        </div>
+
+
+    </div>
+    <div id="proposal">
+        @foreach (var item in Model)
+        {
+            <a class="Usertcard col-6" href="#">
+                @switch (item.CategoryId)
+                {
+                    case "C001":
+                        <img src="~/images/campus_icon.jpg" />
+                        break;
+                    case "C002":
+                        <img src="~/images/classroom_icon.jpg" />
+                        break;
+                    case "C003":
+                        <img src="~/images/dormitory_icon.jpg" />
+                        break;
+                    case "C004":
+                        <img src="~/images/restaurant_icon.jpg" />
+                        break;
+                    default:
+                        break;
+                }
+                <div>
+                    <h3>@item.Title</h3>
+                </div>
+            </a>
+        }
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                       href="@((activePage-1)< 1 ? "" : "/UserSupervision/UserPending/"+(activePage-1))">&laquo;</a>
+                </li>
+
+                @for (int i = 1; i <= pages; i++)
+                {
+                    <li class="page-item @(i == activePage ? "active" : "")">
+                        <a class="page-link" href="/UserSupervision/UserPending/@i">@i</a>
+                    </li>
+                }
+
+                <li class="page-item">
+                    <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                       href="@((activePage+1)> pages ? "" : "/UserSupervision/UserPending/"+(activePage+1))">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+    <div id="chartarea">
+        <h3 id="chart-title">立案案件類型總量圖</h3>
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+@section endJS
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+
+        function chart() {
+            let categories = ["C001", "C002", "C003", "C004"]; // 四个特定的CategoryId类别
+            let categoryLabels = {
+                "C001": "校园",
+                "C002": "教室",
+                "C003": "宿舍",
+                "C004": "餐廳"
+            };
+
+            let categoryCounts = categories.map((category) => {
+                let count = modeldata.filter((item) => item.CategoryId === category).length; // 根据CategoryId筛选并计算数量
+                return count;
+            });
+
+            let categoryNames = categories.map((category) => categoryLabels[category]);
+
+            let ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: categoryNames,
+                    datasets: [{
+                        backgroundColor: [
+                            '#FFA07A',
+                            '#9966CC',
+                            '#C71585',
+                            '#F0E68C',
+                        ],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 3,
+                        label: "案件量",
+                        data: categoryCounts,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: 'white'
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            chart();
+        });
+    </script>
+}
