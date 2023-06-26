@@ -123,6 +123,21 @@ namespace CHU_PolicyPlatform_1
                     name: "LoginOfGerent",
                     pattern: "Login/Gerent",
                     defaults: new { controller = "GerentLogin", action = "Gerent" });
+                //makevarious
+                endpoints.MapControllerRoute(
+                    name: "Variousrooms",
+                    pattern: "Department",
+                    defaults: new { controller = "Home", action = "Variousrooms" });
+                //User_Supervision
+                endpoints.MapControllerRoute(
+                    name: "UseSupervision",
+                    pattern: "Supervision/Pending",
+                    defaults: new { controller = "UserSupervision", action = "UserPending" });
+                //User_Supervision
+                endpoints.MapControllerRoute(
+                    name: "UserSupervision",
+                    pattern: "Supervision/Finished",
+                    defaults: new { controller = "UserSupervision", action = "UserFinished" });
             });
         }
     }
