@@ -5,8 +5,6 @@
     ToRepond toReponds = Model.toRepond;
     List<Vote> votes = Model.votes;
 
-    int agree = 0;
-    int unagree = 0;
 
     int activePage = (int)ViewData["ActivePage"];
     int pages = (int)ViewData["Pages"];
@@ -35,7 +33,7 @@
         </div>
         <div class="vote_total">
             <div class="vote_left col-4">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" ></canvas>
             </div>
             <div class="vote_middle col-4" id="vote_middle">
                 <div class="vote_top">
@@ -63,30 +61,22 @@
                 <!-- Json讀入提議者資料 -->
             </div>
             <div class="vote_right col-4">
-                @foreach (var vote in votes)
-                {
-                    if (vote.Crucial == true)
-                    {
-                        agree++;
-                    }
-                    else if(vote.Crucial == false)
-                    {
-                        unagree++;
-                    }
-                }
                 <div class="assent" id="assent">
                     <h2>贊成</h2>
-                    <p>@agree</p>
+                    <p>@ViewBag.TrueAmount</p>
                 </div>
                 <div class="contra" id="contra">
                     <h2>反對</h2>
-                    <p>@unagree</p>
+                    <p>@ViewBag.FalseAmount</p>
                 </div>
             </div>
 
         </div>
         <div class="schedule">
-            <p>時間表</p>
+            <div id="Project_Action"></div>
+            <div id="Project_invalid"></div>
+            <div id="Project_established"></div>
+            <div id="Project_Response"></div>
             <!-- Json圖表 -->
         </div>
         <div class="propose_content">
@@ -193,9 +183,33 @@
     </div>
 </div>
 
-@*@section endJS{
-    <script>
+@section endJS
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script>
+        let ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["贊成","反對"],
+                datasets: [{
+                    backgroundColor: [
+                        '#FFA07A',
+                        '#9966CC',
+                    ],
+                    data: [@ViewBag.TrueAmount, @ViewBag.FalseAmount],
+                    fill: false,
+                }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        fontColor: 'white'
+                    }
+                }
+            }
+        });
     </script>
-}*@
+}
 
