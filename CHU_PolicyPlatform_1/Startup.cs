@@ -14,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace CHU_PolicyPlatform_1
 {
     public class Startup
@@ -30,6 +29,14 @@ namespace CHU_PolicyPlatform_1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddScoped<ReGerent>();
+            services.AddScoped<SeGerent>();
+
+            services.AddScoped<ReUserS>();
+            services.AddScoped<SeUserS>();
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
