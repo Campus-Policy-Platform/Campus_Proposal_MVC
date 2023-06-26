@@ -1,0 +1,89 @@
+﻿body {
+    height: 800px;
+}
+
+.GerentS {
+    background-color: burlywood;
+    width: 30%;
+    text-align: center;
+}
+
+.main-wh {
+    display: flex;
+    justify-content: center;
+}
+
+#proposal {
+    border: 5px solid rgb(130, 255, 255);
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+    #proposal h3 {
+        color: #3500ffab;
+    }
+
+    #proposal img {
+        width: 40%;
+    }
+
+    #proposal .Gerentcard {
+        display: flex;
+        align-items: center;
+        height: 230px;
+        color: #000;
+    }
+
+    #proposal nav {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        #proposal nav .pagination {
+            margin: 10px;
+        }
+
+.Gerentcard:hover {
+    border: 1px solid #000;
+}
+
+.Gerentcard div {
+    flex-grow: 1;
+}
+
+.Gerentcard ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+}
+
+
+.page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    .page a {
+        font-size: 20px;
+    }
+
+.page-link {
+    background-color: unset;
+    border-color: #000;
+    color: #000;
+}
+
+    .page-link:hover {
+        background-color: #fff5;
+        color: #000;
+    }
