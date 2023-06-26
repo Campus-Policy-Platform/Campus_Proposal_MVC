@@ -23,12 +23,20 @@ namespace CHU_PolicyPlatform_1.Controllers
             var review_data = _context.Proposals.ToList().Find(z => z.ProposalId == Pro_Id);
             var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == Pro_Id);
             var review_response = _context.ToReponds.ToList().Find(c => c.ProposalId == Pro_Id);
+            //True and False 數量統計
+            var TrueAmount = review_vote.Count(h => h.Crucial == true);
+            var FalseAmount = review_vote.Count(h => h.Crucial == false);
+
+            ViewBag.TrueAmount = TrueAmount;
+            ViewBag.FalseAmount = FalseAmount;
+
             ReviewtotalViewModel ReviewtotalVM = new ReviewtotalViewModel()
             {
                 proposal = review_data,
                 votes=setPages(Id, review_vote),
                 toRepond =review_response
             };
+            
 
   
 
@@ -54,7 +62,7 @@ namespace CHU_PolicyPlatform_1.Controllers
                 totalRows = props.Count();   //計算總筆數
             }
             int activePage = Id; //目前所在頁
-            int pageRows = 1;   //每頁幾筆資料
+            int pageRows = 8;   //每頁幾筆資料
 
             //計算Page頁數
             if (totalRows % pageRows == 0)
