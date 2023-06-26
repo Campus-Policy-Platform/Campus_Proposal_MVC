@@ -123,6 +123,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             return products;
         }
 
+        public IActionResult Variousrooms()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
