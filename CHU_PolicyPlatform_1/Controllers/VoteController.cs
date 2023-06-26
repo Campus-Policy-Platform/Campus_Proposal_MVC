@@ -1,8 +1,10 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using CHU_PolicyPlatform_1.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +21,9 @@ namespace CHU_PolicyPlatform_1.Controllers
 
         [Authorize(Roles = "User")]
         [HttpGet]
-        public IActionResult ProposeVote(string propId, string vote="1")
+        public IActionResult ProposeVote(string propId, string vote)
         {
             string userId = User.Identity.Name;
-            propId = "P230612001";
 
             if (_context.Votes.ToList().Find(e => e.UserId == userId && e.ProposalId==propId) != null)
             {
@@ -43,14 +44,18 @@ namespace CHU_PolicyPlatform_1.Controllers
                 default:
                     return NotFound();
             }
+            PollViewModel pollVM = new PollViewModel
+            {
+                proposal = proposal,
+                vote = new Vote { Crucial = crucial, ProposalId = proposal.ProposalId, UserId = userId }
+            };
 
-            ViewData["UserId"] = userId;
-            ViewData["Crucial"] = crucial;
-
-            return View(proposal);
+            return View(pollVM);
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ProposeVote(Vote vote)
         {
             vote.Vdate = DateTime.Now;

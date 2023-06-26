@@ -91,6 +91,7 @@ namespace CHU_PolicyPlatform_1
                     name: "HomeSearchByKeyword",
                     pattern: "Home/Search/{keyword?}/{Id?}",
                     defaults: new { controller = "Home", action = "Privacy" });
+                //Review
                 endpoints.MapControllerRoute(
                     name: "Review",
                     pattern: "Review/{Pro_Id?}/{Id?}",
@@ -100,7 +101,11 @@ namespace CHU_PolicyPlatform_1
                     name: "AdvanceProposal",
                     pattern: "Propose",
                     defaults: new { controller = "Proposals", action = "Advance" });
-
+                //vote
+                endpoints.MapControllerRoute(
+                    name: "ProposalToVote",
+                    pattern: "Review/Vote/{propId?}/{vote?}",
+                    defaults: new { controller = "Vote", action = "ProposeVote" });
                 //Login_user
                 endpoints.MapControllerRoute(
                     name: "LoginOfUser",

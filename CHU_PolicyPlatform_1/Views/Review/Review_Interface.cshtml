@@ -11,6 +11,14 @@
     int activePage = (int)ViewData["ActivePage"];
     int pages = (int)ViewData["Pages"];
 
+    bool exist =false;
+    foreach(var vote in votes)
+    {
+        if(vote.ProposalId == proposals.ProposalId && vote.UserId == User.Identity.Name)
+        {
+            exist = true;
+        }
+    }
 }
 @section topCSS{
     <link href="~/css/review_style.css" rel="stylesheet" />
@@ -98,67 +106,88 @@
                 <p>@proposals.GainsInfluential</p>
             </div>
             <div class="vote_btn">
-                <a>
-                    <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
-                </a>
-                <a>
-                    <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
-                </a>
+                @if (exist==false)
+                {
+                    <a href="/Review/Vote/@proposals.ProposalId/1">
+                        <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
+                    </a>
+                    <a href="/Review/Vote/@proposals.ProposalId/0">
+                        <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
+                    </a>
+                }
+                else
+                {
+                    <p class="alert alert-dark">已投票成功</p>
+                }
             </div>
 
         </div>
         <div class="message_area">
             <h2>留言區</h2>
             <div class="container_msg" id="container_msg">
-                @foreach(var vote in votes)
+                @if (votes.Count() > 0)
                 {
-                    <div class="card">
-                        <div class="text">
-                            <ul>
-                                <li>@vote.UserId</li>
-                                <li>@vote.Vdate.ToString("yyyy-mm-dd")</li>
-                            </ul>
-                            <p>@vote.Vcontent</p>
+                    @foreach (var vote in votes)
+                    {
+                        <div class="card">
+                            <div class="text">
+                                <ul>
+                                    <li>@vote.UserId</li>
+                                    <li>@vote.Vdate.ToString("yyyy-mm-dd")</li>
+                                </ul>
+                                <p>@vote.Vcontent</p>
+                            </div>
+                            <div class="icon">
+                                @if (vote.Crucial == true)
+                                {
+                                    <i class="fa-sharp fa-regular fa-thumbs-up"></i>
+                                }
+                                else if (vote.Crucial == false)
+                                {
+                                    <i class="fa-regular fa-thumbs-down"></i>
+                                }
+                            </div>
                         </div>
-                        <div class="icon">
-                            @if(vote.Crucial==true)
-                            {
-                                <i class="fa-sharp fa-regular fa-thumbs-up"></i>
-                            }
-                            else if (vote.Crucial == false)
-                            {
-                                <i class="fa-regular fa-thumbs-down"></i>
-                            }
-                        </div>
-                    </div>
-                }
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
-                               href="@((activePage-1)< 1 ? "" : $"/Review/{proposals.ProposalId}/{activePage-1}")">&laquo;</a>
-                        </li>
-
-                        @for (int i = 1; i <= pages; i++)
-                        {
-                            <li class="page-item @(i == activePage ? "active" : "")">
-                                <a class="page-link" href="/Review/@proposals.ProposalId/@i">@i</a>
+                    }
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                                   href="@((activePage-1)< 1 ? "" : $"/Review/{proposals.ProposalId}/{activePage-1}")">&laquo;</a>
                             </li>
-                        }
 
-                        <li class="page-item">
-                            <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                               href="@((activePage+1)> pages ? "" : $"/Review/{proposals.ProposalId}/{activePage+1}")">&raquo;</a>
-                        </li>
-                    </ul>
-                </nav>
+                            @for (int i = 1; i <= pages; i++)
+                            {
+                                <li class="page-item @(i == activePage ? "active" : "")">
+                                    <a class="page-link" href="/Review/@proposals.ProposalId/@i">@i</a>
+                                </li>
+                            }
+
+                            <li class="page-item">
+                                <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                                   href="@((activePage+1)> pages ? "" : $"/Review/{proposals.ProposalId}/{activePage+1}")">&raquo;</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+                else
+                {
+                    <h3>目前尚未有人參與本提案</h3>
+                }
             </div>
         </div>
 
         <div class="response_area">
             <h2>回覆區</h2>
             <div class="alert alert-primary" id=res_content role="alert">
-                <h3>@toReponds.Rcontent</h3>
+                @if (toReponds != null)
+                {
+                    <h3>@toReponds.Rcontent</h3>
+                }
+                else
+                {
+                    <h3>目前尚未有回覆</h3>
+                }
             </div>
         </div>
     </div>
@@ -167,6 +196,6 @@
 @*@section endJS{
     <script>
 
-    </script>*@
-}
+    </script>
+}*@
 

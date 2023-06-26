@@ -18,12 +18,8 @@ namespace CHU_PolicyPlatform_1.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult Review_Interface(string Pro_Id= "P230523001", int Id=1)
+        public IActionResult Review_Interface(string Pro_Id, int Id=1)
         {
-            //Pro_Id = "P230523001";
-
-
-
             var review_data = _context.Proposals.ToList().Find(z => z.ProposalId == Pro_Id);
             var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == Pro_Id);
             var review_response = _context.ToReponds.ToList().Find(c => c.ProposalId == Pro_Id);
@@ -36,7 +32,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
   
 
-            if (Id > pages || Id < 1)
+            if ( review_vote.Count>0 &&(Id > pages || Id < 1))
             {
                 return NotFound();
             }

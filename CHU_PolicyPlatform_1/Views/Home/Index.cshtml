@@ -19,7 +19,7 @@
 <div id="proposal">
     @foreach(var prop in proposals)
     {
-        <a class="maincard col-6" href="#">
+        <a class="maincard col-6" href="/Review/@prop.ProposalId">
             @switch (prop.CategoryId)
             {
                 case "C001":
@@ -56,6 +56,8 @@
                 </ul>
             </div>
         </a>
+        agree = 0;
+        messge = 0;
     }
     <nav aria-label="Page navigation example">
         <ul class="pagination">

@@ -1,18 +1,21 @@
-﻿@model Proposal
+﻿@model PollViewModel
 @{
     ViewData["Title"] = "ProposeVote";
 
-    var userId = ViewData["UserId"];
-    bool crucial = (bool)ViewData["Crucial"];
+    Proposal prop = Model.proposal;
+    Vote vote = Model.vote;
+
+    var userId = vote.UserId;
+    bool crucial = vote.Crucial;
 }
 
 <h1>我要@(crucial ? "贊成" : "反對")</h1>
 <hr />
 <div>
-    <h2>提議者：@Model.UserId</h2>
-    <h2>提案日期：@Model.Pdate.ToString("yyyy-MM-dd")</h2>
+    <h2>提議者：@prop.UserId</h2>
+    <h2>提案日期：@prop.Pdate.ToString("yyyy-MM-dd")</h2>
 </div>
-<h2>@Model.Title</h2>
+<h2>@prop.Title</h2>
 <form method="post">
     <div class="vote">
         <h2>@(crucial ? "贊成" : "反對")</h2>
@@ -20,16 +23,16 @@
         <h3>學號：@userId</h3>
         <p>支持提議的想法</p>
         <p>最大限制500字</p>
-        <textarea name="Vcontent" id="Vcontent" placeholder="請輸入您的想法" maxlength="500" required rows="10"></textarea>
+        <textarea name="Vote.Vcontent" id="Vcontent" placeholder="請輸入您的想法" maxlength="500" required rows="10"></textarea>
     </div>
     <div>
-        <a class="btn btn-primary" href="#">離開</a>
+        <a class="btn btn-primary" href="/Review/@prop.ProposalId">離開</a>
         <button type="submit" class="btn btn-primary">確認@(crucial ? "贊成" : "反對")</button>
     </div>
     <div class="none">
-        <input type="hidden" id="Crucial" name="Crucial" value="@crucial.ToString()" />
-        <input type="hidden" id="UserId" name="UserId" value="@userId" />
-        <input type="hidden" id="ProposalID" name="ProposalID" value="@Model.ProposalId" />
+        <input type="hidden" id="Crucial" name="Vote.Crucial" value="@crucial.ToString()" />
+        <input type="hidden" id="UserId" name="Vote.UserId" value="@userId" />
+        <input type="hidden" id="ProposalID" name="Vote.ProposalID" value="@prop.ProposalId" />
     </div>
 </form>
 <div class="illust">
