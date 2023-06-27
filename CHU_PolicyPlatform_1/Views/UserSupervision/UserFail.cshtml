@@ -1,6 +1,6 @@
 ﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
 @{
-    ViewData["Title"] = "UserFinished";
+    ViewData["Title"] = "UserFail";
 
     int activePage = (int)ViewData["ActivePage"];
     int pages = (int)ViewData["Pages"];
@@ -8,14 +8,14 @@
 
 
 @section topCSS
-{
+    {
     <link href="~/css/userSeestyle.css" rel="stylesheet" />
 }
 
 
 <div class="maintop">
     <div class="UserS">
-        <h1>已回覆案件</h1>
+        <h1>未通過案件</h1>
     </div>
 </div>
 <div class="main">
@@ -23,9 +23,9 @@
         <div class="UserPs">
             <h4>統計所有成案計畫的類型、回覆訊息查看(注：不一定都有回覆)</h4>
         </div>
-@*        <div id="btncard">
-            <button id='pending_reply' type="button" class="btn btn-primary btn-lg btn-info">待回覆案件</button>
-            <button id='reply' type="button" class="btn btn-primary btn-lg btn-info">已回覆案件</button>
+        @*        <div id="btncard">
+        <button id='pending_reply' type="button" class="btn btn-primary btn-lg btn-info">待回覆案件</button>
+        <button id='reply' type="button" class="btn btn-primary btn-lg btn-info">已回覆案件</button>
         </div>*@
         <div id="btncard">
             <a href="/Supervision/Pending" class="btn btn-primary btn-lg btn-info">待回覆案件</a>
@@ -33,8 +33,8 @@
             <a href="/Supervision/Fail" class="btn btn-primary btn-lg btn-info">未通過案件</a>
         </div>
 
-    </div>
 
+    </div>
     <div id="proposal">
         @foreach (var item in Model)
         {
@@ -61,26 +61,28 @@
                 </div>
             </a>
         }
+
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
-                       href="@((activePage-1)< 1 ? "" : "/Supervision/Finished/"+(activePage-1))">&laquo;</a>
+                       href="@((activePage-1)< 1 ? "" : "/Supervision/Fail/"+(activePage-1))">&laquo;</a>
                 </li>
 
                 @for (int i = 1; i <= pages; i++)
                 {
                     <li class="page-item @(i == activePage ? "active" : "")">
-                        <a class="page-link" href="/Supervision/Finished/@i">@i</a>
+                        <a class="page-link" href="/Supervision/Fail/@i">@i</a>
                     </li>
                 }
 
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                       href="@((activePage+1)> pages ? "" : "/Supervision/Finished/"+(activePage+1))">&raquo;</a>
+                       href="@((activePage+1)> pages ? "" : "/Supervision/Fail/"+(activePage+1))">&raquo;</a>
                 </li>
             </ul>
         </nav>
+
     </div>
     <div id="chartarea">
         <h3 id="chart-title">立案案件類型總量圖</h3>
@@ -89,15 +91,14 @@
 </div>
 
 @section endJS
-{
+    {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 
     <script>
         var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
 
         function chart() {
-            let categories = ["C001", "C002", "C003", "C004"]; // 四个特定的CategoryId類別
+            let categories = ["C001", "C002", "C003", "C004"]; // 四个特定的CategoryId类别
             let categoryLabels = {
                 "C001": "校园",
                 "C002": "教室",
@@ -106,7 +107,7 @@
             };
 
             let categoryCounts = categories.map((category) => {
-                let count = modeldata.filter((item) => item.CategoryId === category).length; // 根據CategoryId篩選計算數量
+                let count = modeldata.filter((item) => item.CategoryId === category).length; // 根据CategoryId筛选并计算数量
                 return count;
             });
 
@@ -145,7 +146,4 @@
             chart();
         });
     </script>
-
 }
-
-

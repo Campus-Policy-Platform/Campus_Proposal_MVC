@@ -24,6 +24,13 @@ namespace CHU_PolicyPlatform_1.Services
 
             return sepass.ToList();
         }
+        public List<Proposal> SeUserfail()
+        {
+            var rege = _reGerent.GetAllData();
+            var sepass = rege.Where(item => item.Pass == false);
+
+            return sepass.ToList();
+        }
 
         public List<Proposal> SeUser()
         {
@@ -37,5 +44,6 @@ namespace CHU_PolicyPlatform_1.Services
             });
             return sepass.ToList();
         }
+
     }
 }
