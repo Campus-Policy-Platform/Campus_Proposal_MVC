@@ -35,7 +35,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         public IActionResult UserPending(int Id = 1)
         {
 
-            var Passprop = _seGerent.SeG();
+            var Passprop = _seGerent.SeUser();
             var value = new List<GerentSeeVM>();
 
             // 計算總筆數和分頁相關參數

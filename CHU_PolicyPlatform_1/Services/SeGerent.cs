@@ -10,9 +10,11 @@ namespace CHU_PolicyPlatform_1.Services
     public class SeGerent
     {
         private ReGerent _reGerent;
-        public SeGerent(ReGerent reGerent)
+        private ReUserS _reUserS;
+        public SeGerent(ReGerent reGerent, ReUserS reUserS)
         {
             _reGerent = reGerent;
+            _reUserS = reUserS;
         }
 
         public List<Proposal> SeG()
@@ -23,5 +25,17 @@ namespace CHU_PolicyPlatform_1.Services
             return sepass.ToList();
         }
 
+        public List<Proposal> SeUser()
+        {
+
+            var rege = _reGerent.GetAllData();
+            var reus = _reUserS.GetAllToR();
+            var sepass = new List<Proposal>();
+            reus.ForEach(reuItem =>
+            {
+                sepass.AddRange(rege.Where(item => item.Pass == true && item.ProposalId != reuItem.ProposalId).ToList());
+            });
+            return sepass.ToList();
+        }
     }
 }
