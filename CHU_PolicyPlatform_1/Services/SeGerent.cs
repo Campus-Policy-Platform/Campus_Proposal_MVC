@@ -37,11 +37,10 @@ namespace CHU_PolicyPlatform_1.Services
 
             var rege = _reGerent.GetAllData();
             var reus = _reUserS.GetAllToR();
-            var sepass = new List<Proposal>();
-            reus.ForEach(reuItem =>
-            {
-                sepass.AddRange(rege.Where(item => item.Pass == true && item.ProposalId != reuItem.ProposalId).ToList());
-            });
+            var sepass = rege.Where(item => item.Pass == true && !reus.Any(reuItem => reuItem.ProposalId == item.ProposalId))
+                     .Distinct()
+                     .ToList();
+
             return sepass.ToList();
         }
 
