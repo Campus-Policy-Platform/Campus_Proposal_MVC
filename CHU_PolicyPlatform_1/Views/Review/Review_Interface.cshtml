@@ -73,10 +73,29 @@
 
         </div>
         <div class="schedule">
-            <div id="Project_Action"></div>
-            <div id="Project_invalid"></div>
-            <div id="Project_established"></div>
-            <div id="Project_Response"></div>
+            <div id="Project_Action">
+                @if (proposals.Underways is true)
+                {
+                    <img src="~/images/action.jpg" />
+                }
+                else
+                {
+                    <img src="~/images/project.jpg" />
+                    
+                }
+            </div>
+            <div id="Project_established">
+                @if(proposals.Pass is true)
+                {
+                    <img src="~/images/no-response.jpg"/>
+                }
+            </div>
+            <div id="Project_Response">
+                @if(toReponds is not null)
+                {
+                    <img src="~/images/response.jpg"/>
+                }
+            </div>
             <!-- Json圖表 -->
         </div>
         <div class="propose_content">

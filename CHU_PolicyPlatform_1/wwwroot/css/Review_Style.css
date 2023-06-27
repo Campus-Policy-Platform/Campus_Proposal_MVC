@@ -49,9 +49,13 @@
     flex-direction:row;
 }
 .schedule div{
-    width:160px;
-    border:3px solid red; 
+    width:200px;
+    border:1px solid red; 
     height:200px;
+}
+.schedule img
+{
+    width:100%;
 }
 
 .content_title h2 {
