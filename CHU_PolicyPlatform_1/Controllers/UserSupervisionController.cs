@@ -1,7 +1,9 @@
 ﻿using CHU_PolicyPlatform_1.Services;
 using CHU_PolicyPlatform_1.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace CHU_PolicyPlatform_1.Controllers
@@ -31,7 +33,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             }
             return Pages;
         }
-
+        [Authorize(Roles = "User,Gerent")]
         public IActionResult UserPending(int Id = 1)
         {
 
@@ -57,6 +59,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             {
                 value.Add(new GerentSeeVM
                 {
+                    ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });
@@ -67,6 +70,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(value);
         }
+        [Authorize(Roles = "User,Gerent")]
         public IActionResult UserFinished(int Id = 1)
         {
             var Passprop = _seUserS.SeU();
@@ -91,6 +95,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             {
                 value.Add(new GerentSeeVM
                 {
+                    ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });

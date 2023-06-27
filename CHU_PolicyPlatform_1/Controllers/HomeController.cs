@@ -122,7 +122,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return products;
         }
-
+        [Authorize(Roles = "User,Gerent")]
         public IActionResult Variousrooms()
         {
             return View();

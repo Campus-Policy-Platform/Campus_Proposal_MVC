@@ -58,6 +58,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             {
                 value.Add(new GerentSeeVM
                 {
+                    ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });

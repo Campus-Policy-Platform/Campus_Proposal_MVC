@@ -37,7 +37,7 @@
     <div id="proposal">
         @foreach (var item in Model)
         {
-            <a class="Usertcard col-6" href="#">
+            <a class="Usertcard col-6" href="/Review/@item.ProposalId">
                 @switch (item.CategoryId)
                 {
                     case "C001":
@@ -65,19 +65,19 @@
             <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
-                       href="@((activePage-1)< 1 ? "" : "/UserSupervision/UserPending/"+(activePage-1))">&laquo;</a>
+                       href="@((activePage-1)< 1 ? "" : "/Supervision/Pending/"+(activePage-1))">&laquo;</a>
                 </li>
 
                 @for (int i = 1; i <= pages; i++)
                 {
                     <li class="page-item @(i == activePage ? "active" : "")">
-                        <a class="page-link" href="/UserSupervision/UserPending/@i">@i</a>
+                        <a class="page-link" href="/Supervision/Pending/@i">@i</a>
                     </li>
                 }
 
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                       href="@((activePage+1)> pages ? "" : "/UserSupervision/UserPending/"+(activePage+1))">&raquo;</a>
+                       href="@((activePage+1)> pages ? "" : "/Supervision/Pending/"+(activePage+1))">&raquo;</a>
                 </li>
             </ul>
         </nav>

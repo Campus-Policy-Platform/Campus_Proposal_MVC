@@ -66,7 +66,7 @@ namespace CHU_PolicyPlatform_1.Controllers
                     authProperties
                     );
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GerentSee", "Gerentcase");
             }
             return View(GerentLoginVM);
         }

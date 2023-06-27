@@ -23,7 +23,7 @@
     <div id="proposal">
         @foreach (var item in Model)
         {
-            <a class="Gerentcard col-6" href="#">
+            <a class="Gerentcard col-6" href="/Review/@item.ProposalId">
                 @switch (item.CategoryId)
                 {
                     case "C001":

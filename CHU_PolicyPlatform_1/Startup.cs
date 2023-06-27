@@ -131,13 +131,14 @@ namespace CHU_PolicyPlatform_1
                 //User_Supervision
                 endpoints.MapControllerRoute(
                     name: "UseSupervision",
-                    pattern: "Supervision/Pending",
+                    pattern: "Supervision/Pending/{id?}",
                     defaults: new { controller = "UserSupervision", action = "UserPending" });
                 //User_Supervision
                 endpoints.MapControllerRoute(
                     name: "UserSupervision",
-                    pattern: "Supervision/Finished",
+                    pattern: "Supervision/Finished/{id?}",
                     defaults: new { controller = "UserSupervision", action = "UserFinished" });
+
             });
         }
     }

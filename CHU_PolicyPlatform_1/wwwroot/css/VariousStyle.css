@@ -3,6 +3,20 @@
     display: block;
 }
 
+.maintop {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+.VaName {
+    background-color: burlywood;
+    width: 25%;
+    text-align: center;
+    Border-radius: 20px;
+}
+
+
 .main {
     background-color: unset;
     flex-grow: unset;

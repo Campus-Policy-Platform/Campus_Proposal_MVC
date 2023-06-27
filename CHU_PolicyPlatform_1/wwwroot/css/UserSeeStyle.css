@@ -1,14 +1,14 @@
 ﻿body {
     display: flex;
     flex-direction: column;
-    height: 2000px;
 }
 
 
 .UserS {
     background-color: burlywood;
-    width: 30%;
+    width: 35%;
     text-align: center;
+    Border-radius: 20px;
 }
 
 .maintop {
@@ -36,7 +36,7 @@
 
 .UserPs {
     background-color: burlywood;
-
+    Border-radius: 20px;
     text-align: center;
 }
 
@@ -138,6 +138,7 @@
 
 #chart-title {
     background-color: rgb(205, 169, 235);
+    Border-radius: 20px;
 }
 /* img{
     border-radius : 1em 4em 1em 4em;
