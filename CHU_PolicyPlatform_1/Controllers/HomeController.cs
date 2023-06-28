@@ -50,7 +50,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         }
 
         //Search
-        [Authorize(Roles = "User,Gerent")]
+        [Authorize(Roles = "User")]
         [HttpGet, HttpPost]
         public async Task<IActionResult> Privacy(string keyword, int Id=1)
         {
@@ -59,7 +59,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > pages || Id < 1)
             {
-                return NotFound();
+                return RedirectToRoute("Failurepage");
             }
             else if (props == null) 
             {
@@ -122,8 +122,13 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return products;
         }
-        [Authorize(Roles = "User,Gerent")]
+        [Authorize(Roles = "User")]
         public IActionResult Variousrooms()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User")]
+        public IActionResult Failurepage()
         {
             return View();
         }

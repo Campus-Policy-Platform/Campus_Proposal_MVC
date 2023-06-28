@@ -82,7 +82,7 @@ namespace CHU_PolicyPlatform_1
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=User}/{action=UserLogin}/{id?}");
                 //endpoints.MapControllerRoute(
                 //    name: "default",
                 //    pattern: "/",
@@ -158,6 +158,11 @@ namespace CHU_PolicyPlatform_1
                     name: "GerentSee",
                     pattern: "Gerent/Finished/{id?}",
                     defaults: new { controller = "Gerentcase", action = "GerentSeeFinish" });
+                //Failure_page
+                endpoints.MapControllerRoute(
+                    name: "Failurepage",
+                    pattern: "Error",
+                    defaults: new { controller = "Home", action = "Failurepage" });
 
             });
         }

@@ -28,18 +28,30 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Home">首頁</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Propose">提案</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Supervision/Pending/">監督</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Department">各處室</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if  (User.IsInRole("User"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Home">首頁</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Propose">提案</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Supervision/Pending/">監督</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Department">各處室</a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Gerent"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/Gerent/Pending">處理案件區</a>
+                                </li>
+                            }
+                        }
                         <partial name="_LoginStatusPartial" />
                     </ul>
                 </div>
