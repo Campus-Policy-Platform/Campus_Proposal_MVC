@@ -64,7 +64,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             {
                 _context.Votes.Add(vote);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return Redirect($"/Review/{vote.ProposalId}");
             }
 
             return View(vote);
