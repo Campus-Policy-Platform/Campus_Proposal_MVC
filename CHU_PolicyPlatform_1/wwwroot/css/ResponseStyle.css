@@ -1,0 +1,9 @@
+﻿.response_area{
+    width:960px;
+    height:400px;
+    margin:auto
+}
+.response_area textarea{
+    width:100%;
+    height:400px;
+}

@@ -120,22 +120,30 @@
                 <p>@proposals.GainsInfluential</p>
             </div>
             <div class="vote_btn">
-                @if (exist==false)
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="/Review/Vote/@proposals.ProposalId/1">
-                        <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
-                    </a>
-                    <a href="/Review/Vote/@proposals.ProposalId/0">
-                        <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
-                    </a>
-
-                    <a href="/Response/@proposals.ProposalId">
-                        <input type="button" id="response_button" value="回覆" class="btn btn-outline-danger" />
-                    </a>
-                }
-                else
-                {
-                    <p class="alert alert-dark">已投票成功</p>
+                    if (User.IsInRole("Gerent"))
+                    {
+                        <a href="/Response/@proposals.ProposalId">
+                            <input type="button" id="response_button" value="回覆" class="btn btn-outline-danger" />
+                        </a>
+                    }
+                    else if (User.IsInRole("User"))
+                    {
+                        @if (exist == false)
+                        {
+                            <a href="/Review/Vote/@proposals.ProposalId/1">
+                                <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
+                            </a>
+                            <a href="/Review/Vote/@proposals.ProposalId/0">
+                                <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
+                            </a>
+                        }
+                        else
+                        {
+                            <p class="alert alert-dark">已投票成功</p>
+                        }             
+                    }
                 }
             </div>
 
