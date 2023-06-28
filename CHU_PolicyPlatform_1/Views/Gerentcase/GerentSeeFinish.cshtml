@@ -1,7 +1,7 @@
 ﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
 
 @{
-    ViewData["Title"] = "GerentSee";
+    ViewData["Title"] = "GerentSeeFinish";
 
     int activePage = (int)ViewData["ActivePage"];
     int pages = (int)ViewData["Pages"];
@@ -10,7 +10,7 @@
 }
 
 @section topCSS
-{
+    {
     <link href="~/css/gerentseestyle.css" rel="stylesheet" />
 }
 
@@ -22,7 +22,7 @@
     </div>
     <div class="main-name">
         <div class="GrentPs">
-            <h4>待回案件區</h4>
+            <h4>已回案件區</h4>
         </div>
     </div>
     <div class="main-wh">
@@ -63,19 +63,19 @@
             <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
-                       href="@((activePage-1)< 1 ? "" : "/Gerent/Pending/"+(activePage-1))">&laquo;</a>
+                       href="@((activePage-1)< 1 ? "" : "/Gerent/Finished/"+(activePage-1))">&laquo;</a>
                 </li>
-                
+
                 @for (int i = 1; i <= pages; i++)
                 {
                     <li class="page-item @(i == activePage ? "active" : "")">
-                        <a class="page-link" href="/Gerent/Pending/@i">@i</a>
+                        <a class="page-link" href="/Gerent/Finished/@i">@i</a>
                     </li>
                 }
 
                 <li class="page-item">
                     <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                       href="@((activePage+1)> pages ? "" : "/Gerent/Pending/"+(activePage+1))">&raquo;</a>
+                       href="@((activePage+1)> pages ? "" : "/Gerent/Finished/"+(activePage+1))">&raquo;</a>
                 </li>
             </ul>
         </nav>
@@ -89,6 +89,6 @@
 
 
 @section endJS
-{
+    {
 
 }

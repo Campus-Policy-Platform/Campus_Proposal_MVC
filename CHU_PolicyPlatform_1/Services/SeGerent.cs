@@ -17,7 +17,7 @@ namespace CHU_PolicyPlatform_1.Services
             _reUserS = reUserS;
         }
 
-        public List<Proposal> SeG()
+        public List<Proposal> SeG()//目前無使用到
         {
             var rege = _reGerent.GetAllData();
             var sepass = rege.Where(item => item.Pass == true);
@@ -32,7 +32,7 @@ namespace CHU_PolicyPlatform_1.Services
             return sepass.ToList();
         }
 
-        public List<Proposal> SeUser()
+        public List<Proposal> SeUser()//以seg為基礎做篩選
         {
 
             var rege = _reGerent.GetAllData();

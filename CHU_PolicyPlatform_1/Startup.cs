@@ -143,6 +143,16 @@ namespace CHU_PolicyPlatform_1
                     name: "UserSupervision",
                     pattern: "Supervision/Fail/{id?}",
                     defaults: new { controller = "UserSupervision", action = "UserFail" });
+                //Gerent_See
+                endpoints.MapControllerRoute(
+                    name: "GerentSee",
+                    pattern: "Gerent/Pending/{id?}",
+                    defaults: new { controller = "Gerentcase", action = "GerentSee" });
+                //Gerent_See
+                endpoints.MapControllerRoute(
+                    name: "GerentSee",
+                    pattern: "Gerent/Finished/{id?}",
+                    defaults: new { controller = "Gerentcase", action = "GerentSeeFinish" });
 
             });
         }
