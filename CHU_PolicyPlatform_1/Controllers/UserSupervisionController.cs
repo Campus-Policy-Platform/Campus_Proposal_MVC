@@ -33,7 +33,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             }
             return Pages;
         }
-        [Authorize(Roles = "User,Gerent")]
+        [Authorize(Roles = "User")]
         public IActionResult UserPending(int Id = 1)
         {
 
@@ -70,7 +70,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(value);
         }
-        [Authorize(Roles = "User,Gerent")]
+        [Authorize(Roles = "User")]
         public IActionResult UserFinished(int Id = 1)
         {
             var Passprop = _seUserS.SeU();
@@ -106,7 +106,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(value);
         }
-        [Authorize(Roles = "User,Gerent")]
+        [Authorize(Roles = "User")]
         public IActionResult UserFail(int Id = 1)
         {
 

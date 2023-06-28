@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using CHU_PolicyPlatform_1.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace CHU_PolicyPlatform_1.Controllers
 {
@@ -71,6 +73,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(value);
         }
+        [Authorize(Roles = "Gerent")]
         public IActionResult GerentSeeFinish(int Id = 1)
         {
 

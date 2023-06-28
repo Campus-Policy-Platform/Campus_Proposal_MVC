@@ -29,6 +29,10 @@ namespace CHU_PolicyPlatform_1.Controllers
         //[HttpGet]
         public async Task<IActionResult> Index(int Id=1)
         {
+            if (!User.IsInRole("User"))
+            {
+                return RedirectToAction("GerentSee", "Gerentcase");
+            }
             List<Proposal> props = setPages(Id, await _propService.readProposal());
             var votes = _prop.Votes;
 
