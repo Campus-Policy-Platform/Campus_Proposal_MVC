@@ -113,6 +113,11 @@ namespace CHU_PolicyPlatform_1
                     name: "ProposalToVote",
                     pattern: "Review/Vote/{propId?}/{vote?}",
                     defaults: new { controller = "Vote", action = "ProposeVote" });
+                //response
+                endpoints.MapControllerRoute(
+                    name: "ProposalToResponse",
+                    pattern: "Response/{propId?}",
+                    defaults: new { controller = "Response", action = "GerentResponse" });
                 //Login_user
                 endpoints.MapControllerRoute(
                     name: "LoginOfUser",

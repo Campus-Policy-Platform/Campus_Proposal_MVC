@@ -1,0 +1,21 @@
+﻿@model ResponseViewModel
+@{
+    ViewData["Title"] = "GerentResponse";
+    Proposal prop = Model.proposal;
+    ToRepond repond = Model.toRepond;
+
+}
+
+<h1>GerentResponse</h1>
+<form method="post">
+    <div class="response_area">
+        <textarea name="ToRepond.Rcontent" id="Rcontent" placeholder="請輸入回復" maxlength="500" required rows="10"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">確認</button>
+    </div>
+    <input type="hidden" id="UserId" name="toRepond.GerentId" value="@repond.GerentId" />
+    <input type="hidden" id="ProposalId" name="toRepond.ProposalId" value="@prop.ProposalId" />
+</form>
+
+
