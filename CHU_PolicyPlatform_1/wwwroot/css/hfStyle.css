@@ -1,4 +1,8 @@
-﻿nav .container div {
+﻿body{
+    min-height:inherit;
+}
+
+nav .container div {
     display: flex;
     align-items: center;
 }

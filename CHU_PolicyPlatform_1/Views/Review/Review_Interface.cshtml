@@ -9,6 +9,7 @@
     int activePage = (int)ViewData["ActivePage"];
     int pages = (int)ViewData["Pages"];
 
+    //已投票
     bool exist =false;
     foreach(var vote in votes)
     {
@@ -16,6 +17,12 @@
         {
             exist = true;
         }
+    }
+    //進行中
+    bool underway = false;
+    if (proposals.Underways)
+    {
+        underway = true;
     }
 }
 @section topCSS{
@@ -130,7 +137,7 @@
                     }
                     else if (User.IsInRole("User"))
                     {
-                        @if (exist == false)
+                        @if (!exist && underway)
                         {
                             <a href="/Review/Vote/@proposals.ProposalId/1">
                                 <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
@@ -139,10 +146,14 @@
                                 <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
                             </a>
                         }
-                        else
+                        else if (underway)
                         {
                             <p class="alert alert-dark">已投票成功</p>
-                        }             
+                        }
+                        else
+                        {
+                            <p class="alert alert-dark">案件已結束</p>
+                        }
                     }
                 }
             </div>
@@ -150,7 +161,7 @@
         </div>
         <div class="message_area">
             <h2>留言區</h2>
-            <div class="container_msg" id="container_msg">
+            <div class="container_msg alert" id="container_msg">
                 @if (votes.Count() > 0)
                 {
                     @foreach (var vote in votes)
