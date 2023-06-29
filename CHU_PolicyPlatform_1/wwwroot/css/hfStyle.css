@@ -1,5 +1,12 @@
-﻿body{
-    min-height:inherit;
+﻿html,body{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+*>h1, *>h4{
+    margin: 5px 0;
+    padding:5px;
 }
 
 nav .container div {
@@ -19,8 +26,15 @@ nav a img {
 nav div ul {
     justify-content: end;
 }
-ul.log {
-    gap: 10px;
+    nav div ul a:hover {
+        border-bottom:1px solid #000;
+    }
+.log>li {
+    padding:0 10px;
+}
+
+body>.container{
+    flex:1;
 }
 
 .footer{
@@ -35,12 +49,8 @@ ul.log {
 }
 
 .footer .col-6 {
-    padding: 10px 0;
+    padding: 10px;
 }
-
-    .footer .col-6:last-child {
-        text-align: center;
-    }
 
 .footer h5 {
     white-space: normal;

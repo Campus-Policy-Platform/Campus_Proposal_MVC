@@ -15,7 +15,15 @@ form #Title {
 form #CategoryId {
     margin-top:20px;
     padding: 0 5px;
-    background-color: #ecebeb;
+}
+
+.content-area{
+    display:flex;
+    margin:10px 0;
+    gap:20px;
+}
+.content-area>div{
+    padding:0;
 }
 
 form #Pcontent, #GainsInfluential {

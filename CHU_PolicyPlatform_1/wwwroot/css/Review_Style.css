@@ -10,6 +10,16 @@
         width: 60%;
         margin:auto;
     }
+    .main-wh h2:not(.vote_total h2){
+        padding:10px;
+    }
+
+nav>ol{
+    display:flex;
+    flex-wrap:wrap;
+    list-style:none;
+    padding:0;
+}
 
 .title h1 {
     text-align: center;
@@ -20,21 +30,24 @@
 
 .vote_total {
     display: flex;
-}
-
-    .vote_total .col-4 + .col-4 {
-        border-left: 10px solid #fff;
-    }
-
-.vote_left, .vote_middle, .vote_right {
     margin: 10px 0;
     background-color: antiquewhite;
 }
+    .vote_total>div{
+        padding:15px;
+    }
+    .vote_total .col-4 + .col-4 {
+        border-left: 5px solid #fff;
+    }
+    .vote_total .col-4:not(.col-4:last-child){
+        border-right: 5px solid #fff;
+    }
+    .vote_total div *{
+        margin:0;
+    }
 
     .vote_left canvas {
-        margin: 10px auto;
-        width: 90%;
-        height: 90%;
+        margin: 10px 0;
     }
 
     .vote_middle h2, .vote_middle p {
@@ -44,39 +57,39 @@
 
 .schedule {
     border: 5px solid skyblue;
-    height: 206px;
     display:flex;
     flex-direction:row;
 }
 .schedule div{
-    width:200px;
-    border:1px solid red; 
-    height:200px;
+    padding:0;
 }
+    .schedule div + div {
+        border-left: 1px solid skyblue;
+    }
+    .schedule div:not(div:last-child) {
+        border-right: 1px solid skyblue;
+    }
 .schedule img
 {
     width:100%;
 }
 
-.content_title h2 {
+.content_title h2, .benefit_title h2 {
     background-color: bisque;
-    width: 300px;
+    width: fit-content;
     margin: 10px 0px;
 }
 
-.benefit_title h2 {
-    background-color: bisque;
-    width: 180px;
-    margin: 10px 0px;
-}
+
 
 .content_1, .content_2 {
     background-color: antiquewhite;
+    padding: 10px;
 }
 
     .content_1 p, .content_2 p {
         font-size: 20px;
-        padding: 10px;
+        margin:0;
     }
 
 .vote_btn {
