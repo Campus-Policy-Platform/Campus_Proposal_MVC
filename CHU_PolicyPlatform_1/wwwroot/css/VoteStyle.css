@@ -3,15 +3,19 @@
     display: flex;
     gap: 20px;
 }
+hr{
+    background-color:#999;
+}
 
 div + h2{
     text-align:center;
     margin: 50px 0;
 }
 
-form .vote{
-    background-color:antiquewhite;
-    padding:10px;
+form .vote, .illust {
+    padding: 10px;
+    border: 2px dashed #fff;
+    background-color:#777;
 }
 
 form p{
@@ -41,10 +45,6 @@ form .none{
     display:none;
 }
 
-.illust {
-    background-color:khaki;
-    padding:10px;
-}
 .illust ul{
     list-style-type:decimal;
 }

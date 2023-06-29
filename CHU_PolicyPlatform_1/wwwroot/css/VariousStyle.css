@@ -1,14 +1,18 @@
-﻿.maintop {
+﻿html,body{
+    height:100%;
+}
+
+.maintop {
     display: flex;
     justify-content: center;
     margin-bottom: 1%;
 }
 
 .VaName {
-    background-color: burlywood;
     width: 25%;
     text-align: center;
     Border-radius: 20px;
+    border: 1px solid #fff;
 }
 
 
@@ -20,10 +24,10 @@
     .main .main-wh {
         margin: 50px auto;
         padding: 30px 0px;
-        background-color: #ccc;
-        border: 2px solid aqua;
+        border: 2px dashed #fff;
         flex-direction: unset;
         gap: unset;
+        background-color:#777;
     }
 
 .btn-content {
@@ -32,8 +36,9 @@
     align-items: center;
     margin: 0px 40px;
     padding: 10px 0px;
-    background-color: aquamarine;
+    background-color: #999;
     Border-radius: 20px;
+    border:1px solid #fff;
 }
 
 .main-btn-img {

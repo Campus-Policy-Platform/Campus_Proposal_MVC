@@ -1,7 +1,7 @@
-﻿html,body{
-    height:100%;
-    display:flex;
-    flex-direction:column;
+﻿html, body {
+    display: flex;
+    flex-direction: column;
+    background-color: #555;
 }
 
 *>h1, *>h4{
@@ -35,6 +35,9 @@ nav div ul {
 
 body>.container{
     flex:1;
+}
+body>.container *, footer *{
+    color:#fff;
 }
 
 .footer{

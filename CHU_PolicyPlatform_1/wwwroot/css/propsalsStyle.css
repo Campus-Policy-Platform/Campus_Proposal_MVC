@@ -1,4 +1,8 @@
-﻿form {
+﻿html,body{
+    height:100%;
+}
+
+form {
     display: flex;
     flex-direction: column;
 }
@@ -15,6 +19,12 @@ form #Title {
 form #CategoryId {
     padding:5px;
     position:relative;
+    color:#000;
+    border-radius:0.25rem;
+    height:38px;
+}
+#CategoryId option{
+    color:#000;
 }
 
 .content-area{

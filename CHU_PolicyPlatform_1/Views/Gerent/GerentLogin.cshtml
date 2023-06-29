@@ -5,43 +5,46 @@
 
 @section topCSS{
     <link href="~/css/loginss_style.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: rgb(166,205,231,0.4);
+        }
+    </style>
 }
-<body style="background-color:rgb(166,205,231,0.4)">
-    <div class="squard">
-        <div class="TopPhoto">
-            <img src="~/images/chu_topphoto.jpg" />
-        </div>
-        <div class="login-box">
-            <h2>管理者登入</h2>
-            <form asp-action="GerentLogin">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="user-box">
-                    <input asp-for="Id" type="text" />
-                    <label asp-for="Id">學號</label>
-                    <span asp-validation-for="Id" class="text-danger"></span>
-                </div>
-                <div class="user-box">
-                    <input asp-for="Password" id="Pas_word" type="password" />
-                    <label asp-for="Password">密碼</label>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">顯示密碼</label>
-                </div>
-                <div class="form-group">
-                    <a href="#">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <input type="submit" value="登入" id="user_submit" />
-                    </a>
-                </div>
-            </form>
-        </div>
+<div class="squard">
+    <div class="TopPhoto">
+        <img src="~/images/chu_topphoto.jpg" />
     </div>
-</body>
+    <div class="login-box">
+        <h2>管理者登入</h2>
+        <form asp-action="GerentLogin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="user-box">
+                <input asp-for="Id" type="text" />
+                <label asp-for="Id">學號</label>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="user-box">
+                <input asp-for="Password" id="Pas_word" type="password" />
+                <label asp-for="Password">密碼</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">顯示密碼</label>
+            </div>
+            <div class="form-group">
+                <a href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <input type="submit" value="登入" id="user_submit" />
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
 
 @section endJS{
     <script src="~/js/show_pas.js"></script>

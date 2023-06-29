@@ -26,8 +26,8 @@
         <textarea name="Vote.Vcontent" id="Vcontent" placeholder="請輸入您的想法" maxlength="500" required rows="10"></textarea>
     </div>
     <div>
-        <a class="btn btn-primary" href="/Review/@prop.ProposalId">離開</a>
-        <button type="submit" class="btn btn-primary">確認@(crucial ? "贊成" : "反對")</button>
+        <a class="btn btn-outline-light" href="/Review/@prop.ProposalId">離開</a>
+        <button type="submit" class="btn btn-outline-light">確認@(crucial ? "贊成" : "反對")</button>
     </div>
     <div class="none">
         <input type="hidden" id="Crucial" name="Vote.Crucial" value="@crucial.ToString()" />

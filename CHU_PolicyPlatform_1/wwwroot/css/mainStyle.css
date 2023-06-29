@@ -22,12 +22,13 @@
     }
 
 #proposal {
-    border: 5px solid rgb(130, 255, 255);
+    border: 2px dashed #fff;
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
     padding: 20px 20px 10px;
-    margin:10px 0;
+    margin:20px 0;
+    background-color:#777;
 }
 
     #proposal h1{
@@ -44,6 +45,7 @@
         height: 230px;
         color: #000;
         padding: 10px;
+        gap:5px;
     }
 
     #proposal nav{
@@ -52,7 +54,10 @@
     }
 
 .maincard:hover {
-    border: 1px solid #000;
+    border: 1px solid #fff;
+    border-radius:3px;
+    text-decoration: none;
+    background-color:#999;
 }
 
 .maincard div {
@@ -83,13 +88,9 @@
     .page a {
         font-size: 20px;
     }
-
-.page-link {
-    background-color: unset;
-    border-color: #000;
-    color: #000;
-}
-
+    .page-link{
+        background-color:unset;
+    }
     .page-link:hover {
         background-color: #fff5;
         color: #000;

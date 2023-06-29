@@ -25,9 +25,9 @@
         </div>
 
         <div id="btncard">
-            <a href="/Supervision/Pending" class="btn btn-primary btn-lg btn-info">待回覆案件</a>
-            <a href="/Supervision/Finished" class="btn btn-primary btn-lg btn-info">已回覆案件</a>
-            <a href="/Supervision/Fail" class="btn btn-primary btn-lg btn-info">未通過案件</a>
+            <a href="/Supervision/Pending" class="btn btn-outline-light btn-lg">待回覆案件</a>
+            <a href="/Supervision/Finished" class="btn btn-outline-light btn-lg">已回覆案件</a>
+            <a href="/Supervision/Fail" class="btn btn-outline-light btn-lg">未通過案件</a>
         </div>
 
 
@@ -62,7 +62,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                    <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                    <a class="page-link" style="@((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
                        href="@((activePage-1)< 1 ? "" : "/Supervision/Fail/"+(activePage-1))">&laquo;</a>
                 </li>
 
@@ -74,7 +74,7 @@
                 }
 
                 <li class="page-item">
-                    <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                    <a class="page-link" style="@((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
                        href="@((activePage+1)> pages ? "" : "/Supervision/Fail/"+(activePage+1))">&raquo;</a>
                 </li>
             </ul>
