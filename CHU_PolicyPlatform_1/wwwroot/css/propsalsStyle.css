@@ -13,8 +13,8 @@ form #Title {
 }
 
 form #CategoryId {
-    margin-top:20px;
-    padding: 0 5px;
+    padding:5px;
+    position:relative;
 }
 
 .content-area{

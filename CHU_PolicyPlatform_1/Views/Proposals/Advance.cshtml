@@ -9,9 +9,13 @@
             <h5>輸入提案標題：</h5>
             <input type="text" id="Title" name="Title" class="form-control" placeholder="輸入20字內" maxlength="20" required />
         </div>
-        <select id="CategoryId" name="CategoryId" asp-items="@Model" required>
-            <option value="">==請選擇提案類別==</option>
-        </select>
+        <div class="w-50">
+            <h5>選擇提案類別：</h5>
+            <select id="CategoryId" name="CategoryId" asp-items="@Model" required>
+                <option value="">==請選擇提案類別==</option>
+            </select>
+        </div>
+         
     </div>
     
     <div class="content-area">
