@@ -37,7 +37,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             return Pages;
         }
 
-        // 使用計算頁碼的方法
+        [Authorize(Roles = "Gerent")]
         public IActionResult GerentSee(int Id = 1)
         {
             var Passprop = _seGerent.SeUser();
@@ -52,7 +52,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > Pages)
             {
-                return NotFound();
+                return RedirectToAction("ErrorGerentSee", "Gerentcase");
             }
 
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
@@ -74,6 +74,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             return View(value);
         }
         [Authorize(Roles = "Gerent")]
+        public IActionResult ErrorGerentSee()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Gerent")]
         public IActionResult GerentSeeFinish(int Id = 1)
         {
 
@@ -89,7 +94,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > Pages)
             {
-                return NotFound();
+                return RedirectToAction("ErrorGerentSeeFinish", "Gerentcase");
             }
 
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
@@ -109,6 +114,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             ViewData["Pages"] = Pages;  // 頁數
 
             return View(value);
+        }
+        [Authorize(Roles = "Gerent")]
+        public IActionResult ErrorGerentSeeFinish()
+        {
+            return View();
         }
     }
 }

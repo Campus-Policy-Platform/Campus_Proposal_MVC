@@ -1,0 +1,138 @@
+﻿nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+    nav .pagination{
+        margin: 10px;
+    }
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+    .search input {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .search button {
+        width: 60px;
+        border-radius: 0 5px 5px 0;
+    }
+
+#proposal {
+    border: 5px solid rgb(130, 255, 255);
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px 20px 10px;
+    margin: 10px 0;
+    justify-content: center;
+}
+
+    #proposal h1{
+
+    }
+
+    #proposal img {
+        width: 40%;
+    }
+
+    #proposal .maincard {
+        display: flex;
+        align-items: center;
+        height: 230px;
+        color: #000;
+        padding: 10px;
+    }
+
+    #proposal nav{
+        width:100%;
+        align-items:center;
+    }
+
+.maincard:hover {
+    border: 1px solid #000;
+}
+
+.maincard div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+}
+    .maincard div * {
+        margin:unset;
+    }
+
+.maincard ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+}
+
+.page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    .page a {
+        font-size: 20px;
+    }
+
+.page-link {
+    background-color: unset;
+    border-color: #000;
+    color: #000;
+}
+
+    .page-link:hover {
+        background-color: #fff5;
+        color: #000;
+    }
+
+    #search-content a {
+        width: 49%;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    #search-content a:hover {
+        color:#fff;
+        background-color:#0007;
+    }
+    #search-content .oddWidth{
+        width:100%;
+    }
+
+    @media screen and (width < 768px) {
+        #proposal {
+            flex-direction:column;
+        }
+
+        #proposal .col-6{
+            max-width:100%;
+        }
+        
+        #proposal .cardhref {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .maincard div {
+        flex-grow: unset;
+    }
+
+    .maincard img {
+        width: unset;
+        height: 90%;
+    }
+
+    #search-content a {
+        width: 100%;
+    }
+}

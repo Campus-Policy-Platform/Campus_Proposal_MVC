@@ -1,0 +1,35 @@
+﻿@model ScanViewModel
+
+@{
+    ViewData["Title"] = "首頁";
+}
+
+<form class="search" action="/Home/Search" method="post" onsubmit="setActionUrl(this)">
+    <input name="keyword" id="keyword" class="form-control" type="search" placeholder="請輸入關鍵字" required />
+    <button type="submit" class="btn btn-secondary btn-sm">搜尋</button>
+</form>
+<div id="proposal">
+    <h1 class="display-2 text-secondary">暫無進行中的案件</h1>
+
+
+    </p>
+</div>
+
+
+
+@section topCSS
+    {
+    <link rel="stylesheet" href="~/css/ErrormainStyle.css" />
+}
+
+@section endJS{
+    <script>
+        @*將查詢的資料加入form的action後*@
+            function setActionUrl(form) {
+                var keyword = document.getElementById("keyword").value;
+                var actionUrl = form.getAttribute("action");
+                actionUrl += "/" + encodeURIComponent(keyword);
+                form.setAttribute("action", actionUrl);
+            }
+    </script>
+}

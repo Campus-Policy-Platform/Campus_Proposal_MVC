@@ -38,7 +38,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > pages || Id < 1)
             {
-                return NotFound();
+                return RedirectToAction("Errorhomepage", "Home");
             }
 
             ViewData["ActivePage"] = Id;    //Activec分頁碼
@@ -133,6 +133,11 @@ namespace CHU_PolicyPlatform_1.Controllers
         }
         [Authorize(Roles = "User")]
         public IActionResult Failurepage()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User")]
+        public IActionResult Errorhomepage()
         {
             return View();
         }

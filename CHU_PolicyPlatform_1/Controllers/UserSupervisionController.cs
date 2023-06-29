@@ -49,7 +49,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > Pages)
             {
-                return NotFound();
+                return RedirectToAction("ErrorUserPending", "UserSupervision");
             }
 
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
@@ -71,6 +71,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             return View(value);
         }
         [Authorize(Roles = "User")]
+        public IActionResult ErrorUserPending()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User")]
         public IActionResult UserFinished(int Id = 1)
         {
             var Passprop = _seUserS.SeU();
@@ -85,7 +90,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > Pages)
             {
-                return NotFound();
+                return RedirectToAction("ErrorUserFinished", "UserSupervision");
             }
 
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
@@ -105,6 +110,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             ViewData["Pages"] = Pages;  // 頁數
 
             return View(value);
+        }
+        [Authorize(Roles = "User")]
+        public IActionResult ErrorUserFinished()
+        {
+            return View();
         }
         [Authorize(Roles = "User")]
         public IActionResult UserFail(int Id = 1)
@@ -122,7 +132,7 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             if (Id > Pages)
             {
-                return NotFound();
+                return RedirectToAction("ErrorUserFail", "UserSupervision");
             }
 
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
@@ -142,6 +152,11 @@ namespace CHU_PolicyPlatform_1.Controllers
             ViewData["Pages"] = Pages;  // 頁數
 
             return View(value);
+        }
+        [Authorize(Roles = "User")]
+        public IActionResult ErrorUserFail()
+        {
+            return View();
         }
     }
 }

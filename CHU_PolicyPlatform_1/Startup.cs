@@ -163,6 +163,36 @@ namespace CHU_PolicyPlatform_1
                     name: "Failurepage",
                     pattern: "Error",
                     defaults: new { controller = "Home", action = "Failurepage" });
+                //Error_Home
+                endpoints.MapControllerRoute(
+                    name: "Errorhomepage",
+                    pattern: "NullCase",
+                    defaults: new { controller = "Home", action = "Errorhomepage" });
+                //Error_User_Supervision
+                endpoints.MapControllerRoute(
+                    name: "UseSupervision",
+                    pattern: "Supervision/NullPending/{id?}",
+                    defaults: new { controller = "UserSupervision", action = "ErrorUserPending" });
+                //Error_User_Supervision
+                endpoints.MapControllerRoute(
+                    name: "UserSupervision",
+                    pattern: "Supervision/NullFinished/{id?}",
+                    defaults: new { controller = "UserSupervision", action = "ErrorUserFinished" });
+                //Error_User_Supervision
+                endpoints.MapControllerRoute(
+                    name: "UserSupervision",
+                    pattern: "Supervision/NullFail/{id?}",
+                    defaults: new { controller = "UserSupervision", action = "ErrorUserFail" });
+                //Error_Gerent_See
+                endpoints.MapControllerRoute(
+                    name: "GerentSee",
+                    pattern: "Gerent/NullPending/{id?}",
+                    defaults: new { controller = "Gerentcase", action = "ErrorGerentSee" });
+                //Error_Gerent_See
+                endpoints.MapControllerRoute(
+                    name: "GerentSee",
+                    pattern: "Gerent/NullFinished/{id?}",
+                    defaults: new { controller = "Gerentcase", action = "ErrorGerentSeeFinish" });
 
             });
         }

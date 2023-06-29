@@ -1,0 +1,39 @@
+﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+
+@{
+    ViewData["Title"] = "管理員: 待處理案件";
+
+}
+
+@section topCSS
+    {
+    <link href="~/css/ErrorGerentSeeStyle.css" rel="stylesheet" />
+}
+
+<div class="main">
+    <div class="maintop">
+        <div class="GerentS">
+            <h1>@Html.Raw("待處理案件")</h1>
+        </div>
+    </div>
+    <div class="main-name">
+        <div class="GrentPs">
+            <h4>待回案件區</h4>
+        </div>
+    </div>
+    <div class="main-wh">
+        <div id="btncard">
+            <a href="/Gerent/Pending" class="btn btn-primary btn-lg btn-info">待回覆區</a>
+            <a href="/Gerent/Finished" class="btn btn-primary btn-lg btn-info">已回覆區</a>
+        </div>
+    </div>
+
+    <div id="proposal">
+        <h1 class="display-2 text-secondary">暫無待回覆的案件</h1>
+
+    </div>
+</div>
+
+
+
+

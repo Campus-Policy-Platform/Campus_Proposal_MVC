@@ -1,0 +1,38 @@
+﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+@{
+    ViewData["Title"] = "監督案件: 未通過";
+
+    int activePage = (int)ViewData["ActivePage"];
+    int pages = (int)ViewData["Pages"];
+}
+
+
+@section topCSS
+    {
+    <link href="~/css/ErrorUserSeestyle.css" rel="stylesheet" />
+}
+
+
+<div class="maintop">
+    <div class="UserS">
+        <h1>未通過案件</h1>
+    </div>
+</div>
+<div class="main">
+    <div class="main-wh">
+        <div class="UserPs">
+            <h4>統計所有成案計畫的類型、回覆訊息查看(注：不一定都有回覆)</h4>
+        </div>
+
+        <div id="btncard">
+            <a href="/Supervision/Pending" class="btn btn-primary btn-lg btn-info">待回覆案件</a>
+            <a href="/Supervision/Finished" class="btn btn-primary btn-lg btn-info">已回覆案件</a>
+            <a href="/Supervision/Fail" class="btn btn-primary btn-lg btn-info">未通過案件</a>
+        </div>
+
+
+    </div>
+    <div id="proposal">
+        <h1 class="display-2 text-secondary">暫無未通過的案件</h1>
+</div>
+
