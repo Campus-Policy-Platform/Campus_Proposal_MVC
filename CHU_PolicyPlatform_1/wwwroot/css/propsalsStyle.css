@@ -54,4 +54,10 @@ form .btn {
     form .btn {
         width: 120px;
     }
+    .content-area{
+        flex-wrap:wrap;
+    }
+    .col{
+        min-width:100%;
+    }
 }
