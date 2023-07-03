@@ -33,9 +33,10 @@ form div+div{
     justify-content:center;
     gap:50px;
 }
-form textarea{
+body>.container form textarea{
     width:100%;
     resize:none;
+    color:#000;
 }
 form .btn{
     font-size:20px;

@@ -67,7 +67,11 @@
     gap: 10px;
 }
     .maincard div * {
-        margin:unset;
+        margin: unset;
+        width:fit-content;
+    }
+    .maincard span{
+        font-size:16px;
     }
 
 .maincard ul {

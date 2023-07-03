@@ -54,6 +54,11 @@
                     <li>同意數： @agree</li>
                     <li>留言數： @messge</li>
                 </ul>
+                @if ((DateTime.Now - prop.Pdate).Days >= 17)
+                {
+                    <span class="badge badge-danger">剩餘@(20 - (DateTime.Now - prop.Pdate).Days)天</span>
+                }
+                
             </div>
         </a>
         agree = 0;

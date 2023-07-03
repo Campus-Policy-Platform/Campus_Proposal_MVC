@@ -49,6 +49,7 @@
 
 #proposal {
     border: 2px dashed #fff;
+    background-color:#777;
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
@@ -135,6 +136,8 @@
 #chart-title {
     border: 1px solid #fff;
     Border-radius: 20px;
+    font-size: 32px;
+    padding: 5px;
 }
 /* img{
     border-radius : 1em 4em 1em 4em;

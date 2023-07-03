@@ -37,13 +37,19 @@
             plugins: {
                 legend: {
                     labels: {
-                        color: 'white'
+                        color: 'white',
+                        font: {
+                            size: 20
+                        }
                     }
-                }
-            },
-            legend: {
-                labels: {
-                    fontColor: 'white'
+                },
+                tooltip: {
+                    titleFont: {
+                        size: 20
+                    },
+                    bodyFont: {
+                        size: 16
+                    }
                 }
             }
         }
