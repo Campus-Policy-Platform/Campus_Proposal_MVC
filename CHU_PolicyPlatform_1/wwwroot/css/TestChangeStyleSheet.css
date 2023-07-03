@@ -7,22 +7,15 @@ nav > ol {
     list-style: none;
     padding: 0;
 }
-/*.backgr {
-    background-image: url('../images/Revien_photo.jpg');*/
-/*    background-position: center;*/
-    /*background-size: 130%;
-    background-repeat: no-repeat;
-}*/
-/*body>.container *{
-    color:black;
-}*/
 .text_title {
     height: 230px;
     background-color: #60a560;
     border-radius: 40px 0px 40px 0px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
     .text_title h1 {
-        padding-top: 40px;
         text-align: center;
         font-size: 75px;
         font-weight: bold;
@@ -32,31 +25,32 @@ nav > ol {
 
 .top {
     width: auto;
-    /*margin-bottom: 1000px;*/
-    height: 450px;
-    /* background-color: aquamarine; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: 0px 0px 300px 0px; */
+    align-content:center;
+    gap:20px;
+    height:300px;
+    margin:20px;
 }
 
 .axc {
-    width: 25%;
-    height: 65%;
+    height:100%;
     background-color: #60a560;
     opacity: 90%;
-    position: relative;
-    top: -5%;
-    /* left: 10%; */
-    margin: 30px;
     line-height: 50px;
     border-radius: 40px 0px 40px 0px;
+    padding:10px;
+}
+.axc canvas{
+    margin:auto;
+}
+.axc>div{
+    height:50%;
 }
 .axc h2{
     text-align:center;
     font-weight:bolder;
-    color:black;
 }
 .axc p{
     text-align:center;
@@ -65,25 +59,10 @@ nav > ol {
 
 .time{
     width:100%;
-    height:400px;
+    padding:20px;
 }
 
-
-.rectangle {
-    width: 48%;
-    height: 300px;
-   /* background-color: cadetblue;*/
-    top:28%;
-    position:absolute;
-    margin:auto;
-    margin-left:10%;
-    left: -200px;
-    /* 初始位置在屏幕左侧 */
-    margin-bottom:30%;
-    animation: slide-in 1s forwards;
-}
 .schedule {
-    /*    border: 5px solid skyblue;*/
     border: 1px solid #7d7070;
     display: flex;
     flex-direction: row;
@@ -95,7 +74,6 @@ nav > ol {
 }
 
 .schedule img {
-    /*    width:100%;*/
     margin-top: 3%;
 }
 
@@ -106,21 +84,21 @@ nav > ol {
 
 .chapter1 {
     width: 100%;
-    height: 400px;
     background-color: #60a560;
     opacity: 0.9;
     margin: auto;
-    padding-left: 10%;
-    /* 左側空格寬度 */
-    padding-right: 10%;
-    /* 右側空格寬度 */
+    padding: 5% 10%;
+    /* 左側 右側空格寬度 */
     margin: auto;
+    border-radius: 40px 0px 40px 0px;
+}
+.chapter1 h2, .chapter1 p{
+    margin:0;
 }
 
 .chapter1 h2 {
     color:white;
     text-align: center;
-    padding-top: 60px;
     font-size: 40px;
     opacity: 0;
     /* 設置初始透明度為 0 */
@@ -156,21 +134,24 @@ nav > ol {
     display: flex;
     gap: 0px 20px;
     justify-content: space-evenly;
-    margin: 100px 0px 50px 0px;
+    margin: 50px;
 }
-
+    .vote_btn p, .response_area h3 {
+        color: #000;
+    }
 .vote_btn button {
     width: 300px;
     height: 50px;
 }
 
+
 /* massage */
 .message_area {
     text-align: center;
 }
-.card{
-    background-color:#777;
-}
+    .message_area > div, .response_area > div {
+        border-radius: 40px 0px 40px 0px;
+    }
 .message_area h2 {
     color: white;
 }
@@ -181,10 +162,13 @@ nav > ol {
     background-color: #60a560;
     /*padding:0px 20px;*/
 }
+    .container_msg>nav{
+        margin:auto;
+    }
 
 .alert > h3 {
     margin: unset;
-    color:black;
+    padding: 10px 0;
 }
 
 .card {
@@ -193,6 +177,8 @@ nav > ol {
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
+    background-color: #777;
+    padding:10px 0;
 }
 
 .text ul {

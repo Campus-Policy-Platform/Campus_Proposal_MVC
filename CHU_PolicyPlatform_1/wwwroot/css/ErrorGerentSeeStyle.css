@@ -39,6 +39,9 @@
     margin: 10px 0;
     justify-content: center;
 }
+    #proposal h1 {
+        color: #f4a03c;
+    }
 
     #proposal h3 {
         color: #3500ffab;

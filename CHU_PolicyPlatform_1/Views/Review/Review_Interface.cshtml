@@ -87,34 +87,42 @@
         <h1>@proposals.Title</h1>
     </div>
     <div class="top">
-        <div class="axc">
+        <div class="axc col">
             <canvas id="myChart"></canvas>
         </div>
-        <div class="axc">
-            <h2>提議者</h2>
-            <p id="vote_ID">@proposals.UserId</p>
-            <h2>類型</h2>
-            @switch (proposals.CategoryId)
-            {
-                case "C001":
-                    <p id="Vote_category">校園</p>
-                    break;
-                case "C002":
-                    <p id="Vote_category">教室</p>
-                    break;
-                case "C003":
-                    <p id="Vote_category">宿舍</p>
-                    break;
-                case "C004":
-                    <p id="Vote_category">餐廳</p>
-                    break;
-            }
+        <div class="axc col">
+            <div>
+                <h2>提議者</h2>
+                <p id="vote_ID">@proposals.UserId</p>
+            </div>
+            <div>
+                <h2>類型</h2>
+                @switch (proposals.CategoryId)
+                {
+                    case "C001":
+                        <p id="Vote_category">校園</p>
+                        break;
+                    case "C002":
+                        <p id="Vote_category">教室</p>
+                        break;
+                    case "C003":
+                        <p id="Vote_category">宿舍</p>
+                        break;
+                    case "C004":
+                        <p id="Vote_category">餐廳</p>
+                        break;
+                }
+            </div>
         </div>
-        <div class="axc">
-            <h2>贊成</h2>
-            <p>@ViewBag.TrueAmount</p>
-            <h2>反對</h2>
-            <p>@ViewBag.FalseAmount</p>
+        <div class="axc col">
+            <div>
+                <h2>贊成</h2>
+                <p>@ViewBag.TrueAmount</p>
+            </div>
+            <div>
+                <h2>反對</h2>
+                <p>@ViewBag.FalseAmount</p>
+            </div>
         </div>
     </div>
 </div>
@@ -359,9 +367,22 @@
                 }]
             },
             options: {
-                legend: {
-                    labels: {
-                        fontColor: 'white'
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 20
+                            }
+                        }
+                    },
+                    tooltip: {
+                        titleFont: {
+                            size: 20
+                        },
+                        bodyFont: {
+                            size: 16
+                        }
                     }
                 }
             }

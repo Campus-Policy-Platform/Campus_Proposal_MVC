@@ -1,4 +1,12 @@
-﻿nav {
+﻿html,body{
+    height:100%;
+}
+body>.container, main, #proposal{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+nav {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -23,20 +31,19 @@
 
 #proposal {
     border: 2px dashed #fff;
-    display: flex;
-    align-content: flex-start;
     flex-wrap: wrap;
     padding: 20px 20px 10px;
     margin: 10px 0;
-    justify-content: center;
+    align-content:center;
 }
 
     #proposal h1 {
-        color: red;
+        color: #f4a03c;
     }
 
     #proposal img {
-        width: 40%;
+        width: 25%;
+        margin:auto;
     }
 
     #proposal .maincard {
