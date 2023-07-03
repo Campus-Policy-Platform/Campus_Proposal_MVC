@@ -103,10 +103,10 @@ nav>ol{
     margin: 100px 0px 50px 0px;
 }
 
-    .vote_btn button {
-        width: 300px;
-        height: 50px;
-    }
+.vote_btn button {
+    width: 300px;
+    height: 50px;
+}
 
 .response_area {
 }

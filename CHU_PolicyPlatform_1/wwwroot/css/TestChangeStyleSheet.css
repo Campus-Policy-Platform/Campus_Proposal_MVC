@@ -1,0 +1,250 @@
+﻿.breadcrumb-item.active {
+    color: #fff9;
+}
+nav > ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+/*.backgr {
+    background-image: url('../images/Revien_photo.jpg');*/
+/*    background-position: center;*/
+    /*background-size: 130%;
+    background-repeat: no-repeat;
+}*/
+/*body>.container *{
+    color:black;
+}*/
+.text_title {
+    height: 230px;
+    background-color: #60a560;
+    border-radius: 40px 0px 40px 0px;
+}
+    .text_title h1 {
+        padding-top: 40px;
+        text-align: center;
+        font-size: 75px;
+        font-weight: bold;
+        color: white;
+    }
+
+
+.top {
+    width: auto;
+    /*margin-bottom: 1000px;*/
+    height: 450px;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0px 0px 300px 0px; */
+}
+
+.axc {
+    width: 25%;
+    height: 65%;
+    background-color: #60a560;
+    opacity: 90%;
+    position: relative;
+    top: -5%;
+    /* left: 10%; */
+    margin: 30px;
+    line-height: 50px;
+    border-radius: 40px 0px 40px 0px;
+}
+.axc h2{
+    text-align:center;
+    font-weight:bolder;
+    color:black;
+}
+.axc p{
+    text-align:center;
+    font-size:25px;
+}
+
+.time{
+    width:100%;
+    height:400px;
+}
+
+
+.rectangle {
+    width: 48%;
+    height: 300px;
+   /* background-color: cadetblue;*/
+    top:28%;
+    position:absolute;
+    margin:auto;
+    margin-left:10%;
+    left: -200px;
+    /* 初始位置在屏幕左侧 */
+    margin-bottom:30%;
+    animation: slide-in 1s forwards;
+}
+.schedule {
+    /*    border: 5px solid skyblue;*/
+    border: 1px solid #7d7070;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.schedule div {
+    padding: 0;
+}
+
+.schedule img {
+    /*    width:100%;*/
+    margin-top: 3%;
+}
+
+    .schedule p {
+        font-size: 30px;
+        color: white;
+    }
+
+.chapter1 {
+    width: 100%;
+    height: 400px;
+    background-color: #60a560;
+    opacity: 0.9;
+    margin: auto;
+    padding-left: 10%;
+    /* 左側空格寬度 */
+    padding-right: 10%;
+    /* 右側空格寬度 */
+    margin: auto;
+}
+
+.chapter1 h2 {
+    color:white;
+    text-align: center;
+    padding-top: 60px;
+    font-size: 40px;
+    opacity: 0;
+    /* 設置初始透明度為 0 */
+    transform: translateY(-20px);
+    /* 將元素上移 20px */
+    animation: slide-in 1s forwards;
+    /* 使用動畫效果 */
+}
+
+.chapter1 p {
+    /* 左右各留 20px 的空格 */
+    white-space: pre-wrap;
+    /* 設定換行方式為自動換行 */
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.hr1 {
+    border: 2px solid #777;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pass, .response_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 5%;
+}
+.vote_btn {
+    display: flex;
+    gap: 0px 20px;
+    justify-content: space-evenly;
+    margin: 100px 0px 50px 0px;
+}
+
+.vote_btn button {
+    width: 300px;
+    height: 50px;
+}
+
+/* massage */
+.message_area {
+    text-align: center;
+}
+.card{
+    background-color:#777;
+}
+.message_area h2 {
+    color: white;
+}
+
+.container_msg {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #60a560;
+    /*padding:0px 20px;*/
+}
+
+.alert > h3 {
+    margin: unset;
+    color:black;
+}
+
+.card {
+    margin: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+.text ul {
+    font-size:20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.text p{
+    font-size:20px;
+}
+.text {
+    width: 80%;
+}
+
+.icon {
+    width: 20%;
+}
+
+.icon i {
+    font-size: 100px;
+}
+
+.text p {
+    margin: 0px 10px;
+}
+/* response */
+.response_area h2 {
+    text-align: center;
+    color: white;
+}
+
+@keyframes slide-in-rectangle {
+    0% {
+        left: -1000px;
+    }
+
+    100% {
+        left: calc(21% - 100px);
+    }
+}
+
+@keyframes slide-in-chapter1 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -20,118 +20,108 @@
     }
 }
 @section topCSS{
-    <link href="~/css/review_style.css" rel="stylesheet" />
+    <link href="~/css/testchangestylesheet.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }
 
-
-
-<div class="main_tops">
-    <div class="main-wh">
-        <nav aria-label="breadcrumb">
-            <ol>
-                @if (User.Identity.IsAuthenticated)
+<nav aria-label="breadcrumb">
+    <ol>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Gerent"))
+            {
+                if (toReponds == null)
                 {
-                    if (User.IsInRole("Gerent"))
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">處理案件</li>
+                    <li class="breadcrumb-item"><a href="/Gerent/Pending">待回覆</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">處理案件</li>
+                    <li class="breadcrumb-item"><a href="/Gerent/Pending">已回覆</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
+                }
+            }
+            else if (User.IsInRole("User"))
+            {
+                if (proposals.Underways)
+                {
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
+                }
+                else
+                {
+                    if (proposals.Pass != true)
                     {
-                        if (toReponds == null)
-                        {
-                            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">處理案件</li>
-                            <li class="breadcrumb-item"><a href="/Gerent/Pending">待回覆</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                        }
-                        else
-                        {
-                            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">處理案件</li>
-                            <li class="breadcrumb-item"><a href="/Gerent/Pending">已回覆</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                        }
+                        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">監督</li>
+                        <li class="breadcrumb-item"><a href="/Supervision/Fail">未通過</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
                     }
-                    else if (User.IsInRole("User"))
+                    else if (toReponds == null)
                     {
-                        if (proposals.Underways)
-                        {
-                            <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                        }
-                        else
-                        {
-                            if (proposals.Pass!=true)
-                            {
-                                <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">監督</li>
-                                <li class="breadcrumb-item"><a href="/Supervision/Fail">未通過</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                            }
-                            else if (toReponds == null)
-                            {
-                                <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">監督</li>
-                                <li class="breadcrumb-item"><a href="/Supervision/Pending/">待回覆</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                            }
-                            else
-                            {
-                                <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">監督</li>
-                                <li class="breadcrumb-item"><a href="/Supervision/Finished">已回覆</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
-                            }
-                        }
+                        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">監督</li>
+                        <li class="breadcrumb-item"><a href="/Supervision/Pending/">待回覆</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">監督</li>
+                        <li class="breadcrumb-item"><a href="/Supervision/Finished">已回覆</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@proposals.Title</li>
                     }
                 }
-                
-            </ol>
-        </nav>
-        <div class="title" id="title">
-            <h1>@proposals.Title</h1>
-            <!-- Json讀入標題資料 -->
+            }
+        }
+
+    </ol>
+</nav>
+
+<div class="backgr">
+    <div class="text_title">
+        <h1>@proposals.Title</h1>
+    </div>
+    <div class="top">
+        <div class="axc">
+            <canvas id="myChart"></canvas>
         </div>
-        <div class="vote_total">
-            <div class="vote_left col-4">
-                <canvas id="myChart"></canvas>
-            </div>
-            <div class="vote_middle col-4" id="vote_middle">
-                <div class="vote_top h-50">
-                    <h2>提議者</h2>
-                    <p id="vote_ID">@proposals.UserId</p>
-                </div>
-                <div class="vote_bottom h-50">
-                    <h2>類型</h2>
-                    @switch(proposals.CategoryId)
-                    {
-                        case "C001":
-                            <p id="Vote_category">校園</p>
-                            break;
-                        case "C002":
-                            <p id="Vote_category">教室</p>
-                            break;
-                        case "C003":
-                            <p id="Vote_category">宿舍</p>
-                            break;
-                        case "C004":
-                            <p id="Vote_category">餐廳</p>
-                            break;
-                    }
-                </div>
-                <!-- Json讀入提議者資料 -->
-            </div>
-            <div class="vote_right col-4">
-                <div class="assent h-50" id="assent">
-                    <h2>贊成</h2>
-                    <p>@ViewBag.TrueAmount</p>
-                </div>
-                <div class="contra h-50" id="contra">
-                    <h2>反對</h2>
-                    <p>@ViewBag.FalseAmount</p>
-                </div>
-            </div>
-            
+        <div class="axc">
+            <h2>提議者</h2>
+            <p id="vote_ID">@proposals.UserId</p>
+            <h2>類型</h2>
+            @switch (proposals.CategoryId)
+            {
+                case "C001":
+                    <p id="Vote_category">校園</p>
+                    break;
+                case "C002":
+                    <p id="Vote_category">教室</p>
+                    break;
+                case "C003":
+                    <p id="Vote_category">宿舍</p>
+                    break;
+                case "C004":
+                    <p id="Vote_category">餐廳</p>
+                    break;
+            }
         </div>
+        <div class="axc">
+            <h2>贊成</h2>
+            <p>@ViewBag.TrueAmount</p>
+            <h2>反對</h2>
+            <p>@ViewBag.FalseAmount</p>
+        </div>
+    </div>
+</div>
+<div class="time">
+    <div class="rectangle" style="animation: slide-in-rectangle 1s forwards;">
         <div class="time-Schedule">
-            @if (proposals.Underways == true )
+            @if (proposals.Underways == true)
             {
                 <div class="time-top">
                     <div class="progress">
@@ -140,16 +130,13 @@
                 </div>
                 <div class="schedule">
                     <div id="Project_Action" class="col">
-                            <img src="~/images/up.png" />
-                            <p>案件附議中</p>
+                        <img src="~/images/up.png" />
+                        <p>案件附議中</p>
                     </div>
                     <div id="Project_established" class="col">
-
                     </div>
                     <div id="Project_Response" class="col">
-
                     </div>
-                    <!-- Json圖表 -->
                 </div>
             }
             else if (toReponds != null)
@@ -172,7 +159,6 @@
                         <img src="~/images/tick.png" />
                         <p>案件已回覆</p>
                     </div>
-                    <!-- Json圖表 -->
                 </div>
             }
             else if (proposals.Pass == true)
@@ -195,10 +181,9 @@
                         <img src="~/images/up.png" />
                         <p>案件未回覆</p>
                     </div>
-                    <!-- Json圖表 -->
                 </div>
             }
-            else if (proposals.Pass == false )
+            else if (proposals.Pass == false)
             {
                 <div class="time-top">
                     <div class="progress">
@@ -215,138 +200,142 @@
                         <p>案件失敗</p>
                     </div>
                     <div id="Project_Response" class="col">
-
                     </div>
-                    <!-- Json圖表 -->
                 </div>
             }
 
         </div>
-        
-        <div class="propose_content">
-            <div class="content_title">
-                <h2>提議內容與建議事項</h2>
+    </div>
+</div>
 
-            </div>
-            <div class="content_1 alert" id="content_1">
-                <p>@proposals.Pcontent</p>
-            </div>
-        </div>
-        <div class="propose_benefit">
-            <div class="benefit_title">
-                <h2>利益與影響</h2>
-            </div>
-            <div class="content_2 alert" id="content_2">
-                <p>@proposals.GainsInfluential</p>
-            </div>
-            <div class="vote_btn">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (User.IsInRole("Gerent"))
-                    {
-                        if (toReponds==null)
-                        {
-                            <a href="/Response/@proposals.ProposalId">
-                                <input type="button" id="response_button" value="回覆" class="btn btn-outline-danger" />
-                            </a>
-                        }
-                        else
-                        {
-                            <p class="alert alert-dark">已回覆成功</p>
-                        }
-                    }
-                    else if (User.IsInRole("User"))
-                    {
-                        @if (!exist && proposals.Underways)
-                        {
-                            <a href="/Review/Vote/@proposals.ProposalId/1">
-                                <input type="button" id="vote_assent" value="贊成" class="btn btn-outline-danger" />
-                            </a>
-                            <a href="/Review/Vote/@proposals.ProposalId/0">
-                                <input type="button" id="vote_contra" value="反對" class="btn btn-outline-danger" />
-                            </a>
-                        }
-                        else if (proposals.Underways)
-                        {
-                            <p class="alert alert-dark">已投票成功</p>
-                        }
-                        else
-                        {
-                            <p class="alert alert-dark">案件已結束</p>
-                        }
-                    }
-                }
-            </div>
 
-        </div>
-        <div class="message_area">
-            <h2>留言區</h2>
-            <div class="container_msg alert" id="container_msg">
-                @if (votes.Count() > 0)
-                {
-                    @foreach (var vote in votes)
-                    {
-                        <div class="card">
-                            <div class="text">
-                                <ul>
-                                    <li>@vote.UserId</li>
-                                    <li>@vote.Vdate.ToString("yyyy-mm-dd")</li>
-                                </ul>
-                                <p>@vote.Vcontent</p>
-                            </div>
-                            <div class="icon">
-                                @if (vote.Crucial == true)
-                                {
-                                    <i class="fa-sharp fa-regular fa-thumbs-up"></i>
-                                }
-                                else if (vote.Crucial == false)
-                                {
-                                    <i class="fa-regular fa-thumbs-down"></i>
-                                }
-                            </div>
-                        </div>
-                    }
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
-                                   href="@((activePage-1)< 1 ? "" : $"/Review/{proposals.ProposalId}/{activePage-1}")">&laquo;</a>
-                            </li>
+<div class="chapter1">
+    <h2 style="animation: slide-in-chapter1 1s forwards;">提議內容與建議事項</h2>
+    <hr class="hr1">
+    <p>@proposals.Pcontent</p>
+</div>
 
-                            @for (int i = 1; i <= pages; i++)
-                            {
-                                <li class="page-item @(i == activePage ? "active" : "")">
-                                    <a class="page-link" href="/Review/@proposals.ProposalId/@i">@i</a>
-                                </li>
-                            }
+<div class="chapter1" style="margin-top: 50px;">
+    <h2 style="animation: slide-in-chapter1 1s forwards;">利益與影響</h2>
+    <hr class="hr1">
+    <p>@proposals.GainsInfluential</p>
+</div>
 
-                            <li class="page-item">
-                                <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
-                                   href="@((activePage+1)> pages ? "" : $"/Review/{proposals.ProposalId}/{activePage+1}")">&raquo;</a>
-                            </li>
+<div class="vote_btn">
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Gerent"))
+        {
+            if (toReponds == null)
+            {
+                <a href="/Response/@proposals.ProposalId">
+                    <div class="response_button">
+                        <input type="button" id="response_button" value="回覆" class="btn btn-info btn-lg" />
+                    </div>
+                    
+                </a>
+            }
+            else
+            {
+                <p class="alert alert-dark">已回覆成功</p>
+            }
+        }
+        else if (User.IsInRole("User"))
+        {
+            @if (!exist && proposals.Underways)
+            {
+                <div class="pass">
+                    <a href="/Review/Vote/@proposals.ProposalId/1">
+                        <input type="button" id="vote_assent" value="贊成" class="btn btn-success btn-lg" />
+                    </a>
+                    <a href="/Review/Vote/@proposals.ProposalId/0">
+                        <input type="button" id="vote_contra" value="反對" class="btn btn-danger btn-lg" />
+                    </a>
+                </div>
+            }
+            else if (proposals.Underways)
+            {
+                <div class="vote_btn">
+                    <p class="alert alert-dark">已投票成功</p>
+                </div>
+            }
+            else
+            {
+                <div class="vote_btn">
+                    <p class="alert alert-dark">案件已結束</p>
+                </div>
+            }
+        }
+    }
+</div>
+
+
+<div class="message_area">
+    <h2>留言區</h2>
+    <div class="container_msg alert" id="container_msg">
+        @if (votes.Count() > 0)
+        {
+            @foreach (var vote in votes)
+            {
+                <div class="card">
+                    <div class="text">
+                        <ul>
+                            <li>@vote.UserId</li>
+                            <li>@vote.Vdate.ToString("yyyy-mm-dd")</li>
                         </ul>
-                    </nav>
-                }
-                else
-                {
-                    <h3>目前尚未有人參與本提案</h3>
-                }
-            </div>
-        </div>
+                        <p>@vote.Vcontent</p>
+                    </div>
+                    <div class="icon">
+                        @if (vote.Crucial == true)
+                        {
+                            <i class="fa-sharp fa-regular fa-thumbs-up"></i>
+                        }
+                        else if (vote.Crucial == false)
+                        {
+                            <i class="fa-regular fa-thumbs-down"></i>
+                        }
+                    </div>
+                </div>
+            }
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                            href="@((activePage-1)< 1 ? "" : $"/Review/{proposals.ProposalId}/{activePage-1}")">&laquo;</a>
+                    </li>
 
-        <div class="response_area">
-            <h2>回覆區</h2>
-            <div class="alert alert-primary" id=res_content role="alert">
-                @if (toReponds != null)
-                {
-                    <h3>@toReponds.Rcontent</h3>
-                }
-                else
-                {
-                    <h3>目前尚未有回覆</h3>
-                }
-            </div>
-        </div>
+                    @for (int i = 1; i <= pages; i++)
+                    {
+                        <li class="page-item @(i == activePage ? "active" : "")">
+                            <a class="page-link" href="/Review/@proposals.ProposalId/@i">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item">
+                        <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                            href="@((activePage+1)> pages ? "" : $"/Review/{proposals.ProposalId}/{activePage+1}")">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+        else
+        {
+            <h3>目前尚未有人參與本提案</h3>
+        }
+    </div>
+</div>
+
+<div class="response_area">
+    <h2>回覆區</h2>
+    <div class="alert alert-warning" id=res_content role="alert">
+        @if (toReponds != null)
+        {
+            <h3>@toReponds.Rcontent</h3>
+        }
+        else
+        {
+            <h3>目前尚未有回覆</h3>
+        }
     </div>
 </div>
 
