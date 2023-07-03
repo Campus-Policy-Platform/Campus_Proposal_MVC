@@ -13,7 +13,7 @@
         width: 60%;
         margin:auto;
     }
-    .main-wh h2:not(.vote_total h2){
+    .main-wh h2:not(.vote_total ,h2){
         padding:10px;
     }
 
