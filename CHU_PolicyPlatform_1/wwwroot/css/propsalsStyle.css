@@ -6,14 +6,11 @@ form {
     display: flex;
     flex-direction: column;
 }
-form input, textarea {
-    width: 100%;
-    background-color: #ecebeb;
-}
 
 form #Title {
     font-size: 16px;
     padding: 6px 10px;
+    color:#000;
 }
 
 form #CategoryId {
@@ -41,6 +38,7 @@ form #Pcontent, #GainsInfluential {
     font-size: 16px;
     padding: 10px;
     resize: none;
+    color:#000;
 }
 
 form .btn {

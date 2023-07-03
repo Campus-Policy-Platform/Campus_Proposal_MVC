@@ -206,11 +206,16 @@ nav > ol {
 
 .text p {
     margin: 0px 10px;
+    white-space:pre-wrap;
 }
 /* response */
 .response_area h2 {
     text-align: center;
     color: white;
+}
+
+.page-link{
+    background-color:unset;
 }
 
 @keyframes slide-in-rectangle {

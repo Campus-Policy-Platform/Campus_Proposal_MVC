@@ -285,7 +285,7 @@
         {
             @foreach (var vote in votes)
             {
-                <div class="card">
+                <div class="card" style="@(vote.UserId==User.Identity.Name ? "background-color:#999;":"")">
                     <div class="text">
                         <ul>
                             <li>@vote.UserId</li>
@@ -308,7 +308,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#999;" : "")"
+                        <a class="page-link" style=" @((activePage - 1) < 1 ? "pointer-events:none; color:#777;" : "")"
                             href="@((activePage-1)< 1 ? "" : $"/Review/{proposals.ProposalId}/{activePage-1}")">&laquo;</a>
                     </li>
 
@@ -320,7 +320,7 @@
                     }
 
                     <li class="page-item">
-                        <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#999;" : "")"
+                        <a class="page-link" style=" @((activePage + 1) > pages ? "pointer-events:none;color:#777;" : "")"
                             href="@((activePage+1)> pages ? "" : $"/Review/{proposals.ProposalId}/{activePage+1}")">&raquo;</a>
                     </li>
                 </ul>
