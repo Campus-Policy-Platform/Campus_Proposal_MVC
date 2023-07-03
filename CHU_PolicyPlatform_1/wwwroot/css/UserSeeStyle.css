@@ -133,7 +133,7 @@
 }
 
 #chart-title {
-    background-color: rgb(205, 169, 235);
+    border: 1px solid #fff;
     Border-radius: 20px;
 }
 /* img{

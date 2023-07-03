@@ -109,19 +109,19 @@
         width:100%;
     }
 
-    @media screen and (width < 768px) {
-        #proposal {
-            flex-direction:column;
+@media screen and (max-width: 768px) {
+    #proposal {
+        flex-direction: column;
+    }
+
+        #proposal .col-6 {
+            max-width: 100%;
         }
 
-        #proposal .col-6{
-            max-width:100%;
-        }
-        
         #proposal .cardhref {
-        width: 100%;
-        justify-content: center;
-    }
+            width: 100%;
+            justify-content: center;
+        }
 
     .maincard div {
         flex-grow: unset;

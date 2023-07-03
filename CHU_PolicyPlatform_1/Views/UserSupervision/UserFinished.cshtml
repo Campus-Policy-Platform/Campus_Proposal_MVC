@@ -94,7 +94,7 @@
         var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
 
         function chart() {
-            let categories = ["C001", "C002", "C003", "C004"]; // 四个特定的CategoryId類別
+            let categories = ["C001", "C002", "C003", "C004"]; 
             let categoryLabels = {
                 "C001": "校园",
                 "C002": "教室",
@@ -103,7 +103,7 @@
             };
 
             let categoryCounts = categories.map((category) => {
-                let count = modeldata.filter((item) => item.CategoryId === category).length; // 根據CategoryId篩選計算數量
+                let count = modeldata.filter((item) => item.CategoryId === category).length; 
                 return count;
             });
 
@@ -116,12 +116,12 @@
                     labels: categoryNames,
                     datasets: [{
                         backgroundColor: [
-                            '#FFA07A',
-                            '#9966CC',
-                            '#C71585',
-                            '#F0E68C',
+                            '#daa547',
+                            '#8cadf0',
+                            '#dab0b1',
+                            '#547d79',
                         ],
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderColor: '#ffffff',
                         borderWidth: 3,
                         label: "案件量",
                         data: categoryCounts,
@@ -129,6 +129,13 @@
                     }]
                 },
                 options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    },
                     legend: {
                         labels: {
                             fontColor: 'white'
