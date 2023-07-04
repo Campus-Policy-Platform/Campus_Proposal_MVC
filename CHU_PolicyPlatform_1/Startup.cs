@@ -31,9 +31,6 @@ namespace CHU_PolicyPlatform_1
             services.AddControllersWithViews();
 
 
-
-
-
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
