@@ -169,6 +169,7 @@ nav > ol {
 .alert > h3 {
     margin: unset;
     padding: 10px 0;
+    white-space:pre-wrap;
 }
 
 .card {

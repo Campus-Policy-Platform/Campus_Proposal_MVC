@@ -1,10 +1,14 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using CHU_PolicyPlatform_1.Services;
 using CHU_PolicyPlatform_1.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Data;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CHU_PolicyPlatform_1.Controllers
 {
@@ -37,6 +41,9 @@ namespace CHU_PolicyPlatform_1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GerentResponse(ToRepond toRepond)
         {
+            //資料庫屬性為text(不可中文)，用unicode編譯語言存進資料庫
+            toRepond.Rcontent = String2Unicode(toRepond.Rcontent);
+
             if (ModelState.IsValid)
             {
                 _context.ToReponds.Add(toRepond);
@@ -45,6 +52,20 @@ namespace CHU_PolicyPlatform_1.Controllers
                 return RedirectToAction("GerentSee", "Gerentcase");
             }
             return View(toRepond);
+        }
+
+        /// 字符串转Unicode
+        /// 源字符串
+        /// Unicode编码后的字符串
+        internal static string String2Unicode(string source)
+        {
+            var bytes = Encoding.Unicode.GetBytes(source);
+            var stringBuilder = new StringBuilder();
+            for (var i = 0; i < bytes.Length; i += 2)
+            {
+                stringBuilder.AppendFormat("\\u{0}{1}", bytes[i + 1].ToString("x").PadLeft(2, '0'), bytes[i].ToString("x").PadLeft(2, '0'));
+            }
+            return stringBuilder.ToString();
         }
     }
 }

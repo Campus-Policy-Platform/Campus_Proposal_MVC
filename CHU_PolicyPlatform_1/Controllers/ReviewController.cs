@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace CHU_PolicyPlatform_1.Controllers
 {
@@ -23,6 +24,13 @@ namespace CHU_PolicyPlatform_1.Controllers
             var review_data = _context.Proposals.ToList().Find(z => z.ProposalId == Pro_Id);
             var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == Pro_Id);
             var review_response = _context.ToReponds.ToList().Find(c => c.ProposalId == Pro_Id);
+
+            //Unicode轉回中文字串
+            if(review_response!=null)
+            {
+                review_response.Rcontent = Unicode2String(review_response.Rcontent);
+            }
+
             //True and False 數量統計
             var TrueAmount = review_vote.Count(h => h.Crucial == true);
             var FalseAmount = review_vote.Count(h => h.Crucial == false);
@@ -78,6 +86,15 @@ namespace CHU_PolicyPlatform_1.Controllers
             List<Vote> products = props.Skip(startRow).Take(pageRows).ToList();
 
             return products;
+        }
+
+
+        /// Unicode转字符串
+        /// 经过Unicode编码的字符串
+        /// 正常字符串
+        internal static string Unicode2String(string source)
+        {
+            return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(source, x => Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)).ToString());
         }
     }
 }
