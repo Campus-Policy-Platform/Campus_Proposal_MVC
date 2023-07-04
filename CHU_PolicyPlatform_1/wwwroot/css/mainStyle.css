@@ -10,6 +10,7 @@
 .search {
     display: flex;
     justify-content: center;
+    margin-bottom:20px;
 }
 
     .search input {
@@ -21,13 +22,25 @@
         border-radius: 0 5px 5px 0;
     }
 
+.breadcrumb-item.active {
+    color: #fff9;
+}
+
+nav > ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
 #proposal {
     border: 2px dashed #fff;
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
     padding: 20px 20px 10px;
-    margin:20px 0;
+    margin:0 0 20px;
     background-color:#777;
 }
 

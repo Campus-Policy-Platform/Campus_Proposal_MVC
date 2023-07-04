@@ -18,6 +18,13 @@
     <input name="keyword" id="keyword" class="form-control" type="search" placeholder="請輸入關鍵字" required />
     <button type="submit" class="btn btn-secondary btn-sm">搜尋</button>
 </form>
+<nav aria-label="breadcrumb">
+    <ol>
+        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">搜尋</li>
+        <li class="breadcrumb-item active" aria-current="page">@keyword</li>
+    </ol>
+</nav>
 <div id="proposal">
     @if (proposals!=null)
     {

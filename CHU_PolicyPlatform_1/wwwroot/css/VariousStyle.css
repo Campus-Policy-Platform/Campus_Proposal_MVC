@@ -1,8 +1,4 @@
-﻿html,body{
-    height:100%;
-}
-
-.maintop {
+﻿.maintop {
     display: flex;
     justify-content: center;
     margin-bottom: 1%;
