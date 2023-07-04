@@ -31,11 +31,7 @@ namespace CHU_PolicyPlatform_1
             services.AddControllersWithViews();
 
 
-            services.AddScoped<ReGerent>();
-            services.AddScoped<SeGerent>();
 
-            services.AddScoped<ReUserS>();
-            services.AddScoped<SeUserS>();
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -49,6 +45,12 @@ namespace CHU_PolicyPlatform_1
 
             services.AddScoped<ProposalService>();
             services.AddScoped<ProposalRepository>();
+
+            services.AddScoped<ReGerent>();
+            services.AddScoped<SeGerent>();
+
+            services.AddScoped<ReUserS>();
+            services.AddScoped<SeUserS>();
 
             services.AddDbContext<ProposeContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ProposeContext")));
