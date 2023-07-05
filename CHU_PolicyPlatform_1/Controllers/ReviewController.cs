@@ -7,6 +7,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace CHU_PolicyPlatform_1.Controllers
 {
@@ -59,6 +61,26 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(ReviewtotalVM);
         }
+        [Authorize(Roles = "Gerent")]
+        [HttpPost]
+        public  IActionResult Delete_Response(string propId) 
+        {
+            //string propId = "P230523001";
+            var review_responses = _context.ToReponds.Where(c => c.ProposalId == propId).FirstOrDefault();
+            if (review_responses != null)
+            {
+                _context.ToReponds.Remove(review_responses);
+                _context.SaveChanges();
+            }
+            else 
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("GerentSee", "Gerentcase");
+        }
+
+
 
         public List<Vote> setPages(int Id, List<Vote> props)
         {

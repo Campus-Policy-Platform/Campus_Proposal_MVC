@@ -245,6 +245,10 @@
             }
             else
             {
+                <form action="@Url.Action("Delete_Response", "Review")" method="post">
+                    <input type="hidden" value="@proposals.ProposalId" name="propId"/>
+                    <button type="submit" class="btn btn-success">刪除</button>
+                </form>
                 <p class="alert alert-dark">已回覆成功</p>
             }
         }
