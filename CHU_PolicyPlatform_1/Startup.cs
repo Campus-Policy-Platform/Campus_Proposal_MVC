@@ -192,6 +192,11 @@ namespace CHU_PolicyPlatform_1
                     name: "GerentSee",
                     pattern: "Gerent/NullFinished/{id?}",
                     defaults: new { controller = "Gerentcase", action = "ErrorGerentSeeFinish" });
+                //Mine
+                endpoints.MapControllerRoute(
+                    name: "UserReviewVoted",
+                    pattern: "Mine",
+                    defaults: new { controller = "Mine", action = "Participated" });
 
             });
         }

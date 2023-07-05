@@ -1,0 +1,93 @@
+﻿hr{
+    background-color:#fff;
+}
+h2 {
+    width: fit-content;
+    margin: auto;
+    border: 1px solid;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+div.mine-tab {
+    display: flex;
+    gap: 10px;
+}
+.mine-tab .mine-left{
+    width:70%;
+}
+.mine-left>h3{
+    padding:10px;
+}
+.mine-left>table{
+    border:1px solid;
+}
+table input {
+    width: 20px;
+    height: 20px;
+}
+th:not(:first-child),td:not(:first-child){
+    text-align:center;
+    vertical-align:middle;
+}
+tbody>tr:hover{
+    background-color:#777;
+}
+td>input[type=checkbox]{
+    pointer-events: none;
+    position: relative;
+}
+td.pass>input[type=checkbox]:not(input[type=checkbox]:checked):before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: #f00;
+    border-radius: 3px;
+    padding: 1px;
+}
+td>input[type=checkbox]:checked {
+    accent-color: #fff;
+}
+td>input[type=checkbox]:checked {
+    pointer-events: none;
+    accent-color: #0f0;
+}
+.mine-tab .mine-right {
+    width: 30%;
+    padding-top: 61px;
+    padding-bottom: 16px;
+}
+.mine-right > #chartarea {
+    text-align: center;
+    position: sticky;
+    top: 138px;
+    border: 1px dashed;
+    padding: 10px;
+}
+#chartarea canvas {
+    border-top: 1px dashed;
+    border-bottom: 1px dashed;
+    padding: 10px 0;
+}
+canvas+div{
+    gap:10px;
+}
+canvas+div span.badge{
+    font-size:14px;
+    margin-top:8px;
+}
+h3+.mine-nope {
+    color: #000;
+}
+
+.jump {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

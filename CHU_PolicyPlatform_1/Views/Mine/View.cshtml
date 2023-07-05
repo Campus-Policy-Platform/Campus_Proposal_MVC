@@ -1,0 +1,77 @@
+﻿@model IEnumerable<CHU_PolicyPlatform_1.Models.Proposal>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pcontent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GainsInfluential)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Underways)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pcontent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GainsInfluential)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Underways)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProposalId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProposalId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProposalId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
