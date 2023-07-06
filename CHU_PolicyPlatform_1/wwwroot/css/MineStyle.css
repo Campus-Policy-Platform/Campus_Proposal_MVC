@@ -69,25 +69,69 @@ td>input[type=checkbox]:checked {
 }
 #chartarea canvas {
     border-top: 1px dashed;
-    border-bottom: 1px dashed;
     padding: 10px 0;
 }
 canvas+div{
     gap:10px;
 }
-canvas+div span.badge{
-    font-size:14px;
-    margin-top:8px;
-}
 h3+.mine-nope {
     color: #000;
 }
 
-.jump {
+a.jump {
+    z-index: 2;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 17px 12px;
+    font-size: 17px;
+    right:30px;
+    position:fixed;
 }
+    a.jump.jub1 {
+        bottom: 155px;
+    }
+    a.jump.jub2, div.mineb {
+        bottom: 85px;
+    }
+    a.jump.jub3, div.votedb {
+        bottom: 15px;
+    }
+
+    .mineb,.votedb {
+        z-index: 1;
+        position:fixed;
+        border-radius: 30px;
+        padding: 10px 0;
+        padding-right: 60px;
+        height: 60px;
+        right:30px;
+    }
+
+    .btn-dark a, .btn-dark a:hover {
+        color: #fff;
+        border-radius:unset;
+        height:100%;
+    }
+        .btn-dark a + a {
+            border-left: 1px solid;
+        }
+
+        .btn-dark a:hover {
+            text-decoration: underline;
+        }
+
+    .btn-dark {
+        display: none;
+    }
+
+
+        body:has(.jub2:hover) > .mineb , .mineb:hover {
+            display: flex;
+        }
+        body:has(.jub3:hover) > .votedb, .votedb:hover{
+            display: flex;
+        }

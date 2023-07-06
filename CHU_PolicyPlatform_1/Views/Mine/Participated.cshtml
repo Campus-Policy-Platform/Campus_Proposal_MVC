@@ -115,14 +115,6 @@
         <div id="chartarea">
             <h3 id="chart-title">立案案件類型總量圖</h3>
             <canvas id="myChart"></canvas>
-            <div class="d-flex">
-                <span class="badge badge-pill badge-dark">
-                    <a href="#my-underway">#進行中</a>
-                </span>
-                <span class="badge badge-pill badge-dark">
-                    <a href="#my-pass">#已結案</a>
-                </span>
-            </div>
         </div>
     </div>
 </div>
@@ -207,14 +199,6 @@
         <div id="chartarea">
             <h3 id="chart-title">參與案件類型總量圖</h3>
             <canvas id="myChart1"></canvas>
-            <div class="d-flex">
-                <span class="badge badge-pill badge-dark">
-                    <a href="#voted-underway">#進行中</a>
-                </span>
-                <span class="badge badge-pill badge-dark">
-                    <a href="#voted-pass">#已結案</a>
-                </span>
-            </div>
         </div>
     </div>
 </div>
@@ -230,29 +214,65 @@
         var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(geseVM));
         var vdata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(vgeseVM));
 
-        let div = document.createElement("div");
-        div.style = "position:fixed;bottom:15px;right:10px;display:flex;width:80px;flex-wrap:wrap;gap:10px;margin-left:auto;"
+        //let div = document.createElement("div");
+        //div.className = "jump-div"
 
         let gotop = document.createElement("a");
         gotop.href = "#";
-        gotop.className = "btn btn-secondary jump";
+        gotop.className = "btn btn-secondary jump jub1";
         gotop.innerText = "Top";
-        div.append(gotop);
+        //div.append(gotop);
 
         let mine = document.createElement("a");
         mine.href = "#Mine";
-        mine.className = "btn btn-secondary jump";
+        mine.className = "btn btn-secondary jump jub2";
         mine.innerText = "提議";
-        div.append(mine);
+        //div.append(mine);
         
         let voted = document.createElement("a");        
         voted.href = "#Voted";
-        voted.className = "btn btn-secondary jump";
+        voted.className = "btn btn-secondary jump jub3";
         voted.innerText = "參與";
-        div.append(voted);
+        //div.append(voted);
+
+
+        //let beakdiv = document.createElement("div");
+        //beakdiv.className = "btnbeak";
+
+        let beakmine = document.createElement("div");
+        beakmine.className = "btn-dark mineb";
+        let bmine1 = document.createElement("a");
+        bmine1.href = "#my-underway";
+        bmine1.className = "btn";
+        bmine1.innerText = "進行中";
+        beakmine.append(bmine1);
+        let bmine2 = document.createElement("a");
+        bmine2.href = "#my-pass";
+        bmine2.className = "btn";
+        bmine2.innerText = "已結案";
+        beakmine.append(bmine2);
+        //beakdiv.append(beakmine);
+
+        let beakvoted = document.createElement("div");
+        beakvoted.className = "btn-dark votedb";
+        let bvoted1 = document.createElement("a");
+        bvoted1.href = "#voted-underway";
+        bvoted1.className = "btn";
+        bvoted1.innerText = "進行中";
+        beakvoted.append(bvoted1);
+        let bvoted2 = document.createElement("a");
+        bvoted2.href = "#voted-pass";
+        bvoted2.className = "btn";
+        bvoted2.innerText = "已結案";
+        beakvoted.append(bvoted2);
+        //beakdiv.append(beakvoted);
         
         window.onload = function(){
-            document.body.append(div);
+            document.body.append(gotop);
+            document.body.append(mine);
+            document.body.append(voted);
+            document.body.append(beakmine);
+            document.body.append(beakvoted);
         }
 
     </script>
