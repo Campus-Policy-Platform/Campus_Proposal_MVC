@@ -2,8 +2,32 @@
     @if (User.Identity.IsAuthenticated)
     {
         @*已登入*@
-        <li><a href="#" class="btn btn-outline-primary me-2">@User.Identity.Name</a></li>
-        <li>@Html.ActionLink("登出", "SignOut","User", null, new { @class="btn btn-outline-danger"})</li>
+        if (User.IsInRole("User"))
+        {
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-dark dropdown-toggle font-weight-bold" data-toggle="dropdown" aria-expanded="false">
+                    @User.Identity.Name
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Mine">我參與過的案件</a>
+                    <div class="dropdown-divider"></div>
+                    @Html.ActionLink("登出", "SignOut","User", null, new { @class="dropdown-item"})
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    @User.Identity.Name
+                </button>
+                <div class="dropdown-menu">
+                    <div>@User.Identity.Name</div>
+                    <div class="dropdown-divider"></div>
+                    @Html.ActionLink("登出", "SignOut","User", null, new { @class="dropdown-item"})
+                </div>
+            </div>
+        }
     }
     else
     {

@@ -1,0 +1,130 @@
+﻿hr{
+    background-color:#fff;
+}
+h2 {
+    width: fit-content;
+    margin: auto;
+    border: 1px solid;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+div.mine-tab {
+    display: flex;
+    gap: 10px;
+}
+.mine-tab .mine-left{
+    width:70%;
+}
+.mine-left>h3{
+    padding:10px;
+}
+.mine-left>table{
+    border:1px solid;
+}
+table input {
+    width: 20px;
+    height: 20px;
+}
+th:not(:first-child),td:not(:first-child){
+    text-align:center; /*font_左右置中*/
+    vertical-align:middle; /*font_上下置中*/
+}
+tbody>tr:hover{
+    background-color:#777;
+}
+/*checkbox*/
+td>input[type=checkbox]{
+    pointer-events: none;
+    position: relative;
+}
+td.pass>input[type=checkbox]:not(input[type=checkbox]:checked):before { 
+    /*checkbox is not checked ? background-color is Red */
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: #f00;
+    border-radius: 3px;
+    padding: 1px;
+}
+td>input[type=checkbox]:checked {
+    accent-color: #fff; /*勾選顏色*/
+    pointer-events: none;
+    accent-color: #0f0;
+}
+.mine-tab .mine-right {
+    width: 30%;
+    padding-top: 61px;
+    padding-bottom: 16px;
+}
+.mine-right > #chartarea {
+    text-align: center;
+    position: sticky;
+    top: 138px;
+    border: 1px dashed;
+    padding: 10px;
+}
+#chartarea canvas {
+    border-top: 1px dashed;
+    padding: 10px 0;
+}
+h3+.mine-nope {
+    color: #000;
+}
+
+a.jump {
+    z-index: 2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px 12px;
+    font-size: 17px;
+    right:30px;
+    position:fixed;
+}
+    a.jump.jub1 {
+        bottom: 155px;
+    }
+    a.jump.jub2, div.mineb {
+        bottom: 85px;
+    }
+    a.jump.jub3, div.votedb {
+        bottom: 15px;
+    }
+
+.mineb, .votedb {
+    z-index: 1;
+    position: fixed;
+    border-radius: 30px;
+    padding: 10px 0;
+    height: 60px;
+    right: 30px;
+    display: flex;
+    padding-right: 0px;
+    opacity:0;
+    transition: all 0.5s;
+}
+    .btn-dark a, .btn-dark a:hover {
+        color: #fff;
+        border-radius:unset;
+        height:100%;
+        overflow: hidden;        
+    }
+        .btn-dark a + a {
+            border-left: 1px solid;
+        }
+
+        .btn-dark a:hover {
+            text-decoration: underline;
+        }
+
+body:has(.jub2:hover) > .mineb, .mineb:hover, body:has(.jub3:hover) > .votedb, .votedb:hover {
+    opacity:1;
+    padding-right: 60px;
+}

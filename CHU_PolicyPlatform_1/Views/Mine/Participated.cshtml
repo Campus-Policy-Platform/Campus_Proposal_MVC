@@ -1,0 +1,219 @@
+﻿@model JoinedViewModel
+@{
+    ViewData["Title"] = "Participated";
+    List<Proposal> myprops = Model.MyProps;
+    List<Proposal> votedprops = Model.VotedProps;
+    List<Category> categories = Model.Categories;
+
+    List<Proposal> undeprops = myprops.Where(e=>e.Underways==true).ToList();
+    List<Proposal> passprops = myprops.Where(e=>e.Underways==false).ToList();
+    
+    List<Proposal> voteunde = votedprops.Where(e=>e.Underways==true).ToList();
+    List<Proposal> votepass = votedprops.Where(e=>e.Underways==false).ToList();
+
+    List<GerentSeeVM> geseVM = new List<GerentSeeVM>();
+    foreach (var prop in myprops)
+    {
+        geseVM.Add(new GerentSeeVM
+        {
+            ProposalId = prop.ProposalId,
+            Title = prop.Title,
+            CategoryId = prop.CategoryId
+        });
+    }
+    List<GerentSeeVM> vgeseVM = new List<GerentSeeVM>();
+    foreach (var prop in votedprops)
+    {
+        vgeseVM.Add(new GerentSeeVM
+        {
+            ProposalId = prop.ProposalId,
+            Title = prop.Title,
+            CategoryId = prop.CategoryId
+        });
+    }
+}
+
+<h1>你好! @User.Identity.Name</h1>
+
+<hr id="Mine" />
+<h2>提出過的案件</h2>
+<div class="mine-tab">
+    <div class="mine-left">
+        <h3 id="my-underway">案件進行中</h3>
+        @if (undeprops.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-5">提案標題</th>
+                        <th class="col-3">提出時間</th>
+                        <th class="col-2">案件類型</th>
+                        <th class="col-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var myprop in undeprops)
+                    {
+                        <tr>
+                            <td><a href="/Review/@myprop.ProposalId">@myprop.Title</a></td>
+                            <td>@myprop.Pdate.Date.ToString("yyyy年MM月dd日")</td>
+                            <td>@categories.Find(e => e.CategoryId==myprop.CategoryId).CategoryName</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-dark mine-nope" role="alert">
+                沒有您提出並進行中的案件
+            </div>
+        }
+        <h3 id="my-pass">結束案件</h3>
+        @if (passprops.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-5">提案標題</th>
+                        <th class="col-3">提出時間</th>
+                        <th class="col-2">案件類型</th>
+                        <th class="col-2">是否通過</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var myprop in passprops)
+                    {
+                        <tr>
+                            <td><a href="/Review/@myprop.ProposalId">@myprop.Title</a></td>
+                            <td>@myprop.Pdate.Date.ToString("yyyy年MM月dd日")</td>
+                            <td>@categories.Find(e => e.CategoryId==myprop.CategoryId).CategoryName</td>
+                            <td class="pass">
+                                @if (myprop.Pass == true)
+                                {
+                                    <input type="checkbox" checked />
+                                }
+                                else if (myprop.Pass == false)
+                                {
+                                    <input type="checkbox" style="accent-color:#f00;" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-dark mine-nope" role="alert">
+                沒有您提出並結束的案件
+            </div>
+        }
+    </div>
+    <div class="mine-right">
+        <div id="chartarea">
+            <h3 id="chart-title">立案案件類型總量圖</h3>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<hr id="Voted" />
+<h2>參與過的案件</h2>
+<div class="mine-tab">
+    <div class="mine-left">
+        <h3 id="voted-underway">案件進行中</h3>
+        @if (voteunde.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-5">提案標題</th>
+                        <th class="col-3">提出時間</th>
+                        <th class="col-2">案件類型</th>
+                        <th class="col-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var myprop in voteunde)
+                    {
+                        <tr>
+                            <td><a href="/Review/@myprop.ProposalId">@myprop.Title</a></td>
+                            <td>@myprop.Pdate.Date.ToString("yyyy年MM月dd日")</td>
+                            <td>@categories.Find(e => e.CategoryId==myprop.CategoryId).CategoryName</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-dark mine-nope" role="alert">
+                沒有您參與並進行中的案件
+            </div>
+        }
+        <h3 id="voted-pass">結束案件</h3>
+        @if (votepass.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-5">提案標題</th>
+                        <th class="col-3">提出時間</th>
+                        <th class="col-2">案件類型</th>
+                        <th class="col-2">是否通過</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var myprop in votepass)
+                    {
+                        <tr>
+                            <td><a href="/Review/@myprop.ProposalId">@myprop.Title</a></td>
+                            <td>@myprop.Pdate.Date.ToString("yyyy年MM月dd日")</td>
+                            <td>@categories.Find(e => e.CategoryId==myprop.CategoryId).CategoryName</td>
+                            <td class="pass">
+                                @if (myprop.Pass == true)
+                                {
+                                    <input type="checkbox" checked />
+                                }
+                                else if (myprop.Pass == false)
+                                {
+                                    <input type="checkbox" style="accent-color:#f00;" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-dark mine-nope" role="alert">
+                沒有您參與過的案件
+            </div>
+        }
+    </div>
+    <div class="mine-right">
+        <div id="chartarea">
+            <h3 id="chart-title">參與案件類型總量圖</h3>
+            <canvas id="myChart1"></canvas>
+        </div>
+    </div>
+</div>
+@section topCSS{
+    <link href="~/css/MineStyle.css" rel="stylesheet" />
+}
+@section endJS
+    {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/chart_Pie.js"></script>
+    <script src="~/js/Create_herf.js"></script>
+
+    <script>
+        var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(geseVM));
+        var vdata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(vgeseVM));
+
+    </script>
+}

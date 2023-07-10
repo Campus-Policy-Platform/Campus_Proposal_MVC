@@ -10,7 +10,7 @@
     padding:5px;
 }
 
-nav .container div {
+nav>.container>div {
     display: flex;
     align-items: center;
 }
@@ -26,16 +26,21 @@ nav a img {
 
 nav div ul {
     justify-content: end;
+    gap:3px;
 }
-    nav div ul a:hover {
+    nav div li a:hover {
         border-bottom:1px solid #000;
+        font-weight:800;
     }
 .log>li {
     padding:0 10px;
 }
+.log .dropdown-menu div:first-child{
+    padding-left:10px;
+}
 
-body>.container{
-    flex:1;
+body > .container {
+    flex: 1;
 }
 body>.container *, footer *{
     color:#fff;
