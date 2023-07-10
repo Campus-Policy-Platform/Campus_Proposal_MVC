@@ -26,17 +26,19 @@ table input {
     height: 20px;
 }
 th:not(:first-child),td:not(:first-child){
-    text-align:center;
-    vertical-align:middle;
+    text-align:center; /*font_左右置中*/
+    vertical-align:middle; /*font_上下置中*/
 }
 tbody>tr:hover{
     background-color:#777;
 }
+/*checkbox*/
 td>input[type=checkbox]{
     pointer-events: none;
     position: relative;
 }
-td.pass>input[type=checkbox]:not(input[type=checkbox]:checked):before {
+td.pass>input[type=checkbox]:not(input[type=checkbox]:checked):before { 
+    /*checkbox is not checked ? background-color is Red */
     content: "";
     display: block;
     position: absolute;
@@ -49,9 +51,7 @@ td.pass>input[type=checkbox]:not(input[type=checkbox]:checked):before {
     padding: 1px;
 }
 td>input[type=checkbox]:checked {
-    accent-color: #fff;
-}
-td>input[type=checkbox]:checked {
+    accent-color: #fff; /*勾選顏色*/
     pointer-events: none;
     accent-color: #0f0;
 }
@@ -70,9 +70,6 @@ td>input[type=checkbox]:checked {
 #chartarea canvas {
     border-top: 1px dashed;
     padding: 10px 0;
-}
-canvas+div{
-    gap:10px;
 }
 h3+.mine-nope {
     color: #000;
@@ -101,20 +98,23 @@ a.jump {
         bottom: 15px;
     }
 
-    .mineb,.votedb {
-        z-index: 1;
-        position:fixed;
-        border-radius: 30px;
-        padding: 10px 0;
-        padding-right: 60px;
-        height: 60px;
-        right:30px;
-    }
-
+.mineb, .votedb {
+    z-index: 1;
+    position: fixed;
+    border-radius: 30px;
+    padding: 10px 0;
+    height: 60px;
+    right: 30px;
+    display: flex;
+    padding-right: 0px;
+    opacity:0;
+    transition: all 0.5s;
+}
     .btn-dark a, .btn-dark a:hover {
         color: #fff;
         border-radius:unset;
         height:100%;
+        overflow: hidden;        
     }
         .btn-dark a + a {
             border-left: 1px solid;
@@ -124,14 +124,7 @@ a.jump {
             text-decoration: underline;
         }
 
-    .btn-dark {
-        display: none;
-    }
-
-
-        body:has(.jub2:hover) > .mineb , .mineb:hover {
-            display: flex;
-        }
-        body:has(.jub3:hover) > .votedb, .votedb:hover{
-            display: flex;
-        }
+body:has(.jub2:hover) > .mineb, .mineb:hover, body:has(.jub3:hover) > .votedb, .votedb:hover {
+    opacity:1;
+    padding-right: 60px;
+}
