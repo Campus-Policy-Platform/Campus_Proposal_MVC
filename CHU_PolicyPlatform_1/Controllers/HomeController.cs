@@ -93,12 +93,37 @@ namespace CHU_PolicyPlatform_1.Controllers
             {
                 //props中，包含keyword的資料
                 List<Proposal> proposals = new List<Proposal>();
-                foreach (var p in props)
+                List<Proposal> proposalList = new List<Proposal>();
+                var words = keyword.Split(' ');
+                
+                for(var i = 0; i < words.Count(); i++)
                 {
-                    bool containT = p.Title.ToLower().Contains(keyword.ToLower());
-                    bool containC = p.Pcontent.ToLower().Contains(keyword.ToLower());
-                    bool containGI = p.GainsInfluential.ToLower().Contains(keyword.ToLower());
-                    if (containT || containC || containGI) { proposals.Add(p); }
+                    if (i < 1)
+                    {
+                        foreach (var p in props)
+                        {
+                            bool containT = p.Title.ToLower().Contains(words[0].ToLower());
+                            bool containC = p.Pcontent.ToLower().Contains(words[0].ToLower());
+                            bool containGI = p.GainsInfluential.ToLower().Contains(words[0].ToLower());
+                            if (containT || containC || containGI) { proposals.Add(p); }
+                        }
+                    }
+                    else
+                    {
+                        proposalList.Clear();
+                        foreach (var p in proposals)
+                        {
+                            bool containT = p.Title.ToLower().Contains(words[i].ToLower());
+                            bool containC = p.Pcontent.ToLower().Contains(words[i].ToLower());
+                            bool containGI = p.GainsInfluential.ToLower().Contains(words[i].ToLower());
+                            if (containT || containC || containGI) 
+                            { 
+                                proposalList.Add(p); 
+                            }
+                        }
+                        proposals.Clear();
+                        proposals.AddRange(proposalList);
+                    }
                 }
                 props.Clear();
                 props.AddRange(proposals);
