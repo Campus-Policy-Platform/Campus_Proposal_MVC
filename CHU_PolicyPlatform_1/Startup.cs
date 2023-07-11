@@ -197,6 +197,16 @@ namespace CHU_PolicyPlatform_1
                     name: "UserReviewVoted",
                     pattern: "Mine",
                     defaults: new { controller = "Mine", action = "Participated" });
+                //Add_User
+                endpoints.MapControllerRoute(
+                    name: "AddUser",
+                    pattern: "Gerent/AddUser/{id?}",
+                    defaults: new { controller = "AddPeople", action = "AdU" });
+                //Add_Gerent
+                endpoints.MapControllerRoute(
+                    name: "AddGerent",
+                    pattern: "Gerent/AddGerent/{id?}",
+                    defaults: new { controller = "ReviseGerent", action = "AdG" });
 
             });
         }

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "新增使用者";
+}
+
+<h1>新增使用者</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+    <label for="csvFile">請上傳 CSV 檔案：</label>
+    <input type="file" id="csvFile" name="csvFile">
+    <p>(第一欄為學號，第二欄為密碼)</p>
+    <input type="submit" style="color:black" value="上傳">
+    <br>
+</form>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="color: black; margin-top: 1%;">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" style="color: black; margin-top: 1%;">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["ErrorMessages"] != null)
+{
+    <div class="alert alert-danger" >
+        <ul>
+            @foreach (var errorMessage in (string[])TempData["ErrorMessages"])
+            {
+                <li style="color:black">@errorMessage</li>
+            }
+        </ul>
+    </div>
+}
