@@ -1,7 +1,10 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CHU_PolicyPlatform_1.Controllers
@@ -78,10 +81,16 @@ namespace CHU_PolicyPlatform_1.Controllers
                 {
                     if (newg != null)
                     {
-                        _context.Gerents.Remove(newg);
-                        _context.SaveChanges();
-
-                        TempData["SuccessMessage"] = "刪除成功"; 
+                        if (newg.GerentId == "B001")
+                        {
+                            TempData["ErrorMessage"] = "此用戶無法刪除";
+                        }
+                        else
+                        {
+                            _context.Gerents.Remove(newg);
+                            _context.SaveChanges();
+                            TempData["SuccessMessage"] = "刪除成功";
+                        }
                     }
                     else
                     {
@@ -94,6 +103,66 @@ namespace CHU_PolicyPlatform_1.Controllers
                 }
             }
 
+            return RedirectToAction("AdG", "ReviseGerent");
+        }
+        [HttpPost]
+        public IActionResult AdG(IFormFile csvFile)
+        {
+
+            if (csvFile == null || csvFile.Length == 0)
+            {
+                TempData["ErrorMessage"] = "你未選擇檔案。";
+                return RedirectToAction("AdG", "ReviseGerent");
+            }
+
+            string fileExtension = Path.GetExtension(csvFile.FileName);
+            if (fileExtension != ".csv")
+            {
+                TempData["ErrorMessage"] = "只接受 CSV 檔案。";
+                return RedirectToAction("AdG", "ReviseGerent");
+            }
+
+
+            using (StreamReader reader = new StreamReader(csvFile.OpenReadStream()))
+            {
+                reader.ReadLine();
+
+                List<string> errorMessages = new List<string>();
+
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    string[] fields = line.Split(',');
+
+                    string userId = fields[0];
+                    string upassword = fields[1];
+
+
+                    if (_context.Users.Any(u => u.UserId == userId))
+                    {
+                        errorMessages.Add($"使用者 {userId} 已存在，載入已跳過。");
+                        continue;
+                    }
+
+
+                    User user = new User
+                    {
+                        UserId = userId,
+                        Upassword = upassword
+                    };
+
+                    _context.Users.Add(user);
+                }
+
+                _context.SaveChanges();
+
+                if (errorMessages.Count > 0)
+                {
+                    TempData["ErrorMessages"] = errorMessages;
+                }
+            }
+
+            TempData["SuccessMessage"] = "新增成功";
             return RedirectToAction("AdG", "ReviseGerent");
         }
     }
