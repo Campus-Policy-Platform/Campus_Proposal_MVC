@@ -207,7 +207,11 @@ namespace CHU_PolicyPlatform_1
                     name: "AddGerent",
                     pattern: "Gerent/AddGerent/{id?}",
                     defaults: new { controller = "ReviseGerent", action = "AdG" });
-
+                //Revise
+                endpoints.MapControllerRoute(
+                    name: "Revise",
+                    pattern: "Gerent/Revise/{id?}",
+                    defaults: new { controller = "ReviseMember", action = "Revise" });
             });
         }
     }
