@@ -5,8 +5,12 @@ namespace CHU_PolicyPlatform_1.ViewModels
 {
     public class JoinedViewModel
     {
-        public List<Proposal> MyProps { get; set; }
-        public List<Proposal> VotedProps { get; set;}
+        public List<GerentSeeVM> GeseVM { set; get; }
+        public List<Proposal> Propsunde { get; set; }
+        public List<Proposal> Propspass { get; set; }
+        public List<GerentSeeVM> VgeseVM { set; get; }
+        public List<Proposal> Voteunde { get; set; }
+        public List<Proposal> Votepass { get; set; }
         public List<Category> Categories { get; set; }
     }
 }

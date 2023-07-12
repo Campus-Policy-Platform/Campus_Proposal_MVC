@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\Review_Style.css" />
+    <Content Remove="wwwroot\js\Create_herf.js" />
   </ItemGroup>
 
   <ItemGroup>

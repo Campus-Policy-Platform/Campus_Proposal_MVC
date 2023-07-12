@@ -1,36 +1,16 @@
 ﻿@model JoinedViewModel
 @{
     ViewData["Title"] = "我參與的案件";
-    List<Proposal> myprops = Model.MyProps;
-    List<Proposal> votedprops = Model.VotedProps;
     List<Category> categories = Model.Categories;
 
-    List<Proposal> undeprops = myprops.Where(e=>e.Underways==true).ToList();
-    List<Proposal> passprops = myprops.Where(e=>e.Underways==false).ToList();
-    
-    List<Proposal> voteunde = votedprops.Where(e=>e.Underways==true).ToList();
-    List<Proposal> votepass = votedprops.Where(e=>e.Underways==false).ToList();
+    List<Proposal> undeprops = Model.Propsunde;
+    List<Proposal> passprops = Model.Propspass;
 
-    List<GerentSeeVM> geseVM = new List<GerentSeeVM>();
-    foreach (var prop in myprops)
-    {
-        geseVM.Add(new GerentSeeVM
-        {
-            ProposalId = prop.ProposalId,
-            Title = prop.Title,
-            CategoryId = prop.CategoryId
-        });
-    }
-    List<GerentSeeVM> vgeseVM = new List<GerentSeeVM>();
-    foreach (var prop in votedprops)
-    {
-        vgeseVM.Add(new GerentSeeVM
-        {
-            ProposalId = prop.ProposalId,
-            Title = prop.Title,
-            CategoryId = prop.CategoryId
-        });
-    }
+    List<Proposal> voteunde = Model.Voteunde;
+    List<Proposal> votepass = Model.Votepass;
+
+    List<GerentSeeVM> geseVM = Model.GeseVM;
+    List<GerentSeeVM> vgeseVM = Model.VgeseVM;
 }
 
 <h1>你好! @User.Identity.Name</h1>
@@ -202,6 +182,21 @@
         </div>
     </div>
 </div>
+
+@*快速跳轉-置頂、提議區、參與區*@
+<a href="#" class="btn btn-secondary jump jub1">Top</a>
+<a href="#Mine" class="btn btn-secondary jump jub2">提議</a>
+<a href="#Voted" class="btn btn-secondary jump jub3">參與</a>
+@*快速跳轉(子元素)-提議區、參與區*@
+<div class="btn-dark mineb">
+    <a href="#my-underway" class="btn">進行中</a>
+    <a href="#my-pass" class="btn">已結案</a>
+</div>
+<div class="btn-dark votedb">
+    <a href="#voted-underway" class="btn">進行中</a>
+    <a href="#voted-pass" class="btn">已結案</a>
+</div>
+
 @section topCSS{
     <link href="~/css/MineStyle.css" rel="stylesheet" />
 }
@@ -209,11 +204,8 @@
     {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/chart_Pie.js"></script>
-    <script src="~/js/Create_herf.js"></script>
-
     <script>
         var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(geseVM));
         var vdata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(vgeseVM));
-
     </script>
 }

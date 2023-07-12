@@ -124,7 +124,7 @@ a.jump {
             text-decoration: underline;
         }
 
-body:has(.jub2:hover) > .mineb, .mineb:hover, body:has(.jub3:hover) > .votedb, .votedb:hover {
-    opacity:1;
+div.container:has(.jub2:hover) .mineb, .mineb:hover, div.container:has(.jub3:hover) .votedb, .votedb:hover {
+    opacity: 1;
     padding-right: 60px;
 }

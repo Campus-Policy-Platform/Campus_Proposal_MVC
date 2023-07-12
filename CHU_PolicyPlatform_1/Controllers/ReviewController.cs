@@ -20,6 +20,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "User,Gerent")]
         [HttpGet]
         public IActionResult Review_Interface(string Pro_Id, int Id=1)
         {
