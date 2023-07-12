@@ -1,0 +1,37 @@
+﻿body {
+}
+
+.maintop {
+    text-align: center;
+}
+
+.message-container {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.show {
+    display: block;
+}
+
+.g {
+    float: left;
+    width: 45%;
+}
+
+.u {
+    float: right;
+    width: 45%;
+}
+
+.divider {
+    clear: both;
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 20px 0;
+}
+.m {
+    border: 1px solid #fff;
+    float: left;
+    margin-left: 5%;
+}

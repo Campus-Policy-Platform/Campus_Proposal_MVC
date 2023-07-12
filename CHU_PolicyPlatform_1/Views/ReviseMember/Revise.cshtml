@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "修改人員";
+}
+
+@section topCSS
+{
+    <link href="~/css/ReciseStyle.css" rel="stylesheet" />
+}
+<div class="maintop">
+    <h1>修改人員</h1>
+</div>
+
+
+<hr class="divider">
+<div class="g">
+    <h2>修改管理員</h2>
+
+    <form method="post" action="/ReviseMember/Revise">
+        <div class="input-group mb-3">
+            <input type="hidden" name="ActionType" value="Add" />
+            <input type="text" name="User.UserId" class="form-control" placeholder="請輸入要新增者的學號" aria-label="學號" aria-describedby="button-add">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-add">新增</button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="/ReviseMember/Revise">
+        <div class="input-group mb-3">
+            <input type="hidden" name="ActionType" value="Delete" />
+            <input type="text" name="User.UserID" class="form-control" placeholder="請輸入要刪除者的學號" aria-label="學號" aria-describedby="button-de">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-de">刪除</button>
+            </div>
+        </div>
+    </form>
+    <div class="message-container @(TempData["SuccessMessagess"] != null || TempData["ErrorMessagess"] != null ? "show" : "")">
+        @if (TempData["SuccessMessagess"] != null)
+        {
+            <div class="alert alert-success" style="color: black;">@TempData["SuccessMessagess"]</div>
+        }
+        @if (TempData["ErrorMessagess"] != null)
+        {
+            <div class="alert alert-danger" style="color: black;">@TempData["ErrorMessagess"]</div>
+        }
+    </div>
+
+</div>
+
+
+<div class="u">
+    <h2>新增使用者</h2>
+
+    <form method="post" enctype="multipart/form-data" action="/ReviseMember/UploadUsers">
+        <label for="csvFile">請上傳 CSV 檔案：</label>
+        <input type="file" id="csvFile" name="csvFile">
+        <p>(第一欄為學號，第二欄為密碼)</p>
+        <input type="submit" style="color:black" value="上傳">
+        <br>
+    </form>
+    <div class="message-container @(TempData["SuccessMessage"] != null || TempData["ErrorMessage"] != null || TempData["ErrorMessages"] != null ? "show" : "")">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" style="color: black; margin-top: 1%;">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" style="color: black; margin-top: 1%;">@TempData["ErrorMessage"]</div>
+        }
+        @if (TempData["ErrorMessages"] != null)
+        {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (var errorMessage in (string[])TempData["ErrorMessages"])
+                    {
+                        <li style="color:black">@errorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
