@@ -1,4 +1,4 @@
-﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+﻿@model CHU_PolicyPlatform_1.ViewModels.GerentSeeVM
 
 @{
     ViewData["Title"] = "管理員: 待處理案件";
@@ -33,7 +33,7 @@
     </div>
 
     <div id="proposal">
-        @foreach (var item in Model)
+        @foreach (var item in Model.pieVMs)
         {
             <a class="Gerentcard col-6" href="/Review/@item.ProposalId">
                 @switch (item.CategoryId)

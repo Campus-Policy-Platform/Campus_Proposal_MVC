@@ -1,5 +1,6 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using CHU_PolicyPlatform_1.Services;
 using CHU_PolicyPlatform_1.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,11 @@ namespace CHU_PolicyPlatform_1.Controllers
     public class MineController : Controller
     {
         private readonly ProposeContext _ctx;
-        public MineController(ProposeContext ctx) 
+        private readonly SeGerent _seGerent;
+        public MineController(ProposeContext ctx, SeGerent seGerent) 
         { 
             _ctx = ctx;
+            _seGerent = seGerent;
         }
         [Authorize(Roles = "User")]
         public IActionResult Participated()
@@ -31,26 +34,48 @@ namespace CHU_PolicyPlatform_1.Controllers
             List<Proposal> votepass = votedprops.Where(e => e.Underways == false).ToList();
             List<Category> categories = new List<Category>(_ctx.Categories);
 
-            List<GerentSeeVM> geseVM = new List<GerentSeeVM>();
+            var Cateprop = _seGerent.SeCates();
+            var cates = new List<cateM>();
+            foreach (var cate in Cateprop)
+            {
+                cates.Add(new cateM
+                {
+                    CategoryId = cate.CategoryId,
+                    CategoryName = cate.CategoryName,
+                });
+            };
+            var geseVM = new GerentSeeVM();
+            var pies = new List<propM>();
             foreach (var prop in myprops)
             {
-                geseVM.Add(new GerentSeeVM
+                pies.Add(new propM
                 {
                     ProposalId = prop.ProposalId,
                     Title = prop.Title,
-                    CategoryId = prop.CategoryId
+                    CategoryId = prop.CategoryId,
                 });
-            }
-            List<GerentSeeVM> vgeseVM = new List<GerentSeeVM>();
-            foreach (var prop in votedprops)
+            };            
+            geseVM = new GerentSeeVM
             {
-                vgeseVM.Add(new GerentSeeVM
+                pieVMs = pies,
+                categories = cates
+            };
+
+            var vgeseVM = new GerentSeeVM();
+            pies.Clear();
+            foreach (var prop in myprops)
+            {
+                pies.Add(new propM
                 {
                     ProposalId = prop.ProposalId,
                     Title = prop.Title,
-                    CategoryId = prop.CategoryId
+                    CategoryId = prop.CategoryId,
                 });
-            }
+            };
+            vgeseVM = new GerentSeeVM
+            {
+                pieVMs = pies,
+            };
 
             JoinedViewModel joinedVM = new JoinedViewModel
             {

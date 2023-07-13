@@ -1,4 +1,4 @@
-﻿@model List<CHU_PolicyPlatform_1.ViewModels.GerentSeeVM>
+﻿@model CHU_PolicyPlatform_1.ViewModels.GerentSeeVM
 @{
     ViewData["Title"] = "監督案件: 待回覆";
 
@@ -33,7 +33,7 @@
 
     </div>
     <div id="proposal">
-        @foreach (var item in Model)
+        @foreach (var item in Model.pieVMs)
         {
             <a class="Usertcard col-6" href="/Review/@item.ProposalId">
                 @switch (item.CategoryId)
@@ -93,6 +93,7 @@
     <script src="~/js/chart_Pie.js"></script>
 
     <script>
-        var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+        var modeldata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.pieVMs));
+        var catesdata = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.categories));
     </script>
 }

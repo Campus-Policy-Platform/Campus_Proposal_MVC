@@ -1,11 +1,10 @@
 ﻿function chart() {
-    let categories = ["C001", "C002", "C003", "C004"];
-    let categoryLabels = {
-        "C001": "校園",
-        "C002": "教室",
-        "C003": "宿舍",
-        "C004": "餐廳"
-    };
+    let categories = [];
+    let categoryLabels = {};
+    for (var i = 0; i < catesdata.length; i++) {
+        categories.push(catesdata[i].CategoryId);
+        categoryLabels[`${catesdata[i].CategoryId}`] = catesdata[i].CategoryName;
+    }
 
     let categoryCounts = categories.map((category) => {
         let count = modeldata.filter((item) => item.CategoryId === category).length;
@@ -56,8 +55,9 @@
         }
     });
 
-    let ctx1 = document.getElementById('myChart1').getContext('2d');
+    let ctx1 = document.getElementById('myChart1');
     if (ctx1 != null) {
+        ctx1 = ctx1.getContext('2d');
         let vcategoryCounts = categories.map((category) => {
             let count = vdata.filter((item) => item.CategoryId === category).length;
             return count;

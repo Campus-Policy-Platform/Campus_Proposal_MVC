@@ -43,6 +43,12 @@ namespace CHU_PolicyPlatform_1.Services
 
             return sepass.ToList();
         }
+        public List<Category> SeCates()
+        {
+            var cate = _reGerent.GetCateData();
+
+            return cate.ToList();
+        }
 
     }
 }

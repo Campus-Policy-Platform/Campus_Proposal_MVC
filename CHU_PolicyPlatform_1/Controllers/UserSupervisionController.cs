@@ -38,7 +38,10 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
 
             var Passprop = _seGerent.SeUser();
-            var value = new List<GerentSeeVM>();
+            var Cateprop = _seGerent.SeCates();
+            var value = new GerentSeeVM();
+            var pies = new List<propM>();
+            var cates = new List<cateM>();
 
             // 計算總筆數和分頁相關參數
             int totalRows = Passprop.Count;
@@ -57,12 +60,25 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             foreach (var Passpop in pagedPassprop)
             {
-                value.Add(new GerentSeeVM
+                pies.Add(new propM
                 {
                     ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });
+            };
+            foreach (var cate in Cateprop)
+            {
+                cates.Add(new cateM
+                {
+                    CategoryId = cate.CategoryId,
+                    CategoryName = cate.CategoryName,
+                });
+            };
+            value = new GerentSeeVM
+            {
+                pieVMs = pies,
+                categories = cates
             };
 
             ViewData["ActivePage"] = Id;    // 目前選中的分頁碼
@@ -79,7 +95,10 @@ namespace CHU_PolicyPlatform_1.Controllers
         public IActionResult UserFinished(int Id = 1)
         {
             var Passprop = _seUserS.SeU();
-            var value = new List<GerentSeeVM>();
+            var Cateprop = _seGerent.SeCates();
+            var value = new GerentSeeVM();
+            var pies = new List<propM>();
+            var cates = new List<cateM>();
 
             // 計算總筆數和分頁相關參數
             int totalRows = Passprop.Count;
@@ -98,12 +117,25 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             foreach (var Passpop in pagedPassprop)
             {
-                value.Add(new GerentSeeVM
+                pies.Add(new propM
                 {
                     ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });
+            };
+            foreach (var cate in Cateprop)
+            {
+                cates.Add(new cateM
+                {
+                    CategoryId = cate.CategoryId,
+                    CategoryName = cate.CategoryName,
+                });
+            };
+            value = new GerentSeeVM
+            {
+                pieVMs = pies,
+                categories = cates
             };
 
             ViewData["ActivePage"] = Id;    // 目前選中的分頁碼
@@ -121,7 +153,10 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
 
             var Passprop = _seGerent.SeUserfail();
-            var value = new List<GerentSeeVM>();
+            var Cateprop = _seGerent.SeCates();
+            var value = new GerentSeeVM();
+            var pies = new List<propM>();
+            var cates = new List<cateM>();
 
             // 計算總筆數和分頁相關參數
             int totalRows = Passprop.Count;
@@ -140,12 +175,25 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             foreach (var Passpop in pagedPassprop)
             {
-                value.Add(new GerentSeeVM
+                pies.Add(new propM
                 {
                     ProposalId = Passpop.ProposalId,
                     Title = Passpop.Title,
                     CategoryId = Passpop.CategoryId,
                 });
+            };
+            foreach (var cate in Cateprop)
+            {
+                cates.Add(new cateM
+                {
+                    CategoryId = cate.CategoryId,
+                    CategoryName = cate.CategoryName,
+                });
+            };
+            value = new GerentSeeVM
+            {
+                pieVMs = pies,
+                categories = cates
             };
 
             ViewData["ActivePage"] = Id;    // 目前選中的分頁碼

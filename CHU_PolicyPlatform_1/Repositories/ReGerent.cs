@@ -21,5 +21,10 @@ namespace CHU_PolicyPlatform_1.Repositories
             List<Proposal> value = _context.Proposals.ToList();
             return value;
         }
+        public List<Category> GetCateData()
+        {
+            List<Category> value = _context.Categories.ToList();
+            return value;
+        }
     }
 }
