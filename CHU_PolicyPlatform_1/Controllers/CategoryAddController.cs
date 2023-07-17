@@ -1,7 +1,9 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,6 +16,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "Gerent")]
         [HttpGet]
         public IActionResult CyAd()
         {

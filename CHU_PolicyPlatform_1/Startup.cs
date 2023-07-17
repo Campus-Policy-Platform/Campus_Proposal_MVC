@@ -197,30 +197,20 @@ namespace CHU_PolicyPlatform_1
                     name: "UserReviewVoted",
                     pattern: "Mine",
                     defaults: new { controller = "Mine", action = "Participated" });
-                //Add_User
-                endpoints.MapControllerRoute(
-                    name: "AddUser",
-                    pattern: "Gerent/AddUser/{id?}",
-                    defaults: new { controller = "AddPeople", action = "AdU" });
-                //Add_Gerent
-                endpoints.MapControllerRoute(
-                    name: "AddGerent",
-                    pattern: "Gerent/AddGerent/{id?}",
-                    defaults: new { controller = "ReviseGerent", action = "AdG" });
-                //Revise
+                //RevisePeople
                 endpoints.MapControllerRoute(
                     name: "Revise",
-                    pattern: "Gerent/Revise/{id?}",
+                    pattern: "Gerent/RevisePeople",
                     defaults: new { controller = "ReviseMember", action = "Revise" });
                 //ReviseDay
                 endpoints.MapControllerRoute(
                     name: "ReviseDay",
-                    pattern: "Gerent/ReviseDay/{id?}",
+                    pattern: "Gerent/ReviseDay",
                     defaults: new { controller = "GerentReviewDay", action = "RDC" });
                 //R
                 endpoints.MapControllerRoute(
                     name: "CategoryAdd",
-                    pattern: "Gerent/CategoryAdd/{id?}",
+                    pattern: "Gerent/CategoryAdd",
                     defaults: new { controller = "CategoryAdd", action = "CyAd" });
             });
         }

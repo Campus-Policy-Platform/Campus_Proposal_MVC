@@ -1,8 +1,10 @@
 ﻿using CHU_PolicyPlatform_1.Data;
 using CHU_PolicyPlatform_1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 
@@ -16,6 +18,7 @@ namespace CHU_PolicyPlatform_1.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "Gerent")]
         [HttpGet]
         public IActionResult Revise()
         {
