@@ -51,11 +51,14 @@ namespace CHU_PolicyPlatform_1.Controllers
             
             proposal.Pdate = DateTime.Now;
             var dateNow = proposal.Pdate.ToString("yyMMdd");
-            var propsNumNow = (_context.Proposals.Where(e=>e.Pdate.Date==proposal.Pdate.Date)
-                                                    .Count()+1).ToString("D3");
+            var propsNum = (from p in _context.Proposals
+                               where p.Pdate.Date == proposal.Pdate.Date
+                               orderby p.Pdate descending
+                               select p.ProposalId).First().Substring(7,3);
+            var NumCount = (Int32.Parse(propsNum)+1).ToString("D3");
             
 
-            proposal.ProposalId = $"P{dateNow}{propsNumNow}";
+            proposal.ProposalId = $"P{dateNow}{NumCount}";
             proposal.Underways = true;
             proposal.UserId = User.Identity.Name;
 
