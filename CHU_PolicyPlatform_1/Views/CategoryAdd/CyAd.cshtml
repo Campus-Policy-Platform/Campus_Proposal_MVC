@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "新增案件種類";
+}
+
+<h1>新增案件種類</h1>
+
+<form method="post" >
+    <div class="input-group mb-3">
+        <input type="text" name="CategoryName" class="form-control" placeholder="請輸入要新增種類名稱" aria-label="種類名稱" style="color: black" required>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" name="CategoryMinDay" class="form-control" placeholder="請輸入要案件時程最小天數" aria-label="時程最小天數" style="color: black" required>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" name="CategoryMaxDay" class="form-control" placeholder="請輸入要案件時程最大天數" aria-label="時程最大天數" style="color: black" required>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" name="CategoryGerentReview" class="form-control" placeholder="請輸入要案件門檻票數" aria-label="門檻票數" style="color: black" required>
+    </div>
+    <button type="submit" class="btn btn-outline-light">提交</button>
+</form>

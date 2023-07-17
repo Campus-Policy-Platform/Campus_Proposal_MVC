@@ -1,0 +1,68 @@
+﻿@model RdVM
+@{
+    ViewData["Title"] = "修改";
+
+    var rdmin = Model.CategoryMinDay;
+    var rdmax = Model.CategoryMaxDay;
+    var cgr = Model.CategoryGerentReview;
+    var cname = Model.CategoryName;
+}
+
+<h1>修改《@cname》案件參數</h1>
+<form method="post" action="/GerentReviewDay/UploadVM">
+    <div class="form-group">
+        <label for="categoryId">種類:</label>
+        <select class="form-control" style="color:black" id="categoryId" name="categoryId" onchange="this.form.submit()">
+            <option value="">-- 請選擇更改種類 --</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.CategoryId" style="color: black">@category.CategoryName</option>
+            }
+        </select>
+    </div>
+</form>
+<form method="post" action="/GerentReviewDay/SaveRD">
+    <div class="input-group mb-3" style="width: 60%;">
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="ActionType" value="remin" />
+        <p style="margin-right: 3%;">目前的 《@cname》 案件時程最小天數為：@rdmin 天</p>
+        <input type="number" name="CategoryMinDay" class="form-control" placeholder="請輸入要修改的最小天數" aria-label="min" aria-describedby="button-remin">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-remin">修改min</button>
+        </div>
+    </div>
+</form>
+
+<form method="post" action="/GerentReviewDay/SaveRD">
+    <div class="input-group mb-3" style="width: 60%;">
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="ActionType" value="remax" />
+        <p style="margin-right: 3%;">目前的 《@cname》 案件時程最大天數為：@rdmax 天</p>
+        <input type="number" name="CategoryMaxDay" class="form-control" placeholder="請輸入要修改的最大天數" aria-label="max" aria-describedby="button-remax">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-remax">修改max</button>
+        </div>
+    </div>
+</form>
+
+<form method="post" action="/GerentReviewDay/SaveRD">
+    <div class="input-group mb-3" style="width: 60%;">
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" name="ActionType" value="cgr" />
+        <p style="margin-right: 3%;">目前此 《@cname》 的案件表决門檻為：@cgr 票</p>
+        <input type="number" name="CategoryGerentReview" class="form-control" placeholder="請輸入要修改的門檻票數" aria-label="cgr" aria-describedby="button-cgr">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-cgr">修改票数</button>
+        </div>
+    </div>
+</form>
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" style="color: black; margin-top: 1%;">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" style="color: black; margin-top: 1%;">@TempData["ErrorMessage"]</div>
+}

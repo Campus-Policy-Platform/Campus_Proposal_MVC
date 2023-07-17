@@ -22,7 +22,8 @@ namespace CHU_PolicyPlatform_1.Models
         public bool? Pass { get; set; }
         public string UserId { get; set; }
         public string CategoryId { get; set; }
-
+        public int CategoryDay { get; set; }
+        public int CategoryReview { get; set; }
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<ToRepond> ToReponds { get; set; }

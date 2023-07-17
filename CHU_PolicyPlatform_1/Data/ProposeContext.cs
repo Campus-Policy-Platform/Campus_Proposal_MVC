@@ -49,6 +49,16 @@ namespace CHU_PolicyPlatform_1.Data
                 entity.Property(e => e.CategoryName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.CategoryMinDay)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                entity.Property(e => e.CategoryMaxDay)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                entity.Property(e => e.CategoryGerentReview)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Gerent>(entity =>
@@ -100,6 +110,14 @@ namespace CHU_PolicyPlatform_1.Data
                     .IsRequired()
                     .HasMaxLength(10)
                     .HasColumnName("UserID");
+
+                entity.Property(e => e.CategoryDay)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CategoryReview)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Proposals)

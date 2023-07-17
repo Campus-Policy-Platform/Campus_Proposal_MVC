@@ -23,12 +23,12 @@ namespace CHU_PolicyPlatform_1.Repositories
             foreach (var proposal in _proposal)
             {
                 //判斷提案是否結束
-                if((DateTime.Now-proposal.Pdate).Days >= 20 && proposal.Underways)
+                if((DateTime.Now-proposal.Pdate).Days >= proposal.CategoryDay && proposal.Underways)
                 {
                     proposal.Underways = false;
 
                     //判斷提案是否通過
-                    if (_context.Votes.Count() >= 20)
+                    if (_context.Votes.Count() >= proposal.CategoryReview)
                     {
                         //定義投票同意數和不同意數
                         int agree = 0, disagree = 0;

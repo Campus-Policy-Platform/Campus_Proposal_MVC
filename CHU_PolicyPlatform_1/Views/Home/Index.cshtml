@@ -35,6 +35,7 @@
                     <img src="~/images/restaurant_icon.png" />
                     break;
                 default:
+                    <img src="~/images/campus_icon.png" />
                     break;
             }
             <div>
@@ -56,11 +57,11 @@
                 </ul>
                 @if ((DateTime.Now - prop.Pdate).Days >= 17)
                 {
-                    <span class="badge badge-danger">剩餘@(20 - (DateTime.Now - prop.Pdate).Days)天</span>
+                    <span class="badge badge-danger">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
                 }
                 else
                 {
-                    <span class="badge badge-success">剩餘@(20 - (DateTime.Now - prop.Pdate).Days)天</span>
+                    <span class="badge badge-success">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
                 }
                 
             </div>

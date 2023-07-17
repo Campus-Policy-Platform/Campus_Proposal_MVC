@@ -212,6 +212,16 @@ namespace CHU_PolicyPlatform_1
                     name: "Revise",
                     pattern: "Gerent/Revise/{id?}",
                     defaults: new { controller = "ReviseMember", action = "Revise" });
+                //ReviseDay
+                endpoints.MapControllerRoute(
+                    name: "ReviseDay",
+                    pattern: "Gerent/ReviseDay/{id?}",
+                    defaults: new { controller = "GerentReviewDay", action = "RDC" });
+                //R
+                endpoints.MapControllerRoute(
+                    name: "CategoryAdd",
+                    pattern: "Gerent/CategoryAdd/{id?}",
+                    defaults: new { controller = "CategoryAdd", action = "CyAd" });
             });
         }
     }

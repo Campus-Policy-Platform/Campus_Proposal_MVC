@@ -1,4 +1,4 @@
-﻿@model List<SelectListItem>
+﻿@model CategoryOptionVM
 @{
     ViewData["Title"] = "新增提案";
 }
@@ -9,15 +9,30 @@
             <h5>輸入提案標題：</h5>
             <input type="text" id="Title" name="Title" class="form-control" placeholder="輸入20字內" maxlength="20" required />
         </div>
-        <div class="w-50">
+        <div class="w-25">
             <h5>選擇提案類別：</h5>
-            <select id="CategoryId" name="CategoryId" asp-items="@Model" required>
+            <select id="CategoryId" name="CategoryId" required>
                 <option value="">==請選擇提案類別==</option>
+                @foreach (var option in Model.Options)
+                {
+                    <option value="@option.Value">@option.Text</option>
+                }
             </select>
         </div>
-         
+
+        <div class="w-25">
+            @foreach (var option in Model.Options)
+            {
+                <div id="case-schedule-@option.Value" class="case-schedule" style="display: none;">
+                    <label for="quantity">選擇案件時程 (@option.MinDay and @option.MaxDay):</label>
+                    <br>
+                    <input type="number" style="color: black" data-category="@option.Value" class="category-day-input" min="@option.MinDay" max="@option.MaxDay">
+                    <input type="hidden" id="CategoryReview" name="CategoryReview" value="@option.CategoryReview" />
+                </div>
+            }
+        </div>
     </div>
-    
+
     <div class="content-area">
         <div class="col">
             <h5>輸入提案內容：</h5>
@@ -29,9 +44,36 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-outline-light">submit</button>
+    <input type="hidden" id="CategoryDay" name="CategoryDay" value="" />
+
+    <button type="submit" class="btn btn-outline-light">提交</button>
 </form>
 
 @section topCSS{
     <link rel="stylesheet" href="~/css/propsalsStyle.css" />
+}
+@section endJS{
+    <script>
+        $(document).ready(function () {
+            $("#CategoryId").change(function () {
+                var selectedCategoryId = $(this).val();
+
+                $(".case-schedule").hide(); // 隱藏所有案件時程輸入元素
+                $(".category-day-input").removeAttr("required"); // 取消所有案件時程的 required 屬性
+
+                if (selectedCategoryId !== "") {
+                    // 顯示與選定類別相關的案件時程輸入元素
+                    $("#case-schedule-" + selectedCategoryId).show();
+                    $(".category-day-input[data-category='" + selectedCategoryId + "']").attr("required", "required"); // 為選定的案件時程添加 required 屬性
+                }
+            });
+
+            $("form").submit(function () {
+                var selectedCategoryId = $("#CategoryId").val();
+                var selectedCategoryDay = $(".category-day-input[data-category='" + selectedCategoryId + "']").val();
+                $("#CategoryDay").val(selectedCategoryDay); // 將選定的案件時程的值設置到隱藏欄位中
+            });
+        });
+    </script>
+
 }
