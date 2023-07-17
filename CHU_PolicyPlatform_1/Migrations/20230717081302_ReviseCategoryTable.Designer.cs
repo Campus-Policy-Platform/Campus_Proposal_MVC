@@ -4,14 +4,16 @@ using CHU_PolicyPlatform_1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CHU_PolicyPlatform_1.Migrations
 {
     [DbContext(typeof(ProposeContext))]
-    partial class ProposeContextModelSnapshot : ModelSnapshot
+    [Migration("20230717081302_ReviseCategoryTable")]
+    partial class ReviseCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
