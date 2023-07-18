@@ -58,7 +58,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
             var pagedPassprop = Passprop.Skip(startRow).Take(pageRows);
 
-            foreach (var Passpop in pagedPassprop)
+            foreach (var Passpop in Passprop)
             {
                 pies.Add(new propM
                 {
@@ -115,7 +115,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
             var pagedPassprop = Passprop.Skip(startRow).Take(pageRows);
 
-            foreach (var Passpop in pagedPassprop)
+            foreach (var Passpop in Passprop)
             {
                 pies.Add(new propM
                 {
@@ -173,7 +173,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             int startRow = (activePage - 1) * pageRows;  // 起始記錄索引
             var pagedPassprop = Passprop.Skip(startRow).Take(pageRows);
 
-            foreach (var Passpop in pagedPassprop)
+            foreach (var Passpop in Passprop)
             {
                 pies.Add(new propM
                 {
