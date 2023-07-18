@@ -17,7 +17,11 @@ namespace CHU_PolicyPlatform_1.Services
 
         public async Task<List<Proposal>> readProposal()
         {
-            return await _proposalRepo.readAllProposal();
+            var props = await _proposalRepo.readAllProposal();
+            List<Proposal> propListOrderby = (from prop in props
+                                              orderby prop.Pdate descending
+                                              select prop).ToList();
+            return propListOrderby;
         }
     }
 }

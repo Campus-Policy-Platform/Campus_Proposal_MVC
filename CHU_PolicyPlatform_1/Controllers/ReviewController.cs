@@ -116,7 +116,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             }
 
             int startRow = (activePage - 1) * pageRows;  //起始記錄Index
-            List<Vote> products = props.Skip(startRow).Take(pageRows).ToList();
+            List<Vote> products = props.OrderByDescending(e=>e.Vdate).Skip(startRow).Take(pageRows).ToList();
 
             return products;
         }
