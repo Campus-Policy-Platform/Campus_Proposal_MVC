@@ -9,10 +9,12 @@ namespace CHU_PolicyPlatform_1.Services
 {
     public class ProposalService
     {
+        private ProposeContext _context;
         private ProposalRepository _proposalRepo;
-        public ProposalService(ProposalRepository proposalRepo) 
+        public ProposalService(ProposalRepository proposalRepo, ProposeContext context) 
         { 
             _proposalRepo = proposalRepo;
+            _context = context;
         }
 
         public async Task<List<Proposal>> readProposal()
@@ -22,6 +24,12 @@ namespace CHU_PolicyPlatform_1.Services
                                               orderby prop.Pdate descending
                                               select prop).ToList();
             return propListOrderby;
+        }
+
+        public List<Category> findAllCate()
+        {
+            var cateList = _context.Categories.ToList();
+            return cateList;
         }
     }
 }

@@ -73,15 +73,18 @@ nav > ol {
     background-color:#999;
 }
 
-.maincard div {
+.maincard>div {
     flex-grow: 1;
     display: flex;
     flex-direction:column;
     gap: 10px;
 }
-    .maincard div * {
+    .maincard>div * {
         margin: unset;
         width:fit-content;
+    }
+    .maincard>div div{
+        gap:5px;
     }
     .maincard span{
         font-size:16px;

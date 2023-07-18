@@ -22,13 +22,14 @@ namespace CHU_PolicyPlatform_1.Repositories
         {
             foreach (var proposal in _proposal)
             {
+                var propVote = _context.Votes.Where(e => e.ProposalId == proposal.ProposalId);
                 //判斷提案是否結束
-                if((DateTime.Now-proposal.Pdate).Days >= proposal.CategoryDay && proposal.Underways)
+                if ((DateTime.Now-proposal.Pdate).Days >= proposal.CategoryDay && proposal.Underways)
                 {
                     proposal.Underways = false;
 
                     //判斷提案是否通過
-                    if (_context.Votes.Count() >= proposal.CategoryReview)
+                    if (propVote.Count() >= proposal.CategoryReview)
                     {
                         //定義投票同意數和不同意數
                         int agree = 0, disagree = 0;

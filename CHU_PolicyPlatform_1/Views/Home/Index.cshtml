@@ -55,14 +55,22 @@
                     <li>同意數： @agree</li>
                     <li>留言數： @messge</li>
                 </ul>
-                @if ((DateTime.Now - prop.Pdate).Days >= 17)
-                {
-                    <span class="badge badge-danger">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
-                }
-                else
-                {
-                    <span class="badge badge-success">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
-                }
+                
+                <div class="w-100 d-flex flex-wrap">
+                    @if ((DateTime.Now - prop.Pdate).Days >= (prop.CategoryDay - 3))
+                    {
+                        <span class="badge badge-danger">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-success">剩餘@(prop.CategoryDay - (DateTime.Now - prop.Pdate).Days)天</span>
+                    }
+
+                    @if (messge < prop.CategoryReview)
+                    {
+                        <span class="badge badge-danger">尚須@(prop.CategoryReview - messge)個附議</span>
+                    }
+                </div>
                 
             </div>
         </a>

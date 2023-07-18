@@ -41,6 +41,8 @@ namespace CHU_PolicyPlatform_1.Controllers
                 return RedirectToAction("Errorhomepage", "Home");
             }
 
+            var cateList = _prop.Categories.ToList();
+
             ViewData["ActivePage"] = Id;    //Activec分頁碼
             ViewData["Pages"] = pages;  //頁數
 

@@ -74,7 +74,20 @@ namespace CHU_PolicyPlatform_1.Controllers
 
                 _context.SaveChanges();
             }
-            return RedirectToAction("RDC", "GerentReviewDay");
+
+            var updatedCategories = _context.Categories.ToList();
+            var updatedValue = new RdVM
+            {
+                CategoryId = categoryId,
+                CategoryMinDay = categoryToUpdate.CategoryMinDay,
+                CategoryMaxDay = categoryToUpdate.CategoryMaxDay,
+                CategoryGerentReview = categoryToUpdate.CategoryGerentReview,
+                CategoryName = categoryToUpdate.CategoryName,
+                Categories = updatedCategories
+            };
+
+            //return RedirectToAction("RDC", "GerentReviewDay");
+            return View("RDC", updatedValue);
 
         }
 

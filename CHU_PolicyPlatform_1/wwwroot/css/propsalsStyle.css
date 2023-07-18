@@ -23,11 +23,16 @@ form #CategoryId {
 .content-area{
     display:flex;
     margin:10px 0;
-    gap:20px;
 }
-.content-area>div{
-    padding:0;
-}
+    .content-area>div:first-child{
+        padding-right:10px;
+    }
+    .content-area > div+div {
+        padding-left: 10px;
+    }
+    .content-area > div {
+        padding: 0;
+    }
 
 form #Pcontent, #GainsInfluential {
     height: 200px;

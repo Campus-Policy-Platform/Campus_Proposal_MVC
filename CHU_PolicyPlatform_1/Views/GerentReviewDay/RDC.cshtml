@@ -22,10 +22,17 @@
         <form method="post" action="/GerentReviewDay/UploadVM">
             <div class="form-group">
                 <select class="form-control" style="color:black" id="categoryId" name="categoryId" onchange="this.form.submit()">
-                    <option value="">-- 請選擇更改種類 --</option>
+                    <option value="" style="color: black">-- 請選擇更改種類 --</option>
                     @foreach (var category in Model.Categories)
                     {
-                        <option value="@category.CategoryId" style="color: black">@category.CategoryName</option>
+                        if (category.CategoryName == cname && cname!=null)
+                        {
+                            <option value="@category.CategoryId" style="color: black" selected>@category.CategoryName</option>
+                        }
+                        else
+                        {
+                            <option value="@category.CategoryId" style="color: black">@category.CategoryName</option>
+                        }
                     }
                 </select>
             </div>
