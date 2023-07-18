@@ -56,8 +56,18 @@ namespace CHU_PolicyPlatform_1.Controllers
                 return NotFound();
             }
 
+            bool exist = false;
+            foreach (var vote in review_vote)
+            {
+                if (vote.ProposalId == review_data.ProposalId && vote.UserId == User.Identity.Name)
+                {
+                    exist = true;
+                }
+            }
+
             ViewData["ActivePage"] = Id;    //Activec分頁碼
             ViewData["Pages"] = pages;  //頁數
+            ViewData["Voted"] = exist;  //是否已投票
 
 
             return View(ReviewtotalVM);

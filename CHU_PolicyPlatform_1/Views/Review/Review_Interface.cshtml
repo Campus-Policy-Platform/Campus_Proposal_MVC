@@ -10,14 +10,7 @@
     int pages = (int)ViewData["Pages"];
 
     //已投票
-    bool exist =false;
-    foreach(var vote in votes)
-    {
-        if(vote.ProposalId == proposals.ProposalId && vote.UserId == User.Identity.Name)
-        {
-            exist = true;
-        }
-    }
+    bool exist = (bool)ViewData["Voted"];
 }
 @section topCSS{
     <link href="~/css/testchangestylesheet.css" rel="stylesheet" />
