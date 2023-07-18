@@ -45,10 +45,10 @@ namespace CHU_PolicyPlatform_1.Controllers
                 });
             };
             var geseVM = new GerentSeeVM();
-            var pies = new List<propM>();
+            var myPies = new List<propM>();
             foreach (var prop in myprops)
             {
-                pies.Add(new propM
+                myPies.Add(new propM
                 {
                     ProposalId = prop.ProposalId,
                     Title = prop.Title,
@@ -57,15 +57,15 @@ namespace CHU_PolicyPlatform_1.Controllers
             };            
             geseVM = new GerentSeeVM
             {
-                pieVMs = pies,
+                pieVMs = myPies,
                 categories = cates
             };
 
             var vgeseVM = new GerentSeeVM();
-            pies.Clear();
-            foreach (var prop in myprops)
+            var vpies = new List<propM>();
+            foreach (var prop in votedprops)
             {
-                pies.Add(new propM
+                vpies.Add(new propM
                 {
                     ProposalId = prop.ProposalId,
                     Title = prop.Title,
@@ -74,7 +74,7 @@ namespace CHU_PolicyPlatform_1.Controllers
             };
             vgeseVM = new GerentSeeVM
             {
-                pieVMs = pies,
+                pieVMs = vpies,
             };
 
             JoinedViewModel joinedVM = new JoinedViewModel
