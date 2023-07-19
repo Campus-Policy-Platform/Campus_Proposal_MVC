@@ -52,9 +52,9 @@ namespace CHU_PolicyPlatform_1.Controllers
             proposal.Pdate = DateTime.Now;
             var dateNow = proposal.Pdate.ToString("yyMMdd");
             var propsNum = (from p in _context.Proposals
-                               where p.Pdate.Date == proposal.Pdate.Date
-                               orderby p.Pdate descending
-                               select p.ProposalId).First().Substring(7,3);
+                           where p.Pdate.Date == proposal.Pdate.Date
+                           orderby p.Pdate descending
+                           select p.ProposalId).FirstOrDefault()?.Substring(7, 3) ?? "000";
             var NumCount = (Int32.Parse(propsNum)+1).ToString("D3");
             
 
