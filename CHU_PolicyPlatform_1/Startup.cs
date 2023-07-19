@@ -49,6 +49,8 @@ namespace CHU_PolicyPlatform_1
             services.AddScoped<ReUserS>();
             services.AddScoped<SeUserS>();
 
+            services.AddSignalR();
+
             services.AddDbContext<ProposeContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ProposeContext")));
 
@@ -212,6 +214,8 @@ namespace CHU_PolicyPlatform_1
                     name: "CategoryAdd",
                     pattern: "Gerent/CategoryAdd",
                     defaults: new { controller = "CategoryAdd", action = "CyAd" });
+                //test
+
             });
         }
     }

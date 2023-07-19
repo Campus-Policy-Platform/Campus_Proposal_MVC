@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
-
+using System.Security.Claims;
+using System.Text.Json;
 namespace CHU_PolicyPlatform_1.Controllers
 {
     public class ReviewController : Controller
@@ -128,6 +129,16 @@ namespace CHU_PolicyPlatform_1.Controllers
         internal static string Unicode2String(string source)
         {
             return new Regex(@"\\u([0-9A-F]{4})", RegexOptions.IgnoreCase | RegexOptions.Compiled).Replace(source, x => Convert.ToChar(Convert.ToUInt16(x.Result("$1"), 16)).ToString());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUserName(string proid)
+        {
+
+            var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == proid);
+            var TrueAmount = review_vote.Count(h => h.Crucial == true);
+
+            return Ok(TrueAmount);
         }
     }
 }
