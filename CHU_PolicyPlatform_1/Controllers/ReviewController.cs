@@ -72,6 +72,23 @@ namespace CHU_PolicyPlatform_1.Controllers
 
             return View(ReviewtotalVM);
         }
+        [Authorize(Roles = "User,Gerent")]
+        [HttpGet]
+        public IActionResult GetVoteCounts()
+        {
+            string propId = "P230718003";
+            var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == propId);
+
+            // True and False 數量統計
+            var trueAmount = review_vote.Count(h => h.Crucial == true);
+            var falseAmount = review_vote.Count(h => h.Crucial == false);
+
+            var voteCounts = new List<int> { trueAmount, falseAmount };
+            return Json(voteCounts);
+        }
+
+
+
         [Authorize(Roles = "Gerent")]
         [HttpPost]
         public  IActionResult Delete_Response(string propId) 

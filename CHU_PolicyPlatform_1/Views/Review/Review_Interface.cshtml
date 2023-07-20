@@ -110,11 +110,11 @@
         <div class="axc col">
             <div>
                 <h2>贊成</h2>
-                <p>@ViewBag.TrueAmount</p>
+                <p id="to_to"></p>
             </div>
             <div>
                 <h2>反對</h2>
-                <p>@ViewBag.FalseAmount</p>
+                <p id="go_go"></p>
             </div>
         </div>
     </div>
@@ -286,7 +286,7 @@
                     <div class="text">
                         <ul>
                             <li>@vote.UserId</li>
-                            <li>@vote.Vdate.ToString("yyyy-mm-dd")</li>
+                            <li>@vote.Vdate.ToString("yyyy-MM-dd")</li>
                         </ul>
                         <p>@vote.Vcontent</p>
                     </div>
@@ -349,40 +349,52 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        let ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ["贊成","反對"],
-                datasets: [{
-                    backgroundColor: [
-                        '#FFA07A',
-                        '#9966CC',
-                    ],
-                    data: [@ViewBag.TrueAmount, @ViewBag.FalseAmount],
-                    fill: false,
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white',
-                            font: {
-                                size: 20
-                            }
-                        }
-                    },
-                    tooltip: {
-                        titleFont: {
-                            size: 20
-                        },
-                        bodyFont: {
-                            size: 16
-                        }
-                    }
+
+        $(document).ready(function () {
+            var intervalTime = 3000;
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['贊成', '反對'],
+                    datasets: [{
+                        label: 'Vote Counts',
+                        data: [],
+                        backgroundColor: ['#36A2EB', '#FF6384']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
                 }
+            });
+
+
+            function updateJS() {
+                $.ajax({
+                    url: '/Review/GetVoteCounts',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (result) {
+                        var voteCountss = result;
+                        var firstValue = voteCountss[0];
+                        var secondValue = voteCountss[1];
+
+                        chart.data.datasets[0].data = [firstValue, secondValue];
+                        chart.update();
+
+                        $('#to_to').html(firstValue);
+                        $('#go_go').html(secondValue);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
             }
+
+            updateJS();
+            setInterval(updateJS, intervalTime);
+
         });
     </script>
 }
