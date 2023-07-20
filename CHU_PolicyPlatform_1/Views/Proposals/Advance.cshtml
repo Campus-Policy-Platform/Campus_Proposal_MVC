@@ -24,7 +24,7 @@
             @foreach (var option in Model.Options)
             {
                 <div id="case-schedule-@option.Value" class="case-schedule" style="display: none;">
-                    <label for="quantity">選擇案件時程 (@option.MinDay and @option.MaxDay):</label>
+                    <label for="quantity">選擇案件時程 (@option.MinDay 天 and @option.MaxDay 天):</label>
                     <br>
                     <input type="number" style="color: black" data-category="@option.Value" class="category-day-input" min="@option.MinDay" max="@option.MaxDay" value="@option.MinDay" 
                         oninput="value=value.replace(/[^\d]/g,'');if(value<@option.MinDay)value=@option.MinDay;if(value>@option.MaxDay)value=@option.MaxDay;">
