@@ -74,10 +74,10 @@ namespace CHU_PolicyPlatform_1.Controllers
         }
         [Authorize(Roles = "User,Gerent")]
         [HttpGet]
-        public IActionResult GetVoteCounts()
+        public IActionResult GetVoteCounts(string proId)
         {
-            string propId = "P230718003";
-            var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == propId);
+            //proId = "P230718003";
+            var review_vote = _context.Votes.ToList().FindAll(x => x.ProposalId == proId);
 
             // True and False 數量統計
             var trueAmount = review_vote.Count(h => h.Crucial == true);
